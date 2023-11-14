@@ -137,6 +137,7 @@ To avoid using many `..` in relative path, config path alias in `tsconfig.json`.
 - For every updates, DO NOT push directly to `master` branch. Create a new branch, commit, publish branch and create a pull request (PR) instead.
 - A branch should have prefix `feat/` for a feature update, prefix `hotf/` for a hotfix, `improv/` for an improvement ...
 - A PR should be small enough to review. To split a large PR, use [stacked PRs](https://blog.logrocket.com/using-stacked-pull-requests-in-github/).
+- Using `git cz` for commit to create conventional commit message
 
 ## Helpful resources
 
