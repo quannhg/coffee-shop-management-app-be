@@ -4,3 +4,4 @@
 
 export * from './createRoutes';
 export * from './logger';
+export * from './query';

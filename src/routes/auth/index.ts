@@ -22,8 +22,9 @@ export const authPlugin = createRoutes('Auth', [
             body: AuthInputDto,
             response: {
                 200: AuthResultDto
-            }
+            },
+            deprecated: true
         },
-        handler: authHandler.signup
+        handler: authHandler.login
     }
 ]);

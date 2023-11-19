@@ -1,5 +1,5 @@
 -- run the following command when excute query failed, this will rollback transaction (excute only this command, not the whole file)
--- ROLLBACK; 
+-- ROLLBACK;
 
 BEGIN;
 
@@ -18,9 +18,9 @@ BEGIN;
         ('fa468d66-44f5-4447-8c4e-60e29cf2f623', 'Alcohol Hand Problend', '1137 Mendota Crossing', '612-603-1870', 'pgarvagh2@netlog.com', '6:00', '19:00');
 
     insert into NHAN_VIEN
-        (Ma_nhan_vien, Ho_va_ten, Ngay_sinh, Gioi_tinh, Dia_chi, Sdt, So_tk_ngan_hang, Trinh_do_hoc_van)
+        (Ma_nhan_vien, Ho_va_ten, Ngay_sinh, Gioi_tinh, Dia_chi, Sdt, So_tk_ngan_hang, Trinh_do_hoc_van, Ten_tai_khoan, Mat_khau_bam)
     values
-        ('9ea7776a-42e9-43e1-a58d-070aed9781f2', 'Les Filipson', '2003-09-28', 'Male', '5299 Lindbergh Road', '228-834-6627', '945701745679824', 'College Degree');
+        ('9ea7776a-42e9-43e1-a58d-070aed9781f2', 'Les Filipson', '2003-09-28', 'Male', '5299 Lindbergh Road', '228-834-6627', '945701745679824', 'College Degree', 'admin', '$2b$10$hNa96X21hBhO9OzPovQHeOuwZxnIdSoX/IOSr2RoIpgzfDA3kSskq');
     insert into NHAN_VIEN
         (Ma_nhan_vien, Ho_va_ten, Ngay_sinh, Gioi_tinh, Dia_chi, Sdt, So_tk_ngan_hang, Trinh_do_hoc_van)
     values
