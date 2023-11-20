@@ -8,10 +8,10 @@ const getUserById: Handler<UserDto> = async (req, res) => {
 
     if (user.length === 0) return res.badRequest(USER_NOT_FOUND);
 
-    return {
+    return res.status(200).send({
         id: user[0].ma_nhan_vien,
         username: user[0].ten_tai_khoan
-    };
+    });
 };
 
 export const usersHandler = {

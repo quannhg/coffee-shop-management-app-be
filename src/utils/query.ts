@@ -15,7 +15,6 @@ export const poolQuery = async (queryTextOrConfig: string | QueryConfig) => {
         return result;
     } catch (err) {
         logger.error('Error when query from pool');
-        logger.error(err);
         throw err;
     }
 };
@@ -36,7 +35,8 @@ export const createPoolClient = () => {
                 client = null;
             }
         } catch (error) {
-            console.error('Error releasing client:', error);
+            logger.error('Error releasing client:', error);
+            throw error;
         }
     };
 
@@ -50,7 +50,7 @@ export const createPoolClient = () => {
             const result = await client.query(queryTextOrConfig);
             return result;
         } catch (error) {
-            console.error('Error executing query:', error);
+            logger.error('Error executing query:', error);
             throw error;
         }
     };

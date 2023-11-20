@@ -17,10 +17,10 @@ const login: Handler<AuthResultDto, { Body: AuthInputDto }> = async (req, res) =
     const userToken = jwt.sign({ userId: user[0].ma_nhan_vien }, envs.JWT_SECRET);
     res.setCookie('token', userToken, cookieOptions);
 
-    return {
+    return res.status(200).send({
         id: user[0].ma_nhan_vien,
         username: user[0].ten_tai_khoan
-    };
+    });
 };
 
 // const signup: Handler<AuthResultDto, { Body: AuthInputDto }> = async (req, res) => {
