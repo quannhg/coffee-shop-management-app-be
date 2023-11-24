@@ -52,7 +52,6 @@ CREATE TABLE DON_HANG
 	Ma_don_hang VARCHAR(30) PRIMARY KEY,
 	Thoi_gian_tao_don_hang DATE NOT NULL,
 	Tinh_trang VARCHAR(30) NOT NULL,
-	Tong_tien INT NOT NULL,
 	Dung_tai_quan_khong BOOLEAN NOT NULL,
 	Ma_nhan_vien UUID NOT NULL,
 	Ma_cua_hang UUID NOT NULL,
@@ -69,7 +68,6 @@ CREATE TABLE KHUYEN_MAI
 	Ten_khuyen_mai VARCHAR(30) NOT NULL,
 	Thoi_gian_bat_dau DATE,
 	Thoi_gian_ket_thuc DATE,
-	Muc_giam_toi_da INT,
 	Gia_tri_cho_don_hang_toi_thieu INT,
 	La_KM_cho_DH BOOLEAN NOT NULL,
 	La_KM_cho_MON BOOLEAN NOT NULL,
@@ -98,7 +96,6 @@ CREATE TABLE HOA_DON_NHAP_KHO
 	Ma_hoa_don VARCHAR(30) PRIMARY KEY,
 	Thoi_gian_nhap_kho DATE NOT NULL,
 	Nha_cung_cap VARCHAR(30) NOT NULL,
-	Tong_tien INT NOT NULL,
 	Ma_cua_hang UUID NOT NULL,
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang)
 );
@@ -111,7 +108,6 @@ CREATE TABLE CA_LAM_VIEC
 	Thoi_gian_bat_dau DATE NOT NULL,
 	Thoi_gian_ket_thuc DATE NOT NULL,
 	SL_NV_yeu_cau INT NOT NULL,
-	SL_NV_con_can INT NOT NULL,
 	Ma_cua_hang UUID,
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang)
 );
@@ -132,8 +128,6 @@ CREATE TABLE BAN
 CREATE TABLE BAN_THOI_GIAN
 (
 	He_so_luong_theo_gio FLOAT NOT NULL,
-	So_gio INT NOT NULL,
-	Thang INT NOT NULL,
 	Ma_nhan_vien UUID NOT NULL,
 	FOREIGN KEY(Ma_nhan_vien) REFERENCES NHAN_VIEN(Ma_nhan_vien)
 );
@@ -158,6 +152,7 @@ CREATE TABLE KHUYEN_MAI_TINH_THEO_SO
 CREATE TABLE KHUYEN_MAI_TINH_THEO_PHAN_TRAM
 (
 	Phan_tram_giam INT NOT NULL,
+	Muc_giam_toi_da INT,
 	Ma_khuyen_mai VARCHAR(30) NOT NULL,
 	FOREIGN KEY (Ma_khuyen_mai) REFERENCES KHUYEN_MAI(Ma_khuyen_mai)
 );
@@ -204,8 +199,6 @@ CREATE TABLE NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
 (
 	Thoi_gian_den DATE NOT NULL,
 	Thoi_gian_di DATE NOT NULL,
-	Co_mat BOOLEAN NOT NULL,
-	Tre BOOLEAN NOT NULL,
 	Ma_nhan_vien UUID NOT NULL,
 	Ma_ca_lam_viec VARCHAR(30) NOT NULL,
 	FOREIGN KEY(Ma_nhan_vien) REFERENCES NHAN_VIEN(Ma_nhan_vien),
@@ -215,7 +208,6 @@ CREATE TABLE NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
 
 CREATE TABLE CUA_HANG_CO_MON
 (
-	Dang_san_sang_phuc_vu BOOLEAN NOT NULL,
 	Ma_mon VARCHAR(30) NOT NULL,
 	Ma_cua_hang UUID NOT NULL,
 	FOREIGN KEY(Ma_mon) REFERENCES MON(Ma_mon),
@@ -225,7 +217,6 @@ CREATE TABLE CUA_HANG_CO_MON
 
 CREATE TABLE CUA_HANG_CHUA_NGUYEN_LIEU
 (
-	So_luong INT NOT NULL,
 	Ma_nguyen_lieu VARCHAR(30) NOT NULL,
 	Ma_cua_hang UUID NOT NULL,
 	FOREIGN KEY(Ma_nguyen_lieu) REFERENCES NGUYEN_LIEU(Ma_nguyen_lieu),
