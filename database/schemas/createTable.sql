@@ -24,7 +24,7 @@ CREATE TABLE CUA_HANG
 	Sdt VARCHAR(12) NOT NULL,
 	Dia_chi_mail VARCHAR(30) NOT NULL,
 	Gio_mo_cua TIME NOT NULL,
-	Gio_dong_cua TIME NOT NULL,
+	Gio_dong_cua TIME NOT NULL,--
 	PRIMARY KEY (Ma_cua_hang),
 	CONSTRAINT unique_ma_cua_hang UNIQUE (Ma_cua_hang),
 	CONSTRAINT unique_sdt UNIQUE (Sdt),
