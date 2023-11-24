@@ -1,19 +1,17 @@
 import { USER_NOT_FOUND } from '@constants';
-import { prisma } from '@repositories';
 import { UserDto } from '@dtos/out';
 import { Handler } from '@interfaces';
+import { employeeQuery } from 'src/queries';
 
 const getUserById: Handler<UserDto> = async (req, res) => {
-    const userId = req.userId;
-    const user = await prisma.user.findUnique({
-        select: {
-            id: true,
-            email: true
-        },
-        where: { id: userId }
+    const user = await employeeQuery.selectById(req.userId, ['ma_nhan_vien', 'ten_tai_khoan']);
+
+    if (user.length === 0) return res.badRequest(USER_NOT_FOUND);
+
+    return res.status(200).send({
+        id: user[0].ma_nhan_vien,
+        username: user[0].ten_tai_khoan
     });
-    if (user === null) return res.badRequest(USER_NOT_FOUND);
-    return user;
 };
 
 export const usersHandler = {

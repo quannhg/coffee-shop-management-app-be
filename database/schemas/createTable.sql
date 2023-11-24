@@ -35,15 +35,17 @@ CREATE TABLE CUA_HANG
 
 CREATE TABLE NHAN_VIEN
 (
-	Ma_nhan_vien UUID DEFAULT uuid_generate_v4 () NOT NULL,
-	Ho_va_ten VARCHAR(30) NOT NULL,
-	Ngay_sinh DATE NOT NULL,
-	Gioi_tinh VARCHAR(30) NOT NULL,
-	Dia_chi VARCHAR(30) NOT NULL,
-	Sdt VARCHAR(12) UNIQUE NOT NULL,
-	So_tk_ngan_hang VARCHAR(30) UNIQUE NOT NULL,
-	Trinh_do_hoc_van VARCHAR(30) NOT NULL,
-	PRIMARY KEY (Ma_nhan_vien)
+    Ma_nhan_vien UUID DEFAULT uuid_generate_v4() NOT NULL,
+    Ho_va_ten VARCHAR(30) NOT NULL,
+    Ngay_sinh DATE NOT NULL,
+    Gioi_tinh VARCHAR(30) NOT NULL,
+    Dia_chi VARCHAR(30) NOT NULL,
+    Sdt VARCHAR(12) UNIQUE NOT NULL,
+    So_tk_ngan_hang VARCHAR(30) UNIQUE NOT NULL,
+    Trinh_do_hoc_van VARCHAR(30) NOT NULL,
+    Ten_tai_khoan VARCHAR(30) UNIQUE, 
+    Mat_khau_bam VARCHAR(60) UNIQUE, 
+    PRIMARY KEY (Ma_nhan_vien)
 );
 
 
