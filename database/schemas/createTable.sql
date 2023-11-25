@@ -24,7 +24,7 @@ CREATE TABLE CUA_HANG
 	Sdt VARCHAR(12) NOT NULL,
 	Dia_chi_mail VARCHAR(30) NOT NULL,
 	Gio_mo_cua TIME NOT NULL,
-	Gio_dong_cua TIME NOT NULL,
+	Gio_dong_cua TIME NOT NULL,--
 	PRIMARY KEY (Ma_cua_hang),
 	CONSTRAINT unique_ma_cua_hang UNIQUE (Ma_cua_hang),
 	CONSTRAINT unique_sdt UNIQUE (Sdt),
@@ -54,7 +54,6 @@ CREATE TABLE DON_HANG
 	Ma_don_hang VARCHAR(30) PRIMARY KEY,
 	Thoi_gian_tao_don_hang DATE NOT NULL,
 	Tinh_trang VARCHAR(30) NOT NULL,
-	Tong_tien INT NOT NULL,
 	Dung_tai_quan_khong BOOLEAN NOT NULL,
 	Ma_nhan_vien UUID NOT NULL,
 	Ma_cua_hang UUID NOT NULL,
@@ -71,7 +70,6 @@ CREATE TABLE KHUYEN_MAI
 	Ten_khuyen_mai VARCHAR(30) NOT NULL,
 	Thoi_gian_bat_dau DATE,
 	Thoi_gian_ket_thuc DATE,
-	Muc_giam_toi_da INT,
 	Gia_tri_cho_don_hang_toi_thieu INT,
 	La_KM_cho_DH BOOLEAN NOT NULL,
 	La_KM_cho_MON BOOLEAN NOT NULL,
@@ -100,7 +98,6 @@ CREATE TABLE HOA_DON_NHAP_KHO
 	Ma_hoa_don VARCHAR(30) PRIMARY KEY,
 	Thoi_gian_nhap_kho DATE NOT NULL,
 	Nha_cung_cap VARCHAR(30) NOT NULL,
-	Tong_tien INT NOT NULL,
 	Ma_cua_hang UUID NOT NULL,
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang)
 );
@@ -113,7 +110,6 @@ CREATE TABLE CA_LAM_VIEC
 	Thoi_gian_bat_dau DATE NOT NULL,
 	Thoi_gian_ket_thuc DATE NOT NULL,
 	SL_NV_yeu_cau INT NOT NULL,
-	SL_NV_con_can INT NOT NULL,
 	Ma_cua_hang UUID,
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang)
 );
@@ -134,8 +130,6 @@ CREATE TABLE BAN
 CREATE TABLE BAN_THOI_GIAN
 (
 	He_so_luong_theo_gio FLOAT NOT NULL,
-	So_gio INT NOT NULL,
-	Thang INT NOT NULL,
 	Ma_nhan_vien UUID NOT NULL,
 	FOREIGN KEY(Ma_nhan_vien) REFERENCES NHAN_VIEN(Ma_nhan_vien)
 );
@@ -160,6 +154,7 @@ CREATE TABLE KHUYEN_MAI_TINH_THEO_SO
 CREATE TABLE KHUYEN_MAI_TINH_THEO_PHAN_TRAM
 (
 	Phan_tram_giam INT NOT NULL,
+	Muc_giam_toi_da INT,
 	Ma_khuyen_mai VARCHAR(30) NOT NULL,
 	FOREIGN KEY (Ma_khuyen_mai) REFERENCES KHUYEN_MAI(Ma_khuyen_mai)
 );
@@ -206,8 +201,6 @@ CREATE TABLE NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
 (
 	Thoi_gian_den DATE NOT NULL,
 	Thoi_gian_di DATE NOT NULL,
-	Co_mat BOOLEAN NOT NULL,
-	Tre BOOLEAN NOT NULL,
 	Ma_nhan_vien UUID NOT NULL,
 	Ma_ca_lam_viec VARCHAR(30) NOT NULL,
 	FOREIGN KEY(Ma_nhan_vien) REFERENCES NHAN_VIEN(Ma_nhan_vien),
@@ -217,7 +210,6 @@ CREATE TABLE NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
 
 CREATE TABLE CUA_HANG_CO_MON
 (
-	Dang_san_sang_phuc_vu BOOLEAN NOT NULL,
 	Ma_mon VARCHAR(30) NOT NULL,
 	Ma_cua_hang UUID NOT NULL,
 	FOREIGN KEY(Ma_mon) REFERENCES MON(Ma_mon),
@@ -227,7 +219,6 @@ CREATE TABLE CUA_HANG_CO_MON
 
 CREATE TABLE CUA_HANG_CHUA_NGUYEN_LIEU
 (
-	So_luong INT NOT NULL,
 	Ma_nguyen_lieu VARCHAR(30) NOT NULL,
 	Ma_cua_hang UUID NOT NULL,
 	FOREIGN KEY(Ma_nguyen_lieu) REFERENCES NGUYEN_LIEU(Ma_nguyen_lieu),
@@ -322,6 +313,35 @@ CREATE TABLE SO_LUONG_HAO_HUT
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang),
 	FOREIGN KEY(Ma_nguyen_lieu) REFERENCES NGUYEN_LIEU(Ma_nguyen_lieu)
 );
+
+--Modify tables in here
+ALTER TABLE DON_HANG_GOM_MON
+ADD CHECK (So_luong > 0);
+
+ALTER TABLE MON_CAN_NGUYEN_LIEU
+ADD CHECK (So_luong > 0 AND EXISTS (SELECT 1 
+											FROM v_SL_nguyen_lieu_cua_hang AS v
+											WHERE
+											MON_CAN_NGUYEN_LIEU.Ma_nguyen_lieu = v.Ma_nguyen_lieu AND MON_CAN_NGUYEN_LIEU.So_luong <= v.So_luong )) ;
+
+
+ALTER TABLE DON_HANG 
+ADD CONSTRAINT check_dung_tai quan CHECK (Dung_tai_quan_khong = TRUE  AND (SELECT COUNT(*) FROM v_So_ban_TRONG ) IS NOT NULL) ;
+ADD CONSTRAINT check_KM_DH
+CHECK (
+	(SELECT SUM(v.Tong_tien)
+	 FROM v_Tong_tien_MON AS v
+	 WHERE v.Ma_don_hang = DON_HANG.Ma_don_hang) >= (SELECT Gia_tri_cho_don_hang_toi_thieu
+													 FROM KHUYEN_MAI JOIN DON_HANG_AP_DUNG_KHUYEN_MAI ON KHUYEN_MAI.Ma_khuyen_mai = DON_HANG_AP_DUNG_KHUYEN_MAI.Ma_khuyen_mai
+													 WHERE DON_HANG.Ma_don_hang = DON_HANG_AP_DUNG_KHUYEN_MAI.Ma_don_hang)
+	AND ((SELECT SUM(v.Tong_tien)
+	 FROM v_Tong_tien_MON AS v
+	 WHERE v.Ma_don_hang = DON_HANG.Ma_don_hang) > 0 
+	)						
+)
+ALTER TABLE MON
+ADD CHECK (Gia_tien >= 0);
+
 
 --end
 
