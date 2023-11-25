@@ -314,6 +314,35 @@ CREATE TABLE SO_LUONG_HAO_HUT
 	FOREIGN KEY(Ma_nguyen_lieu) REFERENCES NGUYEN_LIEU(Ma_nguyen_lieu)
 );
 
+--Modify tables in here
+ALTER TABLE DON_HANG_GOM_MON
+ADD CHECK (So_luong > 0);
+
+ALTER TABLE MON_CAN_NGUYEN_LIEU
+ADD CHECK (So_luong > 0 AND EXISTS (SELECT 1 
+											FROM v_SL_nguyen_lieu_cua_hang AS v
+											WHERE
+											MON_CAN_NGUYEN_LIEU.Ma_nguyen_lieu = v.Ma_nguyen_lieu AND MON_CAN_NGUYEN_LIEU.So_luong <= v.So_luong )) ;
+
+
+ALTER TABLE DON_HANG 
+ADD CONSTRAINT check_dung_tai quan CHECK (Dung_tai_quan_khong = TRUE  AND (SELECT COUNT(*) FROM v_So_ban_TRONG ) IS NOT NULL) ;
+ADD CONSTRAINT check_KM_DH
+CHECK (
+	(SELECT SUM(v.Tong_tien)
+	 FROM v_Tong_tien_MON AS v
+	 WHERE v.Ma_don_hang = DON_HANG.Ma_don_hang) >= (SELECT Gia_tri_cho_don_hang_toi_thieu
+													 FROM KHUYEN_MAI JOIN DON_HANG_AP_DUNG_KHUYEN_MAI ON KHUYEN_MAI.Ma_khuyen_mai = DON_HANG_AP_DUNG_KHUYEN_MAI.Ma_khuyen_mai
+													 WHERE DON_HANG.Ma_don_hang = DON_HANG_AP_DUNG_KHUYEN_MAI.Ma_don_hang)
+	AND ((SELECT SUM(v.Tong_tien)
+	 FROM v_Tong_tien_MON AS v
+	 WHERE v.Ma_don_hang = DON_HANG.Ma_don_hang) > 0 
+	)						
+)
+ALTER TABLE MON
+ADD CHECK (Gia_tien >= 0);
+
+
 --end
 
 COMMIT;
