@@ -33,3 +33,28 @@ BEFORE INSERT OR UPDATE
 ON CA_LAM_VIEC
 FOR EACH ROW
 EXECUTE FUNCTION check_tg_CLV_CH();
+
+--check thoi gian nhan vien: nhan vien quan ly cua hang, thoi gian thuong phat, thoi gian bang tinh luong
+CREATE TRIGGER trigger_check_tg_nv
+BEFORE INSERT OR UPDATE
+ON BANG_TINH_LUONG
+FOR EACH ROW
+EXECUTE FUNCTION check_tg_nv();
+
+CREATE TRIGGER trigger_check_tg_nv
+BEFORE INSERT OR UPDATE
+ON THUONG
+FOR EACH ROW
+EXECUTE FUNCTION check_tg_nv();
+
+CREATE TRIGGER trigger_check_tg_nv
+BEFORE INSERT OR UPDATE
+ON PHAT
+FOR EACH ROW
+EXECUTE FUNCTION check_tg_nv();
+
+CREATE TRIGGER trigger_check_tg_nv
+BEFORE INSERT OR UPDATE
+ON NHAN_VIEN_QUAN_LY_CUA_HANG
+FOR EACH ROW
+EXECUTE FUNCTION check_tg_nv();

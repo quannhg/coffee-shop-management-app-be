@@ -290,7 +290,7 @@ CREATE TABLE HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU
 CREATE TABLE PHAT
 (
 	Ma_nhan_vien UUID NOT NULL,
-	Thoi_gian_phat VARCHAR(30),
+	Thoi_gian_phat DATE,
 	Tien_phat INT,
 	Ly_do_phat VARCHAR(30),
 	FOREIGN KEY(Ma_nhan_vien) REFERENCES NHAN_VIEN(Ma_nhan_vien)
@@ -300,7 +300,7 @@ CREATE TABLE PHAT
 CREATE TABLE THUONG
 (
 	Ma_nhan_vien UUID NOT NULL,
-	Thoi_gian_thuong VARCHAR(30),
+	Thoi_gian_thuong DATE,
 	Tien_thuong INT,
 	Ly_do_thuong VARCHAR(30),
 	FOREIGN KEY(Ma_nhan_vien) REFERENCES NHAN_VIEN(Ma_nhan_vien)
@@ -408,7 +408,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-ALTER TABLE CA_LAM_VIEC
+ALTER TABLE  NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
+ADD CONSTRAINT check_nv_trong_ca_constraint CHECK (check_nv_trong_ca());
+
+ALTER TABLE  NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
 ADD CONSTRAINT check_nv_trong_ca_constraint CHECK (check_nv_trong_ca());
 
 --check khoang thoi gian lam viec cua nhan vien, ca lam viec, cua hang
@@ -462,20 +465,71 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE TRIGGER trigger_check_tg_CLV_NVLV
-BEFORE INSERT OR UPDATE
-ON NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
-FOR EACH ROW
-EXECUTE FUNCTION check_tg_CLV_NVLV();
 
-CREATE TRIGGER trigger_check_tg_CLV_CH
-BEFORE INSERT OR UPDATE
-ON CA_LAM_VIEC
-FOR EACH ROW
-EXECUTE FUNCTION check_tg_CLV_CH();
 
 ALTER TABLE CUA_HANG
 ADD CONSTRAINT check_tg CHECK (Gio_mo_cua < Gio_dong_cua);
+
+-- check validation thoi gian cua nhan vien
+CREATE OR REPLACE FUNCTION check_tg_nv()
+RETURNS TRIGGER AS $$
+DECLARE
+	Ngay_BD_QL DATE;
+	Ngay_KT_QL DATE;
+	TG_Thuong DATE;
+	TG_Phat DATE;
+	TG_BANG_TINH_LUONG DATE;
+	Ngay_VL DATE; --ngay vao lam
+	Ngay_NV DATE; --ngay nghi viec
+BEGIN
+	SELECT Ngay_bat_dau INTO Ngay_BD_QL
+	FROM NHAN_VIEN_QUAN_LY_CUA_HANG;
+
+	SELECT Ngay_ket_thuc INTO Ngay_KT_QL
+	FROM NHAN_VIEN_QUAN_LY_CUA_HANG;
+
+	SELECT Thoi_gian_thuong INTO TG_Thuong
+	FROM THUONG;
+
+	SELECT Thoi_gian_phat INTO TG_Phat
+	FROM PHAT;
+
+	SELECT Thoi_gian INTO TG_BANG_TINH_LUONG
+	FROM BANG_TINH_LUONG;
+
+	SELECT Ngay_vao_lam INTO Ngay_VL
+	FROM NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG;
+
+	SELECT Ngay_nghi_viec INTO Ngay_NV
+	FROM NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG;
+
+	IF Ngay_BD_QL NOT BETWEEN Ngay_VL AND Ngay_NV THEN
+		RAISE EXCEPTION 'Invalid Ngay bat dau quan ly';
+	END IF;
+
+	IF Ngay_KT_QL NOT BETWEEN Ngay_VL AND Ngay_NV THEN
+		RAISE EXCEPTION 'Invalid Ngay ket thuc quan ly';
+	END IF;
+
+	IF TG_Thuong NOT BETWEEN Ngay_VL AND Ngay_NV THEN
+		RAISE EXCEPTION 'Invalid Thoi gian thuong';
+	END IF;
+
+	IF TG_Phat NOT BETWEEN Ngay_VL AND Ngay_NV THEN
+		RAISE EXCEPTION 'Invalid Thoi gian phat';
+	END IF;
+
+	IF TG_BANG_TINH_LUONG NOT BETWEEN Ngay_VL AND Ngay_NV THEN
+		RAISE EXCEPTION 'Invalid Thoi gian bang tinh luong';
+	END IF;
+
+	RETURN NEW; 
+END;
+$$ LANGUAGE plpgsql;
+
+ALTER TABLE NHAN_VIEN_QUAN_LY_CUA_HANG
+ADD CONSTRAINT check_tg_nv_constraint CHECK (Ngay_bat_dau < Ngay_ket_thuc);
+
 
 --end
 
