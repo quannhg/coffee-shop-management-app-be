@@ -38,6 +38,7 @@ CREATE TYPE gioi_tinh AS ENUM ('Nam', 'Nữ', 'Khác');
 CREATE TABLE NHAN_VIEN
 (
     Ma_nhan_vien UUID DEFAULT uuid_generate_v4() NOT NULL,
+	avatarUrl VARCHAR(400),
     Ho_va_ten VARCHAR(30) NOT NULL,
     Ngay_sinh DATE NOT NULL,
     Gioi_tinh gioi_tinh NOT NULL,
@@ -83,6 +84,7 @@ CREATE TABLE KHUYEN_MAI
 CREATE TABLE MON
 (
 	Ma_mon VARCHAR(30) PRIMARY KEY,
+	avatarUrl VARCHAR(400),
 	Ten_mon VARCHAR(30) NOT NULL,
 	Gia_tien INT NOT NULL
 );
@@ -121,12 +123,13 @@ CREATE TABLE CA_LAM_VIEC
 CREATE TABLE BAN
 (
 	Ma_ban VARCHAR(30) PRIMARY KEY,
-	So_thu_tu INT UNIQUE NOT NULL,
+	So_thu_tu INT NOT NULL,
 	Trang_thai VARCHAR(30) NOT NULL,
 	Thoi_gian_dat_truoc DATE,
 	Sdt_nguoi_dat VARCHAR(12),
 	Ma_cua_hang UUID NOT NULL,
-	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang)
+	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang),
+	CONSTRAINT unique_ma_cua_hang_stt UNIQUE (Ma_cua_hang, So_thu_tu)
 );
 
 
@@ -213,7 +216,7 @@ CREATE TABLE NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
 
 CREATE TABLE CUA_HANG_CO_MON
 (
-	Ma_mon VARCHAR(30) NOT NULL,
+	Ma_mon  VARCHAR(30) NOT NULL,
 	Ma_cua_hang UUID NOT NULL,
 	FOREIGN KEY(Ma_mon) REFERENCES MON(Ma_mon),
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang)
