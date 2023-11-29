@@ -27,3 +27,16 @@ BEGIN
     RETURN TRUE;
 END;
 $$ LANGUAGE plpgsql;
+
+-- Hàm kiểm tra mật khẩu băm mới khác mật khẩu băm cũ
+CREATE OR REPLACE FUNCTION KiemTraMatKhauMoi(
+    p_Mat_khau_hien_tai VARCHAR(60),
+    p_Mat_khau_moi VARCHAR(60)
+)
+RETURNS BOOLEAN
+AS $$
+BEGIN
+    -- Kiểm tra mật khẩu mới phải khác mật khẩu cũ
+    RETURN p_Mat_khau_moi <> p_Mat_khau_hien_tai;
+END;
+$$ LANGUAGE plpgsql;
