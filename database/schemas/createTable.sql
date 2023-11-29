@@ -533,7 +533,21 @@ $$ LANGUAGE plpgsql;
 ALTER TABLE NHAN_VIEN_QUAN_LY_CUA_HANG
 ADD CONSTRAINT check_tg_nv_constraint CHECK (Ngay_bat_dau < Ngay_ket_thuc);
 
+-- check validation su thay doi hoa don nhap kho. Neu Cua hang khong co nguyen lieu trong hoa don nhap kho thi khong appdate hay add duoc
+CREATE OR  REPLACE FUNCTION check_nguyenlieu_CH_HDNK()
+RETURNS TRIGGER AS $$
+BEGIN
+	IF NOT EXISTS (
+		SELECT 1
+		FROM CUA_HANG_CHUA_NGUYEN_LIEU AS v
+		WHERE NEW.Ma_nguyen_lieu = v.Ma_nguyen_lieu
+	) THEN
+		RAISE EXCEPTION 'Invalid Nguyen lieu khong co trong Cua hang';
+	END IF;
 
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
 --end
 
 COMMIT;
