@@ -1,0 +1,3 @@
+insert into CUA_HANG (Ten_cua_hang, Dia_chi, Sdt, Dia_chi_mail, Gio_mo_cua, Gio_dong_cua, Luong_thang_toi_thieu, Luong_gio_toi_thieu) values ('Stokes-Fahey', '1 Vera Street', '732-675-2337', 'nbennell0@economist.com', '6:00', '19:00', 3000000, 40000);
+insert into CUA_HANG (Ten_cua_hang, Dia_chi, Sdt, Dia_chi_mail, Gio_mo_cua, Gio_dong_cua, Luong_thang_toi_thieu, Luong_gio_toi_thieu) values ('Roberts-MacGyver', '14 Burning Wood Drive', '537-129-1740', 'bcheng1@berkeley.edu', '6:00', '19:00', 3000000, 40000);
+insert into CUA_HANG (Ten_cua_hang, Dia_chi, Sdt, Dia_chi_mail, Gio_mo_cua, Gio_dong_cua, Luong_thang_toi_thieu, Luong_gio_toi_thieu) values ('Gleichner, Rolfson and Rohan', '94772 Grover Park', '787-905-9252', 'mlhomme2@usa.gov', '6:00', '19:00', 3000000, 40000);
