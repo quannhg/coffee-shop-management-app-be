@@ -79,3 +79,8 @@ ON TOAN_THOI_GIAN
 FOR EACH ROW
 EXECUTE FUNCTION check_luong_toi_thieu();
 
+CREATE TRIGGER trigger_check_luong_toi_thieu_nv_lam_viec
+BEFORE INSERT OR UPDATE
+ON NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG
+FOR EACH ROW
+EXECUTE FUNCTION check_luong_toi_thieu();
