@@ -24,7 +24,7 @@ CREATE TABLE CUA_HANG
 	Sdt VARCHAR(12) NOT NULL,
 	Dia_chi_mail VARCHAR(30) NOT NULL,
 	Gio_mo_cua TIME NOT NULL,
-	Gio_dong_cua TIME NOT NULL,--
+	Gio_dong_cua TIME NOT NULL,
 	PRIMARY KEY (Ma_cua_hang),
 	CONSTRAINT unique_ma_cua_hang UNIQUE (Ma_cua_hang),
 	CONSTRAINT unique_sdt UNIQUE (Sdt),
@@ -110,8 +110,8 @@ CREATE TABLE CA_LAM_VIEC
 (
 	Ma_ca_lam_viec VARCHAR(30) PRIMARY KEY,
 	He_so_luong_tang_them FLOAT ,
-	Thoi_gian_bat_dau DATE NOT NULL,
-	Thoi_gian_ket_thuc DATE NOT NULL,
+	Thoi_gian_bat_dau TIME NOT NULL,
+	Thoi_gian_ket_thuc TIME NOT NULL,
 	SL_NV_yeu_cau INT NOT NULL,
 	Ma_cua_hang UUID,
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang)
@@ -202,8 +202,8 @@ CREATE TABLE NHAN_VIEN_QUAN_LY_CUA_HANG
 
 CREATE TABLE NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
 (
-	Thoi_gian_den DATE NOT NULL,
-	Thoi_gian_di DATE NOT NULL,
+	Thoi_gian_den TIME NOT NULL,
+	Thoi_gian_di TIME NOT NULL,
 	Ma_nhan_vien UUID NOT NULL,
 	Ma_ca_lam_viec VARCHAR(30) NOT NULL,
 	FOREIGN KEY(Ma_nhan_vien) REFERENCES NHAN_VIEN(Ma_nhan_vien),
@@ -337,11 +337,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trigger_check_mon_can_nguyen_lieu
-BEFORE INSERT OR UPDATE
-ON MON_CAN_NGUYEN_LIEU
-FOR EACH ROW
-EXECUTE FUNCTION check_mon_can_nguyen_lieu();
 
 
 --check khach hang co the dung tai quan khong
@@ -363,11 +358,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER trigger_check_dung_tai_quan
-BEFORE INSERT OR UPDATE
-ON DON_HANG
-FOR EACH ROW
-EXECUTE FUNCTION check_dung_tai_quan();
+
 
 --check khuyen mai cho don hang	
 CREATE OR REPLACE FUNCTION check_km_dh()
@@ -399,15 +390,12 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE TRIGGER trigger_check_km_dh
-BEFORE INSERT OR UPDATE
-ON DON_HANG
-FOR EACH ROW
-EXECUTE FUNCTION check_km_dh();
+
 
 ALTER TABLE MON
 ADD CHECK (Gia_tien >= 0);
 
+--check so luong nhan vien trong ca lam viec
 CREATE OR REPLACE FUNCTION check_nv_trong_ca()
 RETURNS BOOLEAN AS $$
 DECLARE
@@ -422,6 +410,72 @@ $$ LANGUAGE plpgsql;
 
 ALTER TABLE CA_LAM_VIEC
 ADD CONSTRAINT check_nv_trong_ca_constraint CHECK (check_nv_trong_ca());
+
+--check khoang thoi gian lam viec cua nhan vien, ca lam viec, cua hang
+CREATE OR REPLACE FUNCTION check_tg_CLV_NVLV()
+RETURNS TRIGGER AS $$
+DECLARE
+	diff_time_lvt INTERVAL; --thoi gian nhan vien lam viec trong ca
+	diff_time_clv INTERVAL; --thoi gian ca lam viec
+BEGIN
+	SELECT (Thoi_gian_di - Thoi_gian_den)::INTERVAL INTO diff_time_lvt
+	FROM NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC;
+
+	SELECT (Thoi_gian_ket_thuc - Thoi_gian_bat_dau)::INTERVAL INTO diff_time_clv
+	FROM CA_LAM_VIEC;
+
+	IF diff_time_lvt > diff_time_clv THEN
+	    RAISE EXCEPTION 'Invalid Nhan vien lam viec nhieu gio hon ca lam viec';
+	END IF;
+
+	IF diff_time_lvt < '00:00:00' THEN
+	    RAISE EXCEPTION 'Invalid Thoi gian di nho hon thoi gian den';
+	END IF; 
+	
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION check_tg_CLV_CH()
+RETURNS TRIGGER AS $$
+DECLARE 
+	diff_time_ch INTERVAL; --thoi gian cua hang hoat dong
+	diff_time_clv INTERVAL; --thoi gian ca lam viec
+BEGIN
+    SELECT (Thoi_gian_ket_thuc - Thoi_gian_bat_dau)::INTERVAL INTO diff_time_clv
+	FROM CA_LAM_VIEC;
+
+	SELECT (Gio_dong_cua - Gio_mo_cua)::INTERVAL INTO diff_time_ch
+	FROM CUA_HANG;
+
+	IF diff_time_clv > diff_time_ch THEN
+		RAISE EXCEPTION 'Invalid Ca lam viec nhieu gio hon cua hang hoat dong';
+	END IF;
+
+	IF diff_time_clv < '00:00:00' THEN
+		RAISE EXCEPTION 'Invalid Thoi gian ket thuc nho hon thoi gian bat dau';
+	END IF;
+
+	RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trigger_check_tg_CLV_NVLV
+BEFORE INSERT OR UPDATE
+ON NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
+FOR EACH ROW
+EXECUTE FUNCTION check_tg_CLV_NVLV();
+
+CREATE TRIGGER trigger_check_tg_CLV_CH
+BEFORE INSERT OR UPDATE
+ON CA_LAM_VIEC
+FOR EACH ROW
+EXECUTE FUNCTION check_tg_CLV_CH();
+
+ALTER TABLE CUA_HANG
+ADD CONSTRAINT check_tg CHECK (Gio_mo_cua < Gio_dong_cua);
 
 --end
 
