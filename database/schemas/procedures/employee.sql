@@ -1,5 +1,5 @@
 -- Thủ tục thêm dữ liệu
-CREATE OR REPLACE FUNCTION them_nhan_vien(
+CREATE OR REPLACE PROCEDURE them_nhan_vien(
     _ho_va_ten VARCHAR(30),
     _ngay_sinh DATE,
     _gioi_tinh VARCHAR(30),
@@ -53,7 +53,7 @@ CREATE OR REPLACE PROCEDURE sua_nhan_vien_qua_TK_va_MK(
     p_Dia_chi VARCHAR(30) = NULL,
     p_Sdt VARCHAR(12) = NULL,
     p_So_tk_ngan_hang VARCHAR(30) = NULL,
-    p_Trinh_do_hoc_van VARCHAR(30) = NULL,
+    p_Trinh_do_hoc_van VARCHAR(30) = NULL
 )
 AS $$
 BEGIN
@@ -158,7 +158,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Thủ tục xóa dữ liệu
-CREATE OR REPLACE FUNCTION xoa_nhan_vien(_ma_nhan_vien UUID) RETURNS VOID AS $$
+CREATE OR REPLACE PROCEDURE xoa_nhan_vien(_ma_nhan_vien UUID) RETURNS VOID AS $$
 BEGIN
     DELETE FROM NHAN_VIEN WHERE Ma_nhan_vien = _ma_nhan_vien;
 END;
