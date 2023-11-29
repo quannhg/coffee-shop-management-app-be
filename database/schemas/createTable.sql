@@ -318,27 +318,90 @@ CREATE TABLE SO_LUONG_HAO_HUT
 ALTER TABLE DON_HANG_GOM_MON
 ADD CHECK (So_luong > 0);
 
-ALTER TABLE MON_CAN_NGUYEN_LIEU
-ADD CHECK (So_luong > 0 AND EXISTS (SELECT 1 
-											FROM v_SL_nguyen_lieu_cua_hang AS v
-											WHERE
-											MON_CAN_NGUYEN_LIEU.Ma_nguyen_lieu = v.Ma_nguyen_lieu AND MON_CAN_NGUYEN_LIEU.So_luong <= v.So_luong )) ;
+--cua hang can du so luong nguyen lieu de them mon vao don hang
+CREATE OR REPLACE FUNCTION check_mon_can_nguyen_lieu()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1
+    FROM v_SL_nguyen_lieu_cua_hang AS v
+    WHERE NEW.Ma_nguyen_lieu = v.Ma_nguyen_lieu AND NEW.So_luong <= v.So_luong
+  ) OR NEW.So_luong <= 0 THEN
+    RAISE EXCEPTION 'Invalid So_luong for CUA_HANG';
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_check_mon_can_nguyen_lieu
+BEFORE INSERT OR UPDATE
+ON MON_CAN_NGUYEN_LIEU
+FOR EACH ROW
+EXECUTE FUNCTION check_mon_can_nguyen_lieu();
 
 
-ALTER TABLE DON_HANG 
-ADD CONSTRAINT check_dung_tai quan CHECK (Dung_tai_quan_khong = TRUE  AND (SELECT COUNT(*) FROM v_So_ban_TRONG ) IS NOT NULL) ;
-ADD CONSTRAINT check_KM_DH
-CHECK (
-	(SELECT SUM(v.Tong_tien)
-	 FROM v_Tong_tien_MON AS v
-	 WHERE v.Ma_don_hang = DON_HANG.Ma_don_hang) >= (SELECT Gia_tri_cho_don_hang_toi_thieu
-													 FROM KHUYEN_MAI JOIN DON_HANG_AP_DUNG_KHUYEN_MAI ON KHUYEN_MAI.Ma_khuyen_mai = DON_HANG_AP_DUNG_KHUYEN_MAI.Ma_khuyen_mai
-													 WHERE DON_HANG.Ma_don_hang = DON_HANG_AP_DUNG_KHUYEN_MAI.Ma_don_hang)
-	AND ((SELECT SUM(v.Tong_tien)
-	 FROM v_Tong_tien_MON AS v
-	 WHERE v.Ma_don_hang = DON_HANG.Ma_don_hang) > 0 
-	)						
-)
+--check khach hang co the dung tai quan khong
+CREATE OR REPLACE FUNCTION check_dung_tai_quan()
+RETURNS TRIGGER AS $$
+DECLARE
+  ban_count INT;
+BEGIN
+  -- Calculate the total number of occupied tables
+  SELECT COUNT(*) INTO ban_count
+  FROM v_So_ban_TRONG;
+
+  -- Check the condition and raise an exception if not met
+  IF NEW.Dung_tai_quan_khong = TRUE AND ban_count = 0 THEN
+    RAISE EXCEPTION 'Invalid constraint: So ban trong = 0';
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_check_dung_tai_quan
+BEFORE INSERT OR UPDATE
+ON DON_HANG
+FOR EACH ROW
+EXECUTE FUNCTION check_dung_tai_quan();
+
+--check khuyen mai cho don hang	
+CREATE OR REPLACE FUNCTION check_km_dh()
+RETURNS TRIGGER AS $$
+DECLARE
+  total_tong_tien INT;
+  gia_tri_toi_thieu INT;
+BEGIN
+  -- Calculate the total Tong_tien for the Ma_don_hang
+  SELECT SUM(v.Tong_tien)
+  INTO total_tong_tien
+  FROM v_Tong_tien_MON AS v
+  WHERE v.Ma_don_hang = NEW.Ma_don_hang;
+
+  -- Get the Gia_tri_cho_don_hang_toi_thieu
+  SELECT Gia_tri_cho_don_hang_toi_thieu
+  INTO gia_tri_toi_thieu
+  FROM KHUYEN_MAI
+  JOIN DON_HANG_AP_DUNG_KHUYEN_MAI ON KHUYEN_MAI.Ma_khuyen_mai = DON_HANG_AP_DUNG_KHUYEN_MAI.Ma_khuyen_mai
+  WHERE DON_HANG_AP_DUNG_KHUYEN_MAI.Ma_don_hang = NEW.Ma_don_hang;
+
+  -- Check the conditions and raise an exception if not met
+  IF total_tong_tien < gia_tri_toi_thieu OR total_tong_tien <= 0 THEN
+    RAISE EXCEPTION 'Invalid total price';
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trigger_check_km_dh
+BEFORE INSERT OR UPDATE
+ON DON_HANG
+FOR EACH ROW
+EXECUTE FUNCTION check_km_dh();
+
 ALTER TABLE MON
 ADD CHECK (Gia_tien >= 0);
 
