@@ -33,12 +33,14 @@ CREATE TABLE CUA_HANG
 );
 
 
+CREATE TYPE gioi_tinh AS ENUM ('Nam', 'Nữ', 'Khác');
+
 CREATE TABLE NHAN_VIEN
 (
     Ma_nhan_vien UUID DEFAULT uuid_generate_v4() NOT NULL,
     Ho_va_ten VARCHAR(30) NOT NULL,
     Ngay_sinh DATE NOT NULL,
-    Gioi_tinh VARCHAR(30) NOT NULL,
+    Gioi_tinh gioi_tinh NOT NULL,
     Dia_chi VARCHAR(30) NOT NULL,
     Sdt VARCHAR(12) UNIQUE NOT NULL,
     So_tk_ngan_hang VARCHAR(30) UNIQUE NOT NULL,
@@ -47,6 +49,7 @@ CREATE TABLE NHAN_VIEN
     Mat_khau_bam VARCHAR(60) UNIQUE, 
     PRIMARY KEY (Ma_nhan_vien)
 );
+
 
 
 CREATE TABLE DON_HANG

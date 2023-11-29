@@ -26,7 +26,8 @@ export const customerPlugin = createRoutes('Customer', [
         url: '/name/:customerName',
         schema: {
             summary: 'Get customer info from their name',
-            description: 'Retrieve the phone number and name of the customer from their name.',
+            description:
+                'Retrieve the phone number and name of the customer from their name. Used to get multiple customers with the same name.',
             params: {
                 type: 'object',
                 properties: {
