@@ -25,6 +25,8 @@ CREATE TABLE CUA_HANG
 	Dia_chi_mail VARCHAR(30) NOT NULL,
 	Gio_mo_cua TIME NOT NULL,
 	Gio_dong_cua TIME NOT NULL,
+	Luong_thang_toi_thieu INT NOT NULL,
+	Luong_gio_toi_thieu INT NOT NULL,
 	PRIMARY KEY (Ma_cua_hang),
 	CONSTRAINT unique_ma_cua_hang UNIQUE (Ma_cua_hang),
 	CONSTRAINT unique_sdt UNIQUE (Sdt),
@@ -548,6 +550,37 @@ BEGIN
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+--check validation luong nhan vien theo cua hang
+CREATE OR REPLACE FUNCTION check_luong_toi_thieu()
+RETURNS TRIGGER AS $$
+DECLARE
+    luong_gio_toi_thieu_vung INT;
+	luong_thang_toi_thieu_vung INT;
+BEGIN
+    
+    SELECT Luong_gio_toi_thieu INTO luong_gio_toi_thieu_vung
+    FROM CUA_HANG
+    WHERE Ma_cua_hang = NEW.Ma_cua_hang;
+
+	SELECT Luong_thang_toi_thieu INTO luong_thang_toi_thieu_vung
+	FROM CUA_HANG
+	WHERE Ma_cua_hang = NEW.Ma_cua_hang;
+
+    
+    IF NEW.He_so_luong_theo_gio < luong_gio_toi_thieu_vung THEN
+        NEW.He_so_luong_theo_gio := luong_gio_toi_thieu_vung;
+    END IF;
+
+    
+    IF NEW.Luong_thang < luong_thang_toi_thieu_vung THEN
+        NEW.Luong_thang := luong_thang_toi_thieu_vung;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
 --end
 
 COMMIT;

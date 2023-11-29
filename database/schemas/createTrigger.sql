@@ -58,9 +58,24 @@ BEFORE INSERT OR UPDATE
 ON NHAN_VIEN_QUAN_LY_CUA_HANG
 FOR EACH ROW
 EXECUTE FUNCTION check_tg_nv();
-
+-- check hoa don nhap kho co nguyen lieu
 CREATE TRIGGER trigger_check_nguyen_lieu_hoa_don
 BEFORE INSERT OR UPDATE
 ON HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU
 FOR EACH ROW
 EXECUTE FUNCTION check_nguyenlieu_CH_HDNK();
+
+--check luong toi thieu nhan vien toan thoi gian va ban thoi gian
+
+CREATE TRIGGER trigger_check_luong_toi_thieu_ban_thoi_gian
+BEFORE INSERT OR UPDATE
+ON BAN_THOI_GIAN
+FOR EACH ROW
+EXECUTE FUNCTION check_luong_toi_thieu();
+
+CREATE TRIGGER trigger_check_luong_toi_thieu_toan_thoi_gian
+BEFORE INSERT OR UPDATE
+ON TOAN_THOI_GIAN
+FOR EACH ROW
+EXECUTE FUNCTION check_luong_toi_thieu();
+
