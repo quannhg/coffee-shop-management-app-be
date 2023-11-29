@@ -46,7 +46,7 @@ CREATE TABLE NHAN_VIEN
     So_tk_ngan_hang VARCHAR(30) UNIQUE NOT NULL,
     Trinh_do_hoc_van VARCHAR(30) NOT NULL,
     Ten_tai_khoan VARCHAR(30) UNIQUE, 
-    Mat_khau_bam VARCHAR(60) UNIQUE, 
+    Mat_khau_bam VARCHAR(60), 
     PRIMARY KEY (Ma_nhan_vien)
 );
 
