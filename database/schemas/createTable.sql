@@ -1,5 +1,5 @@
 -- run the following command when excute query failed, this will rollback transaction (excute only this command, not the whole file)
--- ROLLBACK; 
+ROLLBACK; 
 
 BEGIN;
 
@@ -412,9 +412,6 @@ BEGIN
   RETURN sl_nv <= (SELECT SL_NV_yeu_cau FROM CA_LAM_VIEC LIMIT 1);
 END;
 $$ LANGUAGE plpgsql;
-
-ALTER TABLE  NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
-ADD CONSTRAINT check_nv_trong_ca_constraint CHECK (check_nv_trong_ca());
 
 ALTER TABLE  NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
 ADD CONSTRAINT check_nv_trong_ca_constraint CHECK (check_nv_trong_ca());

@@ -12,5 +12,14 @@ export const ObjectPhoneNumber = Type.String({
     maxLength: PHONE_NUMBER_LENGTH
 });
 
+export const Gender = Type.String({ enum: ['nam', 'nữ'] });
+
+export const OrderType = Type.String({ enum: ['ASC', 'DESC'] });
+
+export const EmployeeRole = Type.String({ enum: ['quản lý', 'bồi bàn', 'pha chế'] });
+
 export type ObjectId = Static<typeof ObjectId>;
 export type ObjectPhoneNumber = Static<typeof ObjectPhoneNumber>;
+export type Gender = Static<typeof Gender>;
+export type OrderType = Static<typeof OrderType>;
+export type EmployeeRole = Static<typeof EmployeeRole>;

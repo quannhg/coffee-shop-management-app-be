@@ -4,5 +4,6 @@
 
 export * from './auth.dto';
 export * from './customer.dto';
+export * from './emloyee.dto';
 export * from './test';
 export * from './user.dto';

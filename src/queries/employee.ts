@@ -1,3 +1,4 @@
+import { EmployeeInputDto } from '@dtos/in';
 import { poolQuery } from '@utils';
 import { logger } from '@utils';
 
@@ -33,4 +34,50 @@ const selectById = async (id: string, fields?: string[]): Promise<Record<string,
     }
 };
 
-export const employeeQuery = { selectByUsername, selectById };
+const selectIncludeOrderAndFilter: (filterOrder: EmployeeInputDto, fields: string[]) => Promise<Record<string, string>[]> = async (
+    { filter, order },
+    fields
+) => {
+    try {
+        const selectFields = fields && fields.length > 0 ? fields.join(', ') : '*';
+        let queryText = `SELECT ${selectFields} FROM nhan_vien`;
+
+        queryText += ` JOIN nhan_vien_lam_viec_tai_cua_hang ON nhan_vien.ma_nhan_vien = nhan_vien_lam_viec_tai_cua_hang.ma_nhan_vien`;
+
+        if (filter) {
+            const filterConditions = [];
+
+            if (filter.role && filter.role.length > 0) {
+                filterConditions.push(`role IN ('${filter.role.join("','")}')`);
+            }
+
+            if (filter.gender && filter.gender.length > 0) {
+                filterConditions.push(`gender IN ('${filter.gender.join("','")}')`);
+            }
+
+            if (filterConditions.length > 0) {
+                queryText += ` WHERE ${filterConditions.join(' AND ')}`;
+            }
+        }
+
+        if (order) {
+            const orderBy = Object.entries(order)
+                .map(([key, value]) => `${key} ${value}`)
+                .join(', ');
+
+            if (orderBy) {
+                queryText += ` ORDER BY ${orderBy}`;
+            }
+        }
+
+        const { rows } = await poolQuery({ text: queryText });
+
+        return rows;
+    } catch (err) {
+        logger.error('Error when retrieving user data by Ma_nhan_vien');
+        logger.error(err);
+        throw err;
+    }
+};
+
+export const employeeQuery = { selectByUsername, selectById, selectIncludeOrderAndFilter };

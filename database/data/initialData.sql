@@ -1,21 +1,21 @@
 -- run the following command when excute query failed, this will rollback transaction (excute only this command, not the whole file)
--- ROLLBACK;
+ROLLBACK;
 
 BEGIN;
 
     -- initial data in here
     insert into CUA_HANG
-        (Ma_cua_hang, Ten_cua_hang, Dia_chi, Sdt, Dia_chi_mail, Gio_mo_cua, Gio_dong_cua)
+        (Ma_cua_hang, Ten_cua_hang, Dia_chi, Sdt, Dia_chi_mail, Gio_mo_cua, Gio_dong_cua, luong_thang_toi_thieu, luong_gio_toi_thieu)
     values
-        ('a0e5c178-94f9-4f0d-8967-d2dad366f16d', 'MIRAPEX', '48640 Bonner Road', '480-862-4913', 'kvandenbroek0@t-online.de', '6:00', '19:00');
+        ('a0e5c178-94f9-4f0d-8967-d2dad366f16d', 'MIRAPEX', '48640 Bonner Road', '480-862-4913', 'kvandenbroek0@t-online.de', '6:00', '19:00', 10000, 10000);
     insert into CUA_HANG
-        (Ma_cua_hang, Ten_cua_hang, Dia_chi, Sdt, Dia_chi_mail, Gio_mo_cua, Gio_dong_cua)
+        (Ma_cua_hang, Ten_cua_hang, Dia_chi, Sdt, Dia_chi_mail, Gio_mo_cua, Gio_dong_cua, luong_thang_toi_thieu, luong_gio_toi_thieu)
     values
-        ('8daa9938-3cc3-4865-b78b-8f8c011886a7', 'Midazolam Hydrochloride', '1275 Cascade Crossing', '311-583-0408', 'jgornall1@amazon.de', '6:00', '19:00');
+        ('8daa9938-3cc3-4865-b78b-8f8c011886a7', 'Midazolam Hydrochloride', '1275 Cascade Crossing', '311-583-0408', 'jgornall1@amazon.de', '6:00', '19:00',10000, 10000);
     insert into CUA_HANG
-        (Ma_cua_hang, Ten_cua_hang, Dia_chi, Sdt, Dia_chi_mail, Gio_mo_cua, Gio_dong_cua)
+        (Ma_cua_hang, Ten_cua_hang, Dia_chi, Sdt, Dia_chi_mail, Gio_mo_cua, Gio_dong_cua, luong_thang_toi_thieu, luong_gio_toi_thieu)
     values
-        ('fa468d66-44f5-4447-8c4e-60e29cf2f623', 'Alcohol Hand Problend', '1137 Mendota Crossing', '612-603-1870', 'pgarvagh2@netlog.com', '6:00', '19:00');
+        ('fa468d66-44f5-4447-8c4e-60e29cf2f623', 'Alcohol Hand Problend', '1137 Mendota Crossing', '612-603-1870', 'pgarvagh2@netlog.com', '6:00', '19:00', 10000, 10000);
 
     insert into NHAN_VIEN
         (Ma_nhan_vien, Ho_va_ten, Ngay_sinh, Gioi_tinh, Dia_chi, Sdt, So_tk_ngan_hang, Trinh_do_hoc_van, Ten_tai_khoan, Mat_khau_bam)
