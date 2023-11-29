@@ -31,3 +31,5 @@ SELECT dh.Ma_don_hang, m.Ten_mon, dhm.So_luong * m.Gia_tien AS Tong_tien
 FROM DON_HANG_GOM_MON dhm JOIN MON m ON dhm.Ma_mon = m.Ma_mon
 JOIN DON_HANG dh ON dhm.Ma_don_hang = dh.Ma_don_hang;
 
+
+
