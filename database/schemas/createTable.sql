@@ -408,17 +408,17 @@ ADD CHECK (Gia_tien >= 0);
 CREATE OR REPLACE FUNCTION check_nv_trong_ca()
 RETURNS BOOLEAN AS $$
 DECLARE
-	sl_nv INT;
+  sl_nv INTEGER;
 BEGIN
-	SELECT COUNT(Ma_nhan_vien) INTO sl_nv
-	FROM NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
-	
-	RETURN sl_nv <= (SELECT SL_NV_yeu_cau FROM CA_LAM_VIEC LIMIT 1);
+  SELECT COUNT(Ma_nhan_vien) INTO sl_nv
+  FROM NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC;
+
+  RETURN sl_nv <= (SELECT SL_NV_yeu_cau FROM CA_LAM_VIEC LIMIT 1);
 END;
 $$ LANGUAGE plpgsql;
 
 ALTER TABLE CA_LAM_VIEC
-ADD CHECK (check_nv_trong_ca());
+ADD CONSTRAINT check_nv_trong_ca_constraint CHECK (check_nv_trong_ca());
 
 --end
 
