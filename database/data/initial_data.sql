@@ -215,207 +215,153 @@ insert into NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_t
 insert into NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) values ('3/12/2022', '6/13/2022', 'phục vụ', '053381de-24dc-4611-aed1-af75bb2544da', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
   -- insert don_hang.sql
-  DROP TRIGGER IF EXISTS trigger_check_dung_tai_quan
-ON DON_HANG;
-DROP TRIGGER IF EXISTS trigger_check_km_dh
-ON DON_HANG;
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('43063-088', '2023-03-13', 'hoàn thành pha chế', false, '37e46bad-b103-4701-885c-65f677030cff', '79f44967-7044-48f1-8b24-69386cc1b50a', '631-827-0689');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('63667-224', '2023-05-06', 'đang pha chế', true, 'fb8a71ad-8df7-4158-a8d7-efe5e7a37a7e', '79f44967-7044-48f1-8b24-69386cc1b50a', '486-505-6011');
+
+  insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('43063-088', '2023-03-13', 'hoàn thành pha chế', false, '37e46bad-b103-4701-885c-65f677030cff', '79f44967-7044-48f1-8b24-69386cc1b50a', '631-827-0689');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('63667-224', '2023-05-06', 'đang pha chế', false, 'fb8a71ad-8df7-4158-a8d7-efe5e7a37a7e', '79f44967-7044-48f1-8b24-69386cc1b50a', '486-505-6011');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('41163-917', '2023-02-07', 'đang pha chế', false, '4cbc79cd-e38e-47d8-9e9f-1fd1cf776923', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '888-864-2094');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('68788-0633', '2023-02-19', 'hoàn thành pha chế', false, 'e609bfbb-ea73-47aa-9cc2-764aed0ece2d', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '312-522-0234');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('63323-024', '2023-05-12', 'hủy', true, '0ee57da6-c54b-4f05-9379-5baad1ba7faa', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '285-124-0684');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('63323-024', '2023-05-12', 'hủy', false, '0ee57da6-c54b-4f05-9379-5baad1ba7faa', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '285-124-0684');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('35000-879', '2023-04-26', 'đã phục vụ', false, 'e311ff71-c613-4735-9717-3593ef932681', '79f44967-7044-48f1-8b24-69386cc1b50a', '803-190-0466');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('33261-470', '2023-03-11', 'hoàn thành pha chế', false, 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '307ac585-7af5-4642-80b2-99726495a060', '219-576-9202');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('44567-711', '2023-03-17', 'hủy', true, '462f401c-7afe-44bd-a28d-2db5baad569a', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '948-879-8012');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('44567-711', '2023-03-17', 'hủy', false, '462f401c-7afe-44bd-a28d-2db5baad569a', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '948-879-8012');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('50845-0043', '2023-02-15', 'hoàn thành pha chế', false, '6a53092b-226d-4d6b-9792-6911b0947ed7', '79f44967-7044-48f1-8b24-69386cc1b50a', '380-923-0513');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0485-0210', '2023-05-27', 'đang pha chế', true, '4c8d18e0-267d-43b9-9775-375b5f1d2fe5', '307ac585-7af5-4642-80b2-99726495a060', '200-671-6154');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0485-0210', '2023-05-27', 'đang pha chế', false, '4c8d18e0-267d-43b9-9775-375b5f1d2fe5', '307ac585-7af5-4642-80b2-99726495a060', '200-671-6154');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('65044-9942', '2023-06-12', 'đã phục vụ', false, 'e311ff71-c613-4735-9717-3593ef932681', '79f44967-7044-48f1-8b24-69386cc1b50a', '162-125-9389');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('55312-630', '2023-03-24', 'đang pha chế', true, 'e62309e6-5d39-4fb2-bbf0-e9b4b05bb879', '79f44967-7044-48f1-8b24-69386cc1b50a', '409-243-7316');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0591-3592', '2023-05-16', 'hoàn thành pha chế', true, '31ecdf55-d4f5-4bb9-9305-1c240a8cd4da', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '789-462-8304');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0703-3333', '2023-04-01', 'đã phục vụ', true, '59b8324f-4989-479e-a34c-3aca1b4fcefe', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '219-576-9202');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('53964-002', '2023-01-10', 'đang pha chế', true, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', '79f44967-7044-48f1-8b24-69386cc1b50a', '470-727-2049');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('21695-782', '2023-05-20', 'đang pha chế', true, '240a0fab-6c8e-40ab-8980-e9921f8b0b81', '307ac585-7af5-4642-80b2-99726495a060', '595-439-7011');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('55312-630', '2023-03-24', 'đang pha chế', false, 'e62309e6-5d39-4fb2-bbf0-e9b4b05bb879', '79f44967-7044-48f1-8b24-69386cc1b50a', '409-243-7316');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0591-3592', '2023-05-16', 'hoàn thành pha chế', false, '31ecdf55-d4f5-4bb9-9305-1c240a8cd4da', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '789-462-8304');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0703-3333', '2023-04-01', 'đã phục vụ', false, '59b8324f-4989-479e-a34c-3aca1b4fcefe', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '219-576-9202');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('53964-002', '2023-01-10', 'đang pha chế', false, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', '79f44967-7044-48f1-8b24-69386cc1b50a', '470-727-2049');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('21695-782', '2023-05-20', 'đang pha chế', false, '240a0fab-6c8e-40ab-8980-e9921f8b0b81', '307ac585-7af5-4642-80b2-99726495a060', '595-439-7011');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('59779-182', '2023-03-26', 'hoàn thành pha chế', false, 'fc82e0b2-1947-4a83-9031-746522aad190', '307ac585-7af5-4642-80b2-99726495a060', '789-462-8304');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('63629-1839', '2023-04-12', 'đã phục vụ', false, '4c8d18e0-267d-43b9-9775-375b5f1d2fe5', '307ac585-7af5-4642-80b2-99726495a060', '848-563-6903');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('55714-4521', '2023-01-11', 'đã phục vụ', true, '68120b5e-147b-4d1d-973a-6e3ec55d15fe', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '473-412-2309');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('55714-4521', '2023-01-11', 'đã phục vụ', false, '68120b5e-147b-4d1d-973a-6e3ec55d15fe', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '473-412-2309');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0135-0519', '2023-02-19', 'hoàn thành pha chế', false, 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '79f44967-7044-48f1-8b24-69386cc1b50a', '948-879-8012');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('49288-0435', '2023-05-12', 'hủy', true, '0cdeaa63-3b34-4a34-bf34-5d9b77b7f9e2', '307ac585-7af5-4642-80b2-99726495a060', '676-532-0672');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('49288-0435', '2023-05-12', 'hủy', false, '0cdeaa63-3b34-4a34-bf34-5d9b77b7f9e2', '307ac585-7af5-4642-80b2-99726495a060', '676-532-0672');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0187-0500', '2023-04-29', 'đã phục vụ', false, 'acc0e23a-e1b7-44f0-bed6-c988c848667b', '307ac585-7af5-4642-80b2-99726495a060', '409-243-7316');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('64679-964', '2023-05-09', 'đang pha chế', true, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '911-690-2201');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0078-0345', '2023-04-15', 'hoàn thành pha chế', true, '4cbc79cd-e38e-47d8-9e9f-1fd1cf776923', '79f44967-7044-48f1-8b24-69386cc1b50a', '429-740-1485');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('64679-964', '2023-05-09', 'đang pha chế', false, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '911-690-2201');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0078-0345', '2023-04-15', 'hoàn thành pha chế', false, '4cbc79cd-e38e-47d8-9e9f-1fd1cf776923', '79f44967-7044-48f1-8b24-69386cc1b50a', '429-740-1485');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('67234-022', '2023-06-13', 'đã phục vụ', false, '6a53092b-226d-4d6b-9792-6911b0947ed7', '79f44967-7044-48f1-8b24-69386cc1b50a', '673-912-3161');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('50436-6112', '2023-03-14', 'hủy', false, '4cbc79cd-e38e-47d8-9e9f-1fd1cf776923', '307ac585-7af5-4642-80b2-99726495a060', '673-912-3161');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('49349-501', '2023-04-10', 'hủy', false, 'acc0e23a-e1b7-44f0-bed6-c988c848667b', '79f44967-7044-48f1-8b24-69386cc1b50a', '511-499-0821');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('13537-004', '2023-05-19', 'đã phục vụ', false, '0c65484e-adac-4ae5-8b89-ca36c0ea23cb', '307ac585-7af5-4642-80b2-99726495a060', '172-417-6186');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('54458-896', '2023-05-15', 'hủy', false, 'e311ff71-c613-4735-9717-3593ef932681', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '511-499-0821');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('76420-755', '2023-05-04', 'đã phục vụ', true, 'acc0e23a-e1b7-44f0-bed6-c988c848667b', '79f44967-7044-48f1-8b24-69386cc1b50a', '911-690-2201');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('62654-230', '2023-03-03', 'hủy', true, 'fb8a71ad-8df7-4158-a8d7-efe5e7a37a7e', '307ac585-7af5-4642-80b2-99726495a060', '676-532-0672');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('65841-649', '2023-03-21', 'đã phục vụ', true, '0cdeaa63-3b34-4a34-bf34-5d9b77b7f9e2', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '942-875-1552');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0378-3023', '2023-01-15', 'hủy', true, 'e62309e6-5d39-4fb2-bbf0-e9b4b05bb879', '79f44967-7044-48f1-8b24-69386cc1b50a', '848-563-6903');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('76420-755', '2023-05-04', 'đã phục vụ', false, 'acc0e23a-e1b7-44f0-bed6-c988c848667b', '79f44967-7044-48f1-8b24-69386cc1b50a', '911-690-2201');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('62654-230', '2023-03-03', 'hủy', false, 'fb8a71ad-8df7-4158-a8d7-efe5e7a37a7e', '307ac585-7af5-4642-80b2-99726495a060', '676-532-0672');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('65841-649', '2023-03-21', 'đã phục vụ', false, '0cdeaa63-3b34-4a34-bf34-5d9b77b7f9e2', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '942-875-1552');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0378-3023', '2023-01-15', 'hủy', false, 'e62309e6-5d39-4fb2-bbf0-e9b4b05bb879', '79f44967-7044-48f1-8b24-69386cc1b50a', '848-563-6903');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('63148-118', '2023-05-11', 'đang pha chế', false, '2f8ee2cf-c3ab-4531-a575-c0ca002b1a14', '307ac585-7af5-4642-80b2-99726495a060', '172-417-6186');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('67386-211', '2023-03-08', 'đã phục vụ', true, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '522-231-0059');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('61589-6505', '2023-02-12', 'hủy', true, '59b8324f-4989-479e-a34c-3aca1b4fcefe', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '511-499-0821');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('67386-211', '2023-03-08', 'đã phục vụ', false, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '522-231-0059');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('61589-6505', '2023-02-12', 'hủy', false, '59b8324f-4989-479e-a34c-3aca1b4fcefe', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '511-499-0821');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('37000-331', '2023-05-30', 'đã phục vụ', false, 'fb8a71ad-8df7-4158-a8d7-efe5e7a37a7e', '307ac585-7af5-4642-80b2-99726495a060', '821-341-9982');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('37205-781', '2023-05-29', 'hủy', true, '240a0fab-6c8e-40ab-8980-e9921f8b0b81', '307ac585-7af5-4642-80b2-99726495a060', '631-827-0689');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('37205-781', '2023-05-29', 'hủy', false, '240a0fab-6c8e-40ab-8980-e9921f8b0b81', '307ac585-7af5-4642-80b2-99726495a060', '631-827-0689');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('51991-628', '2023-02-24', 'hủy', false, 'fb8a71ad-8df7-4158-a8d7-efe5e7a37a7e', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '429-740-1485');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('42627-211', '2023-03-26', 'hủy', true, '59b8324f-4989-479e-a34c-3aca1b4fcefe', '307ac585-7af5-4642-80b2-99726495a060', '631-827-0689');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0781-5578', '2023-03-05', 'hoàn thành pha chế', true, '240a0fab-6c8e-40ab-8980-e9921f8b0b81', '307ac585-7af5-4642-80b2-99726495a060', '948-879-8012');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0187-0792', '2023-05-28', 'hủy', true, '0ee57da6-c54b-4f05-9379-5baad1ba7faa', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '776-204-1912');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('42627-211', '2023-03-26', 'hủy', false, '59b8324f-4989-479e-a34c-3aca1b4fcefe', '307ac585-7af5-4642-80b2-99726495a060', '631-827-0689');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0781-5578', '2023-03-05', 'hoàn thành pha chế', false, '240a0fab-6c8e-40ab-8980-e9921f8b0b81', '307ac585-7af5-4642-80b2-99726495a060', '948-879-8012');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0187-0792', '2023-05-28', 'hủy', false, '0ee57da6-c54b-4f05-9379-5baad1ba7faa', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '776-204-1912');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('54868-0235', '2023-05-25', 'đang pha chế', false, '59b8324f-4989-479e-a34c-3aca1b4fcefe', '307ac585-7af5-4642-80b2-99726495a060', '200-671-6154');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('0268-1322', '2023-02-15', 'hoàn thành pha chế', false, '68120b5e-147b-4d1d-973a-6e3ec55d15fe', '307ac585-7af5-4642-80b2-99726495a060', '429-740-1485');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('51514-0301', '2023-03-31', 'hủy', true, 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '307ac585-7af5-4642-80b2-99726495a060', '172-417-6186');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('59779-294', '2023-03-30', 'đang pha chế', true, '6a53092b-226d-4d6b-9792-6911b0947ed7', '307ac585-7af5-4642-80b2-99726495a060', '181-133-2899');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('64220-425', '2023-04-03', 'đã phục vụ', true, '4c8d18e0-267d-43b9-9775-375b5f1d2fe5', '79f44967-7044-48f1-8b24-69386cc1b50a', '252-780-4243');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('51514-0301', '2023-03-31', 'hủy', false, 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '307ac585-7af5-4642-80b2-99726495a060', '172-417-6186');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('59779-294', '2023-03-30', 'đang pha chế', false, '6a53092b-226d-4d6b-9792-6911b0947ed7', '307ac585-7af5-4642-80b2-99726495a060', '181-133-2899');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('64220-425', '2023-04-03', 'đã phục vụ', false, '4c8d18e0-267d-43b9-9775-375b5f1d2fe5', '79f44967-7044-48f1-8b24-69386cc1b50a', '252-780-4243');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('42211-102', '2023-03-04', 'hủy', false, 'e62309e6-5d39-4fb2-bbf0-e9b4b05bb879', '307ac585-7af5-4642-80b2-99726495a060', '162-125-9389');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('50802-001', '2023-05-29', 'đang pha chế', true, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '473-412-2309');
-insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('21695-497', '2023-03-24', 'đang pha chế', true, 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '79f44967-7044-48f1-8b24-69386cc1b50a', '213-241-6472');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('50802-001', '2023-05-29', 'đang pha chế', false, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '473-412-2309');
+insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('21695-497', '2023-03-24', 'đang pha chế', false, 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '79f44967-7044-48f1-8b24-69386cc1b50a', '213-241-6472');
+
+-- 
+
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('0093-1025', '11/11/2023', 'Moffatt''s Beardtongue', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('54569-3807', '10/2/2023', 'Pili Nehe', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('41520-911', '7/19/2023', 'Goosefoot Violet', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('46122-004', '12/25/2022', 'Western Rattlesnake Plantain', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('61919-118', '6/24/2023', 'Hornwort', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('55154-2364', '11/26/2023', 'Mountain Tansymustard', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('53808-0898', '11/13/2023', 'Peachleaf Bellflower', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('58318-001', '5/4/2023', 'Starch Grape Hyacinth', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('68180-113', '1/11/2023', 'Soapbark', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('68084-755', '9/30/2023', 'Didymodon Moss', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('54868-5558', '11/5/2023', 'Louisiana Bluestar', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('55154-1490', '10/21/2023', 'Cinquefoil', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('68084-887', '1/7/2023', 'Kerria', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('61504-002', '8/25/2023', 'Ditta', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('0004-0350', '1/16/2023', 'Netleaf Swampprivet', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('63354-941', '6/30/2023', 'Mesa Spikemoss', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('49348-379', '9/25/2023', 'Peruvian Paspalum', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('55154-6297', '10/4/2023', 'Mesa Spikemoss', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('58118-0322', '8/13/2023', 'Hupilo', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('64092-316', '4/20/2023', 'Basalt Desert Buckwheat', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('68599-0208', '7/27/2023', 'Trailing Windmills', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('67296-0372', '12/17/2022', 'Dactylospora Lichen', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('36987-1726', '12/26/2022', 'Littleleaf Alumroot', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('68084-273', '2/15/2023', 'Mexican Bedstraw', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (ma_hoa_don, thoi_gian_nhap_kho, nha_cung_cap, ma_cua_hang) values ('52959-514', '4/2/2023', 'Simon Poplar', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 
- -- insert hoa_don_nhap_kho.sql
+--
 
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('34666-171', '10/11/2023', 'Leffler and Sons', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('41250-272', '9/16/2023', 'Altenwerth LLC', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55154-0358', '5/30/2023', 'Conn-Hand', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('15127-151', '8/17/2023', 'Monahan Inc', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('65734-000', '8/12/2023', 'Hansen-Schulist', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55513-144', '2/24/2023', 'Cummings, Roob and O''Connell', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0597-0075', '10/31/2023', 'Kozey, Johns and Gibson', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0025-1891', '1/19/2023', 'Runolfsson and Sons', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('52124-0113', '9/4/2023', 'Cremin Group', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0615-1571', '10/8/2023', 'Sanford and Sons', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('49349-953', '4/2/2023', 'Heidenreich-Schultz', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('64175-991', '7/10/2023', 'Barton, Reichert and Roob', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55910-371', '12/8/2022', 'Dare, Stroman and Fisher', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('52584-047', '5/8/2023', 'Cremin-Wyman', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0185-4351', '10/26/2023', 'Grant, Prosacco and Blanda', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('67544-318', '10/6/2023', 'Quigley Inc', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('62011-0065', '12/3/2022', 'McGlynn-Hettinger', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('24724-030', '9/18/2023', 'Rohan, Stokes and Ondricka', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('64980-158', '4/11/2023', 'Bogan, Sporer and Treutel', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('49527-801', '6/30/2023', 'Rogahn, Bartoletti and Harvey', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('61924-266', '7/24/2023', 'Lebsack Inc', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('36987-3431', '5/25/2023', 'Grady-Simonis', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('50436-3101', '4/18/2023', 'Sporer-Wuckert', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0409-7931', '6/13/2023', 'Kuvalis-Schumm', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('68745-1087', '6/23/2023', 'Rutherford, Hintz and Lemke', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('43353-413', 1, '6:00 AM', '9:00 AM', 6, '307ac585-7af5-4642-80b2-99726495a060');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('54868-1233', 1, '6:00 AM', '9:00 AM', 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('63323-238', 1, '6:00 AM', '9:00 AM', 8, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('68462-347', 1, '9:00 AM', '12:00 PM', 7, '307ac585-7af5-4642-80b2-99726495a060');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('0781-9222', 2, '9:00 AM', '12:00 PM', 7, '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('36800-997', 1, '9:00 AM', '12:00 PM', 9, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('53808-0279', 1, '12:00 PM', '3:00 PM', 8, '307ac585-7af5-4642-80b2-99726495a060');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('36987-3451', 1, '12:00 PM', '3:00 PM', 9, '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('52244-920', 2, '12:00 PM', '3:00 PM', 10, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('68788-9394', 1, '3:00 PM', '7:00 PM', 9, '307ac585-7af5-4642-80b2-99726495a060');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('50458-920', 2, '3:00 PM', '7:00 PM', 7, '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('13537-556', 1, '3:00 PM', '7:00 PM', 5, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
--- insert ca_lam_viec.sql
-
-
-DROP TRIGGER IF EXISTS trigger_check_tg_CLV_CH
-ON CA_LAM_VIEC;
-
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('54868-4349', 1.4, '6:00', '9:00', 7, '307ac585-7af5-4642-80b2-99726495a060');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('51367-005', 1.8, '6:00', '9:00', 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('42507-337', 1.2, '6:00', '9:00', 8, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('50436-2000', 1.6, '9:00', '12:00', 9, '307ac585-7af5-4642-80b2-99726495a060');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('36987-1043', 1.8, '9:00', '12:00', 5, '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('50387-300', 1.2, '9:00', '12:00', 6, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('15751-2248', 1.8, '12:00', '15:00', 6, '307ac585-7af5-4642-80b2-99726495a060');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('41520-130', 1.7, '12:00', '15:00', 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('17271-501', 1.7, '12:00', '15:00', 10, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('49349-043', 1.8, '15:00', '19:00', 5, '307ac585-7af5-4642-80b2-99726495a060');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('68788-0713', 1.0, '15:00', '19:00', 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('54868-0451', 1.4, '15:00', '19:00', 5, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-    
-    -- insert ban
-
-   insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('67296-0619', 1, 'trống', '8/26/2023', '631-827-0689', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('68682-368', 2, 'đang sử dụng', '9/24/2023', '265-423-2506', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('50436-6527', 3, 'trống', '8/24/2023', '303-767-5897', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('54868-4961', 4, 'trống', '8/7/2023', '265-423-2506', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('68988-070', 5, 'đang sử dụng', '9/16/2023', '252-780-4243', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('0121-0646', 6, 'đang sử dụng', '11/28/2023', '200-671-6154', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('68391-224', 7, 'trống', '8/16/2023', '424-873-7098', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('55154-1278', 8, 'trống', '8/3/2023', '782-709-7246', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('59535-9001', 9, 'đang sử dụng', '9/6/2023', '511-499-0821', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('62217-201', 10, 'đang sử dụng', '11/23/2023', '848-563-6903', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('43857-0332', 11, 'trống', '11/19/2023', '514-828-5169', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('50111-394', 12, 'trống', '10/6/2023', '380-923-0513', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('51523-121', 13, 'trống', '11/19/2023', '470-727-2049', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('27808-001', 14, 'đang sử dụng', '7/12/2023', '407-126-0375', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('52125-953', 15, 'trống', null, '265-423-2506', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('53329-094', 16, 'đang sử dụng', '9/28/2023', '200-671-6154', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('58118-1117', 17, 'trống', '9/23/2023', '162-125-9389', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('37808-163', 18, 'đang sử dụng', '7/7/2023', '358-157-1079', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('51645-717', 19, 'trống', '11/27/2023', '892-910-0208', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('41250-400', 20, 'đang sử dụng', '10/15/2023', '753-659-5299', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('62032-101', 21, 'trống', '8/12/2023', '514-828-5169', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('13107-006', 22, 'đang sử dụng', '8/16/2023', '470-727-2049', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('55154-0103', 23, 'trống', '9/30/2023', '486-505-6011', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('51270-115', 24, 'trống', '9/29/2023', '409-243-7316', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('49288-0028', 25, 'đang sử dụng', null, '667-389-0158', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('0615-6560', 26, 'đang sử dụng', '9/23/2023', '470-727-2049', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('50563-141', 27, 'trống', '7/1/2023', '848-563-6903', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('0378-1134', 28, 'trống', '7/27/2023', '200-671-6154', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('61481-0037', 29, 'đang sử dụng', '7/13/2023', '821-341-9982', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('49288-0179', 30, 'trống', '9/11/2023', '231-222-5189', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('0641-6136', 31, 'đang sử dụng', '6/29/2023', '522-231-0059', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('54473-080', 32, 'trống', '11/28/2023', '172-417-6186', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('24236-845', 33, 'trống', '7/16/2023', '424-873-7098', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('34645-4112', 34, 'đang sử dụng', '9/30/2023', '753-659-5299', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('49738-444', 35, 'trống', '6/29/2023', '667-389-0158', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('50436-6665', 36, 'trống', '9/17/2023', '380-923-0513', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('10578-036', 37, 'trống', '8/26/2023', '486-505-6011', '307ac585-7af5-4642-80b2-99726495a060');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('58411-221', 38, 'trống', '9/6/2023', '470-727-2049', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('54868-5987', 39, 'đang sử dụng', '7/15/2023', '473-412-2309', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-
- -- insert BAN_THOI_GIAN
-
- insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.7, '053381de-24dc-4611-aed1-af75bb2544da');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.4, '0c65484e-adac-4ae5-8b89-ca36c0ea23cb');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.5, '0cdeaa63-3b34-4a34-bf34-5d9b77b7f9e2');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.4, '0ee57da6-c54b-4f05-9379-5baad1ba7faa');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.8, '240a0fab-6c8e-40ab-8980-e9921f8b0b81');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.5, '2f8ee2cf-c3ab-4531-a575-c0ca002b1a14');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.2, '31ecdf55-d4f5-4bb9-9305-1c240a8cd4da');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.3, '37e46bad-b103-4701-885c-65f677030cff');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.4, '44181f87-9211-43ad-953d-500d67333707');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.9, '462f401c-7afe-44bd-a28d-2db5baad569a');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.5, '4c8d18e0-267d-43b9-9775-375b5f1d2fe5');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.2, '4cbc79cd-e38e-47d8-9e9f-1fd1cf776923');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.9, '59b8324f-4989-479e-a34c-3aca1b4fcefe');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.5, '68120b5e-147b-4d1d-973a-6e3ec55d15fe');
-insert into BAN_THOI_GIAN (he_so_luong_theo_gio, ma_nhan_vien) values (1.3, '6a53092b-226d-4d6b-9792-6911b0947ed7');
-
--- insert TOAN_THOI_GIAN
-DROP TRIGGER IF EXISTS trigger_check_luong_toi_thieu_toan_thoi_gian
-ON TOAN_THOI_GIAN;
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3472314, '8583f8fb-4076-4028-81ef-b7b8b85188d0');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3925621, '9c622593-de61-472d-bd4a-f9207634b012');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3341965, 'a374a2a7-d798-4fe6-81eb-dfaabd876879');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3413548, 'a39f4ae9-86fc-44f9-afb1-0d1ae7c3a7ce');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3949029, 'a8fe1d21-4609-402a-8197-e59fc7062325');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3717122, 'acc0e23a-e1b7-44f0-bed6-c988c848667b');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3889835, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3453940, 'b5dafcbc-ab61-4489-8c18-ec9047539c65');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3420570, 'c700ff6e-a58e-48c1-a530-b3b4b3385688');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3372480, 'e311ff71-c613-4735-9717-3593ef932681');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3567533, 'e609bfbb-ea73-47aa-9cc2-764aed0ece2d');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3668342, 'e62309e6-5d39-4fb2-bbf0-e9b4b05bb879');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3619601, 'edd37519-af0a-489c-922e-c3830322a4b3');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3074740, 'fb8a71ad-8df7-4158-a8d7-efe5e7a37a7e');
-insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3004371, 'fc82e0b2-1947-4a83-9031-746522aad190');
-
--- insert KHUYEN_MAI_TINH_THEO_SO
+--
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('57664-245', 39, 'đang sử dụng', '7/27/2023', '323-144-9568', '307ac585-7af5-4642-80b2-99726495a060');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('0268-6115', 81, 'đang sử dụng', '8/9/2023', '231-222-5189', '307ac585-7af5-4642-80b2-99726495a060');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('68968-2010', 20, 'đang sử dụng', '10/23/2023', '835-939-6938', '307ac585-7af5-4642-80b2-99726495a060');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('0781-5948', 14, 'đang sử dụng', '11/10/2023', '789-462-8304', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('66487-001', 22, 'đang sử dụng', '12/11/2022', '172-417-6186', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('76420-785', 12, 'đang sử dụng', '9/4/2023', '448-689-6286', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('54575-362', 93, 'đang sử dụng', '9/4/2023', '776-204-1912', '307ac585-7af5-4642-80b2-99726495a060');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('41520-110', 64, 'trống', '12/19/2022', '803-190-0466', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('0245-0040', 31, 'trống', '3/12/2023', '948-879-8012', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('60289-051', 57, 'đang sử dụng', '11/9/2023', '803-190-0466', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('49371-038', 55, 'trống', '7/31/2023', '631-827-0689', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('63187-092', 90, 'trống', '10/24/2023', '569-286-0047', '307ac585-7af5-4642-80b2-99726495a060');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('69081-002', 79, 'đang sử dụng', '2/18/2023', '105-166-9916', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('0378-7050', 24, 'trống', '3/30/2023', '252-780-4243', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('42507-008', 98, 'trống', '5/13/2023', '336-127-3032', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('76147-123', 60, 'trống', '1/20/2023', '835-939-6938', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('0703-2856', 13, 'trống', '9/5/2023', '754-381-0549', '307ac585-7af5-4642-80b2-99726495a060');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('0904-0005', 37, 'trống', '9/1/2023', '631-827-0689', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('50181-0020', 73, 'đang sử dụng', '1/9/2023', '803-190-0466', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('11822-8071', 54, 'đang sử dụng', '2/20/2023', '105-166-9916', '307ac585-7af5-4642-80b2-99726495a060');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('61957-0110', 34, 'đang sử dụng', '5/17/2023', '673-912-3161', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('59779-132', 93, 'đang sử dụng', '3/30/2023', '422-683-7782', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('49035-964', 31, 'đang sử dụng', '2/4/2023', '252-780-4243', '307ac585-7af5-4642-80b2-99726495a060');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('50419-403', 93, 'trống', '9/11/2023', '767-761-2781', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('50556-001', 27, 'trống', '7/3/2023', '448-689-6286', '307ac585-7af5-4642-80b2-99726495a060');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('63354-360', 36, 'trống', '10/19/2023', '789-462-8304', '307ac585-7af5-4642-80b2-99726495a060');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('45737-207', 20, 'trống', '7/12/2023', '231-222-5189', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('48951-8232', 17, 'đang sử dụng', '11/4/2023', '776-204-1912', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('33261-600', 5, 'đang sử dụng', '8/26/2023', '803-190-0466', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('41520-410', 94, 'đang sử dụng', '11/8/2023', '358-157-1079', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 
-insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (39000, '37808-552');
-insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (32000, '41163-742');
-insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (53000, '42388-012');
-insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (46000, '42507-692');
+-- ban th gian
+
+-- toan th gian
+
+-- 
+insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (40000, '41163-742');
+insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (40000, '63629-3760');
 insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (30000, '49288-0004');
+insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (50000, '37808-552');
+insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (10000, '68786-220');
 
--- insert KHUYEN_MAI_TINH_THEO_PHAN_TRAM
+--
+insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (50, 40000, '42388-012');
+insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (40, 100000, '42507-692');
+insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (30, 40000, '64117-178');
 
-insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (30, 40000, '63629-3760');
-insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (20, 40000, '64117-178');
-insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (30, 40000, '68084-523');
 insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (20, 100000, '68382-228');
-insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (30, 100000, '68786-220');
+insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (10, 100000, '68786-220');
+ 
 
-
--- insert BANG_TINH_LUONG
-
--- insert 
 COMMIT;
