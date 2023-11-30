@@ -146,11 +146,27 @@ const updateSingleEmployee = async (employeeId: string, employee: UpdateEmployee
     }
 };
 
+const removeSingleEmployee = async (employeeId: string): Promise<void> => {
+    try {
+        const queryText = `CALL xoa_nhan_vien($1)`;
+
+        await poolQuery({
+            text: queryText,
+            values: [employeeId]
+        });
+    } catch (err) {
+        logger.error('Error when retrieving user data by partial name');
+        logger.error(err);
+        throw err;
+    }
+};
+
 export const employeeQuery = {
     selectByUsername,
     selectById,
     selectIncludeOrderAndFilter,
     selectByPartialName,
     insertSingleEmployee,
-    updateSingleEmployee
+    updateSingleEmployee,
+    removeSingleEmployee
 };

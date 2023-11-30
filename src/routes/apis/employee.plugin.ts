@@ -2,12 +2,19 @@ import { employeeHandler } from '@handlers';
 import { createRoutes } from '@utils';
 import {
     CreateEmployeeInputDto,
+    DeleteEmployeeParamsDto,
     EmployeeInputDto,
     EmployeeSearchingParamsDto,
     UpdateEmployeeBodyDto,
     UpdateEmployeeParamsDto
 } from '@dtos/in';
-import { CreateEmployeeResultDto, EmployeeResultDto, EmployeeSearchingResultDto, UpdateEmployeeResultDto } from '@dtos/out';
+import {
+    CreateEmployeeResultDto,
+    DeleteEmployeeResultDto,
+    EmployeeResultDto,
+    EmployeeSearchingResultDto,
+    UpdateEmployeeResultDto
+} from '@dtos/out';
 
 export const employeePlugin = createRoutes('Employee', [
     {
@@ -62,5 +69,18 @@ export const employeePlugin = createRoutes('Employee', [
             }
         },
         handler: employeeHandler.updateSingle
+    },
+    {
+        method: 'DELETE',
+        url: '/:employeeId',
+        schema: {
+            summary: 'Delete employee base on employee id',
+            description: '',
+            params: DeleteEmployeeParamsDto,
+            response: {
+                200: DeleteEmployeeResultDto
+            }
+        },
+        handler: employeeHandler.removeSingle
     }
 ]);

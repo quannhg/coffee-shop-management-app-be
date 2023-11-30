@@ -51,6 +51,10 @@ export const UpdateEmployeeParamsDto = Type.Object({
     employeeId: Type.String()
 });
 
+export const DeleteEmployeeParamsDto = Type.Object({
+    employeeId: Type.String()
+});
+
 export type EmployeeOrderObject = Static<typeof EmployeeOrderObject>;
 export type EmployeeFilterObject = Static<typeof EmployeeFilterObject>;
 export type EmployeeInputDto = Static<typeof EmployeeInputDto>;
@@ -58,3 +62,4 @@ export type EmployeeSearchingParamsDto = Static<typeof EmployeeSearchingParamsDt
 export type CreateEmployeeInputDto = Static<typeof CreateEmployeeInputDto>;
 export type UpdateEmployeeBodyDto = Static<typeof UpdateEmployeeBodyDto>;
 export type UpdateEmployeeParamsDto = Static<typeof UpdateEmployeeParamsDto>;
+export type DeleteEmployeeParamsDto = Static<typeof DeleteEmployeeParamsDto>;

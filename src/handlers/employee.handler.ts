@@ -4,9 +4,16 @@ import {
     EmployeeSearchingParamsDto,
     CreateEmployeeInputDto,
     UpdateEmployeeParamsDto,
-    UpdateEmployeeBodyDto
+    UpdateEmployeeBodyDto,
+    DeleteEmployeeParamsDto
 } from '@dtos/in';
-import { EmployeeResultDto, EmployeeSearchingResultDto, CreateEmployeeResultDto, UpdateEmployeeResultDto } from '@dtos/out';
+import {
+    EmployeeResultDto,
+    EmployeeSearchingResultDto,
+    CreateEmployeeResultDto,
+    UpdateEmployeeResultDto,
+    DeleteEmployeeResultDto
+} from '@dtos/out';
 import { employeeQuery } from 'src/queries';
 
 // role: string;
@@ -68,9 +75,16 @@ const updateSingle: Handler<UpdateEmployeeResultDto, { Params: UpdateEmployeePar
     return res.send({ status: 'success' });
 };
 
+const removeSingle: Handler<DeleteEmployeeResultDto, { Params: DeleteEmployeeParamsDto }> = async (req, res) => {
+    await employeeQuery.removeSingleEmployee(req.params.employeeId);
+
+    return res.send({ status: 'success' });
+};
+
 export const employeeHandler = {
     get,
     search,
     createSingle,
-    updateSingle
+    updateSingle,
+    removeSingle
 };
