@@ -161,3 +161,123 @@ BEGIN
     DELETE FROM NHAN_VIEN WHERE Ma_nhan_vien = _ma_nhan_vien;
 END;
 $$ LANGUAGE plpgsql;
+
+--Danh sách nhân viên của cửa hàng chỉ định bao gồm chức năng sắp xếp và filter
+CREATE OR REPLACE FUNCTION get_employee_data
+(
+    role_list text[], 
+    gender_list text[],
+    order_attributes text[],
+    order_directions text[],
+    ma_cua_hang UUID
+) RETURNS TABLE
+(
+    ma_nhan_vien UUID,
+    ho_va_ten varchar
+(255),
+    avatarUrl varchar
+(255),
+    ngay_sinh date,
+    gioi_tinh varchar
+(10),
+    sdt varchar
+(20),
+    vai_tro varchar
+(50),
+    ngay_vao_lam date
+) AS $$
+DECLARE
+    valid_roles text[] := ARRAY['quản lý', 'bồi bàn', 'pha chế'];
+    valid_genders text[] := ARRAY['nam', 'nữ'];
+    valid_order_attributes text[] := ARRAY['ho_va_ten', 'vai_tro', 'ngay_vao_lam', 'ngay_sinh', 'gioi_tinh'];
+BEGIN
+    -- Validate role_list
+    IF NOT ARRAY(        SELECT unnest(role_list)
+    EXCEPT
+        SELECT unnest(valid_roles)
+    ) = '{}' THEN
+        RAISE EXCEPTION 'Invalid role(s) provided';
+END
+IF;
+
+    -- Validate gender_list
+    IF NOT ARRAY(    SELECT unnest(gender_list)
+EXCEPT
+    SELECT unnest(valid_genders)
+) = '{}' THEN
+        RAISE EXCEPTION 'Invalid gender(s) provided';
+END
+IF;
+
+    -- Validate order_attributes
+    IF NOT ARRAY(    SELECT unnest(order_attributes)
+EXCEPT
+    SELECT unnest(valid_order_attributes)
+) = '{}' THEN
+        RAISE EXCEPTION 'Invalid order_by_attribute(s) provided';
+END
+IF;
+
+    -- Validate order_directions
+    IF NOT ARRAY['ASC', 'DESC'] @> order_directions THEN
+        RAISE EXCEPTION 'Invalid order_by_direction(s) provided';
+END
+IF;
+
+    EXECUTE '
+        SELECT 
+            nhan_vien.ma_nhan_vien,
+            nhan_vien.ho_va_ten,
+            nhan_vien.avatarUrl,
+            nhan_vien.ngay_sinh,
+            nhan_vien.gioi_tinh,
+            nhan_vien.sdt,
+            nhan_vien_lam_viec_tai_cua_hang.vai_tro,
+            nhan_vien_lam_viec_tai_cua_hang.ngay_vao_lam
+        FROM 
+            nhan_vien 
+        JOIN 
+            nhan_vien_lam_viec_tai_cua_hang 
+        ON 
+            nhan_vien.ma_nhan_vien = nhan_vien_lam_viec_tai_cua_hang.ma_nhan_vien
+        JOIN 
+            cua_hang 
+        ON 
+            nhan_vien_lam_viec_tai_cua_hang.ma_cua_hang = cua_hang.ma_cua_hang
+        WHERE 
+            nhan_vien_lam_viec_tai_cua_hang.vai_tro = ANY($1)
+            AND nhan_vien.gioi_tinh = ANY($2)
+            AND cua_hang.ma_cua_hang = $5
+        ORDER BY '
+|| array_to_string
+(ARRAY
+(SELECT unnest(order_attributes) || ' ' || unnest(order_directions))
+, ', ')
+    USING role_list, gender_list, ma_cua_hang;
+
+END;
+$$ LANGUAGE plpgsql;
+
+--Tìm kiếm nhân viên dựa trên tên
+CREATE OR REPLACE FUNCTION get_partial_name_data
+(
+    partial_name text
+) RETURNS TABLE
+(
+    ma_nhan_vien UUID,
+    ten_nhan_vien varchar
+(255)
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        ma_nhan_vien,
+        ten_nhan_vien
+    FROM
+        nhan_vien
+    WHERE 
+        ten_nhan_vien
+    ILIKE '%' || partial_name || '%';
+
+END;
+$$ LANGUAGE plpgsql;
