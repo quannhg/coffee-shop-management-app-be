@@ -1,5 +1,5 @@
 -- run the following command when excute query failed, this will rollback transaction (excute only this command, not the whole file)
--- ROLLBACK; 
+ROLLBACK; 
 
 BEGIN;
 
