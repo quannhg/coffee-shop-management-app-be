@@ -1,7 +1,7 @@
 import { employeeHandler } from '@handlers';
 import { createRoutes } from '@utils';
-import { EmployeeInputDto } from 'src/dtos/in/employee.dto';
-import { EmployeeResultDto } from 'src/dtos/out/emloyee.dto';
+import { EmployeeInputDto, EmployeeSearchingParamsDto } from 'src/dtos/in/employee.dto';
+import { EmployeeResultDto, EmployeeSearchingResultDto } from 'src/dtos/out/emloyee.dto';
 
 export const employeePlugin = createRoutes('Employee', [
     {
@@ -16,5 +16,18 @@ export const employeePlugin = createRoutes('Employee', [
             }
         },
         handler: employeeHandler.get
+    },
+    {
+        method: 'GET',
+        url: '/search/:partialName',
+        schema: {
+            summary: 'Search all employee have name include partial string',
+            description: '',
+            params: EmployeeSearchingParamsDto,
+            response: {
+                200: EmployeeSearchingResultDto
+            }
+        },
+        handler: employeeHandler.search
     }
 ]);

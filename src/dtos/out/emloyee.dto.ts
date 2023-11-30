@@ -14,5 +14,14 @@ export const EmployeeGeneralDto = Type.Object({
 
 export const EmployeeResultDto = Type.Array(EmployeeGeneralDto);
 
+export const EmployeeSearchingSuggestionObject = Type.Object({
+    id: Type.String(),
+    name: Type.String()
+});
+
+export const EmployeeSearchingResultDto = Type.Array(EmployeeSearchingSuggestionObject);
+
 export type EmployeeGeneralDto = Static<typeof EmployeeGeneralDto>;
 export type EmployeeResultDto = Static<typeof EmployeeResultDto>;
+export type EmployeeSearchingSuggestionObject = Static<typeof EmployeeSearchingSuggestionObject>;
+export type EmployeeSearchingResultDto = Static<typeof EmployeeSearchingResultDto>;

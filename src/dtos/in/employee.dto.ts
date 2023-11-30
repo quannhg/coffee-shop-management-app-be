@@ -19,6 +19,9 @@ export const EmployeeInputDto = Type.Object({
     filter: EmployeeFilterObject
 });
 
+export const EmployeeSearchingParamsDto = Type.String();
+
 export type EmployeeOrderObject = Static<typeof EmployeeOrderObject>;
 export type EmployeeFilterObject = Static<typeof EmployeeFilterObject>;
 export type EmployeeInputDto = Static<typeof EmployeeInputDto>;
+export type EmployeeSearchingParamsDto = Static<typeof EmployeeSearchingParamsDto>;

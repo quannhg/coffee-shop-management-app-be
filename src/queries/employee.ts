@@ -80,4 +80,20 @@ const selectIncludeOrderAndFilter: (filterOrder: EmployeeInputDto, fields: strin
     }
 };
 
-export const employeeQuery = { selectByUsername, selectById, selectIncludeOrderAndFilter };
+const selectByPartialName = async (partialName: string, fields?: string[]): Promise<Record<string, string>[]> => {
+    try {
+        const selectFields = fields && fields.length > 0 ? fields.join(', ') : '*';
+
+        const queryText = `SELECT ${selectFields} FROM nhan_vien WHERE ten_nhan_vien ILIKE $1`;
+
+        const { rows } = await poolQuery({ text: queryText, values: [`%${partialName}%`] });
+
+        return rows;
+    } catch (err) {
+        logger.error('Error when retrieving user data by partial name');
+        logger.error(err);
+        throw err;
+    }
+};
+
+export const employeeQuery = { selectByUsername, selectById, selectIncludeOrderAndFilter, selectByPartialName };

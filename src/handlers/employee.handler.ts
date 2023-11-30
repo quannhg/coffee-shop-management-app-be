@@ -1,6 +1,6 @@
 import { Handler } from '@interfaces';
-import { EmployeeInputDto } from 'src/dtos/in/employee.dto';
-import { EmployeeResultDto } from 'src/dtos/out/emloyee.dto';
+import { EmployeeInputDto, EmployeeSearchingParamsDto } from 'src/dtos/in/employee.dto';
+import { EmployeeResultDto, EmployeeSearchingResultDto } from 'src/dtos/out/emloyee.dto';
 import { employeeQuery } from 'src/queries';
 
 // role: string;
@@ -34,6 +34,20 @@ const get: Handler<EmployeeResultDto, { Body: EmployeeInputDto }> = async (req, 
     );
 };
 
+const search: Handler<EmployeeSearchingResultDto, { Params: EmployeeSearchingParamsDto }> = async (req, res) => {
+    const employees = await employeeQuery.selectByPartialName(req.params, ['ma_nhan_vien', 'ho_va_ten']);
+
+    return res.send(
+        employees.map((employee) => {
+            return {
+                id: employee.ma_nhan_vien,
+                name: employee.ho_va_ten
+            };
+        })
+    );
+};
+
 export const employeeHandler = {
-    get
+    get,
+    search
 };

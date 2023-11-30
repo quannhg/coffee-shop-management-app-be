@@ -1,5 +1,5 @@
 -- run the following command when excute query failed, this will rollback transaction (excute only this command, not the whole file)
-ROLLBACK; 
+-- ROLLBACK; 
 
 BEGIN;
 
@@ -35,7 +35,7 @@ CREATE TABLE CUA_HANG
 );
 
 
-CREATE TYPE gioi_tinh AS ENUM ('Nam', 'Nữ', 'Khác');
+-- CREATE TYPE gioi_tinh AS ENUM ('Nam', 'Nữ', 'Khác');
 
 CREATE TABLE NHAN_VIEN
 (
