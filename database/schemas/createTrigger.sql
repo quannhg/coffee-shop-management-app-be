@@ -89,7 +89,7 @@ EXECUTE FUNCTION check_luong_toi_thieu();
 CREATE TRIGGER trigger_update_sl_nguyen_lieu
 AFTER INSERT OR UPDATE OR DELETE
 ON HOA_DON_NHAP_KHO
-FOR EACH ROW
+FOR EACH ROW 
 EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();
 
 -- trigger update nguyen lieu cua hang sau khi thêm món cần nguyên liệu
