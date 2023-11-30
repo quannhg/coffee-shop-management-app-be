@@ -416,8 +416,6 @@ $$ LANGUAGE plpgsql;
 ALTER TABLE  NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
 ADD CONSTRAINT check_nv_trong_ca_constraint CHECK (check_nv_trong_ca());
 
-ALTER TABLE  NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
-ADD CONSTRAINT check_nv_trong_ca_constraint CHECK (check_nv_trong_ca());
 
 --check khoang thoi gian lam viec cua nhan vien, ca lam viec, cua hang
 CREATE OR REPLACE FUNCTION check_tg_CLV_NVLV()

@@ -1,8 +1,8 @@
 -- Hàm kiểm tra tuổi nhân viên
 CREATE OR REPLACE FUNCTION kiem_tra_tuoi(_ngay_sinh DATE) RETURNS BOOLEAN AS $$
 BEGIN
-    IF _ngay_sinh > CURRENT_DATE - INTERVAL '18 years' THEN
-        RAISE EXCEPTION 'Tuổi nhân viên phải lớn hơn 18 tuổi';
+    IF _ngay_sinh > CURRENT_DATE - INTERVAL '16 years' THEN
+        RAISE EXCEPTION 'Tuổi nhân viên phải lớn hơn 16 tuổi';
     END IF;
     RETURN TRUE;
 END;
@@ -29,7 +29,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Hàm kiểm tra mật khẩu băm mới khác mật khẩu băm cũ
-CREATE OR REPLACE FUNCTION KiemTraMatKhauMoi(
+CREATE OR REPLACE FUNCTION kiem_tra_mat_khau_moi(
     p_Mat_khau_hien_tai VARCHAR(60),
     p_Mat_khau_moi VARCHAR(60)
 )
