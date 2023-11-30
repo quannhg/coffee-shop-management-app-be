@@ -1,0 +1,26 @@
+
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('34666-171', '10/11/2023', 'Leffler and Sons', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('41250-272', '9/16/2023', 'Altenwerth LLC', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55154-0358', '5/30/2023', 'Conn-Hand', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('15127-151', '8/17/2023', 'Monahan Inc', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('65734-000', '8/12/2023', 'Hansen-Schulist', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55513-144', '2/24/2023', 'Cummings, Roob and O''Connell', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0597-0075', '10/31/2023', 'Kozey, Johns and Gibson', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0025-1891', '1/19/2023', 'Runolfsson and Sons', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('52124-0113', '9/4/2023', 'Cremin Group', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0615-1571', '10/8/2023', 'Sanford and Sons', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('49349-953', '4/2/2023', 'Heidenreich-Schultz', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('64175-991', '7/10/2023', 'Barton, Reichert and Roob', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55910-371', '12/8/2022', 'Dare, Stroman and Fisher', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('52584-047', '5/8/2023', 'Cremin-Wyman', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0185-4351', '10/26/2023', 'Grant, Prosacco and Blanda', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('67544-318', '10/6/2023', 'Quigley Inc', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('62011-0065', '12/3/2022', 'McGlynn-Hettinger', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('24724-030', '9/18/2023', 'Rohan, Stokes and Ondricka', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('64980-158', '4/11/2023', 'Bogan, Sporer and Treutel', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('49527-801', '6/30/2023', 'Rogahn, Bartoletti and Harvey', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('61924-266', '7/24/2023', 'Lebsack Inc', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('36987-3431', '5/25/2023', 'Grady-Simonis', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('50436-3101', '4/18/2023', 'Sporer-Wuckert', '307ac585-7af5-4642-80b2-99726495a060');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0409-7931', '6/13/2023', 'Kuvalis-Schumm', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('68745-1087', '6/23/2023', 'Rutherford, Hintz and Lemke', '79f44967-7044-48f1-8b24-69386cc1b50a');
