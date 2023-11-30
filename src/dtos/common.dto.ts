@@ -18,8 +18,11 @@ export const OrderType = Type.String({ enum: ['ASC', 'DESC'] });
 
 export const EmployeeRole = Type.String({ enum: ['quản lý', 'bồi bàn', 'pha chế'] });
 
+export const AcademicStandard = Type.String({ enum: ['High School Diploma', 'College Degree', 'Undergraduate Degree'] });
+
 export type ObjectId = Static<typeof ObjectId>;
 export type ObjectPhoneNumber = Static<typeof ObjectPhoneNumber>;
 export type Gender = Static<typeof Gender>;
 export type OrderType = Static<typeof OrderType>;
 export type EmployeeRole = Static<typeof EmployeeRole>;
+export type AcademicStandard = Static<typeof AcademicStandard>;

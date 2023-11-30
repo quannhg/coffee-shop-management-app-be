@@ -1,4 +1,4 @@
-import { EmployeeInputDto } from '@dtos/in';
+import { CreateEmployeeInputDto, EmployeeInputDto, UpdateEmployeeBodyDto } from '@dtos/in';
 import { poolQuery } from '@utils';
 import { logger } from '@utils';
 
@@ -96,4 +96,61 @@ const selectByPartialName = async (partialName: string, fields?: string[]): Prom
     }
 };
 
-export const employeeQuery = { selectByUsername, selectById, selectIncludeOrderAndFilter, selectByPartialName };
+const insertSingleEmployee = async (employee: CreateEmployeeInputDto): Promise<void> => {
+    try {
+        const queryText = 'CALL them_nhan_vien($1, $2, $3, $4, $5, $6, $7, $8)';
+
+        await poolQuery({
+            text: queryText,
+            values: [
+                employee.name,
+                employee.birthday,
+                employee.gender,
+                employee.address,
+                employee.phoneNum,
+                employee.bankNum,
+                employee.academicLevel,
+                employee.joinedAt
+            ]
+        });
+    } catch (err) {
+        logger.error('Error when inserting employee data');
+        logger.error(err);
+        throw err;
+    }
+};
+
+const updateSingleEmployee = async (employeeId: string, employee: UpdateEmployeeBodyDto): Promise<void> => {
+    try {
+        const queryText = `CALL sua_nhan_vien_qua_ma_nhan_vien($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
+
+        await poolQuery({
+            text: queryText,
+            values: [
+                employeeId,
+                employee.name,
+                employee.birthday,
+                employee.gender,
+                employee.address,
+                employee.phoneNum,
+                employee.bankNum,
+                employee.academicLevel,
+                employee.joinedAt,
+                employee.leaveAt
+            ]
+        });
+    } catch (err) {
+        logger.error('Error when retrieving user data by partial name');
+        logger.error(err);
+        throw err;
+    }
+};
+
+export const employeeQuery = {
+    selectByUsername,
+    selectById,
+    selectIncludeOrderAndFilter,
+    selectByPartialName,
+    insertSingleEmployee,
+    updateSingleEmployee
+};

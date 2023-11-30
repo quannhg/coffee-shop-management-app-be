@@ -1,7 +1,13 @@
 import { employeeHandler } from '@handlers';
 import { createRoutes } from '@utils';
-import { EmployeeInputDto, EmployeeSearchingParamsDto } from 'src/dtos/in/employee.dto';
-import { EmployeeResultDto, EmployeeSearchingResultDto } from 'src/dtos/out/emloyee.dto';
+import {
+    CreateEmployeeInputDto,
+    EmployeeInputDto,
+    EmployeeSearchingParamsDto,
+    UpdateEmployeeBodyDto,
+    UpdateEmployeeParamsDto
+} from '@dtos/in';
+import { CreateEmployeeResultDto, EmployeeResultDto, EmployeeSearchingResultDto, UpdateEmployeeResultDto } from '@dtos/out';
 
 export const employeePlugin = createRoutes('Employee', [
     {
@@ -29,5 +35,32 @@ export const employeePlugin = createRoutes('Employee', [
             }
         },
         handler: employeeHandler.search
+    },
+    {
+        method: 'POST',
+        url: '',
+        schema: {
+            summary: 'Create single employee',
+            description: '',
+            body: CreateEmployeeInputDto,
+            response: {
+                200: CreateEmployeeResultDto
+            }
+        },
+        handler: employeeHandler.createSingle
+    },
+    {
+        method: 'PUT',
+        url: '/:employeeId',
+        schema: {
+            summary: 'Update employee information base on employee id',
+            description: '',
+            params: UpdateEmployeeParamsDto,
+            body: UpdateEmployeeBodyDto,
+            response: {
+                200: UpdateEmployeeResultDto
+            }
+        },
+        handler: employeeHandler.updateSingle
     }
 ]);

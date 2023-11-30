@@ -1,6 +1,12 @@
 import { Handler } from '@interfaces';
-import { EmployeeInputDto, EmployeeSearchingParamsDto } from 'src/dtos/in/employee.dto';
-import { EmployeeResultDto, EmployeeSearchingResultDto } from 'src/dtos/out/emloyee.dto';
+import {
+    EmployeeInputDto,
+    EmployeeSearchingParamsDto,
+    CreateEmployeeInputDto,
+    UpdateEmployeeParamsDto,
+    UpdateEmployeeBodyDto
+} from '@dtos/in';
+import { EmployeeResultDto, EmployeeSearchingResultDto, CreateEmployeeResultDto, UpdateEmployeeResultDto } from '@dtos/out';
 import { employeeQuery } from 'src/queries';
 
 // role: string;
@@ -35,7 +41,7 @@ const get: Handler<EmployeeResultDto, { Body: EmployeeInputDto }> = async (req, 
 };
 
 const search: Handler<EmployeeSearchingResultDto, { Params: EmployeeSearchingParamsDto }> = async (req, res) => {
-    const employees = await employeeQuery.selectByPartialName(req.params, ['ma_nhan_vien', 'ho_va_ten']);
+    const employees = await employeeQuery.selectByPartialName(req.params.partialName, ['ma_nhan_vien', 'ho_va_ten']);
 
     return res.send(
         employees.map((employee) => {
@@ -47,7 +53,24 @@ const search: Handler<EmployeeSearchingResultDto, { Params: EmployeeSearchingPar
     );
 };
 
+const createSingle: Handler<CreateEmployeeResultDto, { Body: CreateEmployeeInputDto }> = async (req, res) => {
+    await employeeQuery.insertSingleEmployee(req.body);
+
+    return res.send({ status: 'success' });
+};
+
+const updateSingle: Handler<UpdateEmployeeResultDto, { Params: UpdateEmployeeParamsDto; Body: UpdateEmployeeBodyDto }> = async (
+    req,
+    res
+) => {
+    await employeeQuery.updateSingleEmployee(req.params.employeeId, req.body);
+
+    return res.send({ status: 'success' });
+};
+
 export const employeeHandler = {
     get,
-    search
+    search,
+    createSingle,
+    updateSingle
 };

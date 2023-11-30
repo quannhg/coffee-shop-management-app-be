@@ -19,9 +19,19 @@ export const EmployeeSearchingSuggestionObject = Type.Object({
     name: Type.String()
 });
 
+export const CreateEmployeeResultDto = Type.Object({
+    status: Type.String()
+});
+
+export const UpdateEmployeeResultDto = Type.Object({
+    status: Type.String()
+});
+
 export const EmployeeSearchingResultDto = Type.Array(EmployeeSearchingSuggestionObject);
 
 export type EmployeeGeneralDto = Static<typeof EmployeeGeneralDto>;
 export type EmployeeResultDto = Static<typeof EmployeeResultDto>;
 export type EmployeeSearchingSuggestionObject = Static<typeof EmployeeSearchingSuggestionObject>;
 export type EmployeeSearchingResultDto = Static<typeof EmployeeSearchingResultDto>;
+export type CreateEmployeeResultDto = Static<typeof CreateEmployeeResultDto>;
+export type UpdateEmployeeResultDto = Static<typeof UpdateEmployeeResultDto>;
