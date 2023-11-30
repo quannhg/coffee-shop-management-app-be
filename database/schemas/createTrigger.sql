@@ -94,7 +94,7 @@ EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();
 
 -- trigger update nguyen lieu cua hang sau khi thêm món cần nguyên liệu
 CREATE TRIGGER trigger_update_sl_nguyen_lieu
-AFTER INSERT OR UPDATE
+AFTER INSERT OR UPDATE OR DELETE
 ON MON_CAN_NGUYEN_LIEU
 FOR EACH ROW
 EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();
