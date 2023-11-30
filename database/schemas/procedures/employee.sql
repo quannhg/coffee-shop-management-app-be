@@ -9,14 +9,15 @@ CREATE OR REPLACE PROCEDURE them_nhan_vien(
     _trinh_do_hoc_van VARCHAR(30),
     _ten_tai_khoan VARCHAR(30),
     _mat_khau_bam VARCHAR(60)
-) RETURNS VOID AS $$
+) AS $$
 BEGIN
-    -- Kiểm tra dữ liệu hợp lệ
-    IF _ngay_sinh > CURRENT_DATE - INTERVAL '16 years' THEN
+    -- Kiểm tra các ràng buộc dữ liệu
+    IF _ngay_sinh IS NOT NULL AND NOT kiem_tra_tuoi(_ngay_sinh) THEN
         RAISE EXCEPTION 'Tuổi nhân viên phải lớn hơn 16 tuổi';
     END IF;
-    IF _sdt !~ '^[0-9]{10}$' THEN
-        RAISE EXCEPTION 'Số điện thoại không hợp lệ';
+
+    IF _sdt IS NOT NULL AND NOT kiem_tra_sdt(_sdt) THEN
+        RAISE EXCEPTION 'Số điện thoại không hợp lệ!';
     END IF;
     -- Thêm dữ liệu
     INSERT INTO NHAN_VIEN (
@@ -58,14 +59,13 @@ CREATE OR REPLACE PROCEDURE sua_nhan_vien_qua_TK_va_MK(
 AS $$
 BEGIN
     -- Kiểm tra các ràng buộc dữ liệu
-    IF p_Ngay_sinh IS NOT NULL AND p_Ngay_sinh >= current_date THEN
-        RAISE EXCEPTION 'Ngày sinh phải nhỏ hơn ngày hiện tại!';
+    IF p_ngay_sinh IS NOT NULL AND NOT kiem_tra_tuoi(p_ngay_sinh) THEN
+        RAISE EXCEPTION 'Tuổi nhân viên phải lớn hơn 16 tuổi';
     END IF;
 
-    IF p_Sdt IS NOT NULL AND NOT KiemTraSoDienThoai(p_Sdt) THEN
+    IF p_sdt IS NOT NULL AND NOT kiem_tra_sdt(p_sdt) THEN
         RAISE EXCEPTION 'Số điện thoại không hợp lệ!';
     END IF;
-
 
     -- Cập nhật dữ liệu trong bảng
     UPDATE NHAN_VIEN
@@ -76,9 +76,7 @@ BEGIN
         Dia_chi = COALESCE(p_Dia_chi, Dia_chi),
         Sdt = COALESCE(p_Sdt, Sdt),
         So_tk_ngan_hang = COALESCE(p_So_tk_ngan_hang, So_tk_ngan_hang),
-        Trinh_do_hoc_van = COALESCE(p_Trinh_do_hoc_van, Trinh_do_hoc_van),
-        Ten_tai_khoan = COALESCE(p_Ten_tai_khoan_moi, Ten_tai_khoan),
-        Mat_khau_bam = COALESCE(p_Mat_khau_bam_moi, Mat_khau_bam)
+        Trinh_do_hoc_van = COALESCE(p_Trinh_do_hoc_van, Trinh_do_hoc_van)
     WHERE
         (p_Ma_nhan_vien IS NULL OR Ma_nhan_vien = p_Ma_nhan_vien)
         AND Ten_tai_khoan = p_Ten_tai_khoan
@@ -105,11 +103,11 @@ CREATE OR REPLACE PROCEDURE sua_nhan_vien_qua_ma_nhan_vien(
 AS $$
 BEGIN
     -- Kiểm tra các ràng buộc dữ liệu
-    IF p_Ngay_sinh IS NOT NULL AND p_Ngay_sinh >= current_date THEN
-        RAISE EXCEPTION 'Ngày sinh phải nhỏ hơn ngày hiện tại!';
+    IF p_ngay_sinh IS NOT NULL AND NOT kiem_tra_tuoi(p_ngay_sinh) THEN
+        RAISE EXCEPTION 'Tuổi nhân viên phải lớn hơn 16 tuổi';
     END IF;
 
-    IF p_Sdt IS NOT NULL AND NOT KiemTraSoDienThoai(p_Sdt) THEN
+    IF p_sdt IS NOT NULL AND NOT kiem_tra_sdt(p_sdt) THEN
         RAISE EXCEPTION 'Số điện thoại không hợp lệ!';
     END IF;
 
@@ -158,7 +156,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Thủ tục xóa dữ liệu
-CREATE OR REPLACE PROCEDURE xoa_nhan_vien(_ma_nhan_vien UUID) RETURNS VOID AS $$
+CREATE OR REPLACE PROCEDURE xoa_nhan_vien(_ma_nhan_vien UUID) AS $$
 BEGIN
     DELETE FROM NHAN_VIEN WHERE Ma_nhan_vien = _ma_nhan_vien;
 END;
