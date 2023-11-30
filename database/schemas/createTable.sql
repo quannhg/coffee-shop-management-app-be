@@ -580,6 +580,43 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+--func update view số lượng nguyên liệu của cửa hàng
+CREATE OR REPLACE FUNCTION update_sl_nguyen_lieu_cua_hang()
+RETURNS TRIGGER AS $$
+BEGIN
+    --Xóa dữ liệu cũ
+    DELETE FROM v_SL_nguyen_lieu_cua_hang WHERE Ma_cua_hang = NEW.Ma_cua_hang;
+
+    -- Thêm dữ liệu mới vào view v_SL_nguyen_lieu_cua_hang
+    INSERT INTO v_SL_nguyen_lieu_cua_hang (Ma_cua_hang, Ten_cua_hang, Ma_nguyen_lieu, Ten_nguyen_lieu, Don_vi, So_luong)
+    SELECT
+        ch.Ma_cua_hang,
+        ch.Ten_cua_hang,
+        nl.Ma_nguyen_lieu,
+        nl.Ten_nguyen_lieu,
+        nl.Don_vi,
+        COUNT(chnl.Ma_nguyen_lieu)
+    FROM
+        CUA_HANG ch
+    JOIN
+        CUA_HANG_CHUA_NGUYEN_LIEU chnl ON ch.Ma_cua_hang = chnl.Ma_cua_hang
+    JOIN
+        NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
+    WHERE
+        ch.Ma_cua_hang = NEW.Ma_cua_hang
+    GROUP BY
+        ch.Ma_cua_hang,
+        ch.Ten_cua_hang,
+        nl.Ma_nguyen_lieu,
+        nl.Ten_nguyen_lieu,
+        nl.Don_vi;
+
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
 
 --end
 

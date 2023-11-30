@@ -84,3 +84,10 @@ BEFORE INSERT OR UPDATE
 ON NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG
 FOR EACH ROW
 EXECUTE FUNCTION check_luong_toi_thieu();
+
+-- trigger update nguyen lieu cua hang sau khi thêm hóa đơn nhập kho
+CREATE TRIGGER trigger_update_sl_nguyen_lieu
+AFTER INSERT OR UPDATE OR DELETE
+ON HOA_DON_NHAP_KHO
+FOR EACH ROW
+EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();
