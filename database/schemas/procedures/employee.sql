@@ -173,17 +173,12 @@ CREATE OR REPLACE FUNCTION get_employee_data
 ) RETURNS TABLE
 (
     ma_nhan_vien UUID,
-    ho_va_ten varchar
-(255),
-    avatarUrl varchar
-(255),
+    ho_va_ten varchar(255),
+    avatarUrl varchar(255),
     ngay_sinh date,
-    gioi_tinh varchar
-(10),
-    sdt varchar
-(20),
-    vai_tro varchar
-(50),
+    gioi_tinh varchar(10),
+    sdt varchar(20),
+    vai_tro varchar(50),
     ngay_vao_lam date
 ) AS $$
 DECLARE
