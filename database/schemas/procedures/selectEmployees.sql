@@ -14,7 +14,7 @@ END;
 $BODY$;
 
 BEGIN;
-CALL selectEmployeeByStore( '8daa9938-3cc3-4865-b78b-8f8c011886a7',  'test');
+CALL selectEmployeeByStore( '',  'test');
 fetch all in "test";
 COMMIT;
 

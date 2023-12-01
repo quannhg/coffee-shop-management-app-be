@@ -71,16 +71,24 @@ CREATE TRIGGER trigger_check_luong_toi_thieu_ban_thoi_gian
 BEFORE INSERT OR UPDATE
 ON BAN_THOI_GIAN
 FOR EACH ROW
-EXECUTE FUNCTION check_luong_toi_thieu();
+EXECUTE FUNCTION check_luong_gio_toi_thieu();
 
 CREATE TRIGGER trigger_check_luong_toi_thieu_toan_thoi_gian
 BEFORE INSERT OR UPDATE
 ON TOAN_THOI_GIAN
 FOR EACH ROW
-EXECUTE FUNCTION check_luong_toi_thieu();
+EXECUTE FUNCTION check_luong_thang_toi_thieu();
 
-CREATE TRIGGER trigger_check_luong_toi_thieu_nv_lam_viec
-BEFORE INSERT OR UPDATE
-ON NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG
+-- trigger update nguyen lieu cua hang sau khi thêm hóa đơn nhập kho
+CREATE TRIGGER trigger_update_sl_nguyen_lieu
+AFTER INSERT OR UPDATE OR DELETE
+ON HOA_DON_NHAP_KHO
+FOR EACH ROW 
+EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();
+
+-- trigger update nguyen lieu cua hang sau khi thêm món cần nguyên liệu
+CREATE TRIGGER trigger_update_sl_nguyen_lieu
+AFTER INSERT OR UPDATE OR DELETE
+ON MON_CAN_NGUYEN_LIEU
 FOR EACH ROW
-EXECUTE FUNCTION check_luong_toi_thieu();
+EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();

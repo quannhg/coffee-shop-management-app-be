@@ -332,8 +332,7 @@ insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('50802-001', TO_DATE('2023-05-29', 'YYYY-MM-DD'), 'đang pha chế', true, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '473-412-2309');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('21695-497', TO_DATE('2023-03-24', 'YYYY-MM-DD'), 'đang pha chế', true, 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '79f44967-7044-48f1-8b24-69386cc1b50a', '213-241-6472');
 
-
- -- insert hoa_don_nhap_kho.sql
+-- 
 
 insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('34666-171', TO_DATE('10/11/2023', 'MM/DD/YYYY'), 'Leffler and Sons', '79f44967-7044-48f1-8b24-69386cc1b50a');
 insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('41250-272', TO_DATE('9/16/2023', 'MM/DD/YYYY'), 'Altenwerth LLC', '79f44967-7044-48f1-8b24-69386cc1b50a');
@@ -361,11 +360,7 @@ insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_c
 insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0409-7931', TO_DATE('6/13/2023', 'MM/DD/YYYY'), 'Kuvalis-Schumm', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('68745-1087', TO_DATE('6/23/2023', 'MM/DD/YYYY'), 'Rutherford, Hintz and Lemke', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
--- insert ca_lam_viec.sql
-
-
-DROP TRIGGER IF EXISTS trigger_check_tg_CLV_CH
-ON CA_LAM_VIEC;
+--
 
 insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('54868-4349', 1.4, TO_TIMESTAMP('6:00', 'HH24:MI'), TO_TIMESTAMP('9:00', 'HH24:MI'), 7, '307ac585-7af5-4642-80b2-99726495a060');
 insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('51367-005', 1.8, TO_TIMESTAMP('6:00', 'HH24:MI'), TO_TIMESTAMP('9:00', 'HH24:MI'), 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
@@ -467,17 +462,16 @@ insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (32000, '41
 insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (53000, '42388-012');
 insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (46000, '42507-692');
 insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (30000, '49288-0004');
+insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (50000, '37808-552');
+insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (10000, '68786-220');
 
--- insert KHUYEN_MAI_TINH_THEO_PHAN_TRAM
+--
+insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (50, 40000, '42388-012');
+insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (40, 100000, '42507-692');
+insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (30, 40000, '64117-178');
 
-insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (30, 40000, '63629-3760');
-insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (20, 40000, '64117-178');
-insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (30, 40000, '68084-523');
 insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (20, 100000, '68382-228');
-insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (30, 100000, '68786-220');
+insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (10, 100000, '68786-220');
+ 
 
-
--- insert BANG_TINH_LUONG
-
--- insert 
 COMMIT;

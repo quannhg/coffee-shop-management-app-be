@@ -303,8 +303,7 @@ CREATE OR REPLACE FUNCTION get_partial_name_data
 ) RETURNS TABLE
 (
     ma_nhan_vien UUID,
-    ten_nhan_vien varchar
-(255)
+    ten_nhan_vien varchar(255)
 ) AS $$
 BEGIN
     RETURN QUERY

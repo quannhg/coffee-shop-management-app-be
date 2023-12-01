@@ -15,7 +15,7 @@ END;
 $BODY$;
 
 BEGIN;
-CALL GetAgeGroupCountsByStore( '8daa9938-3cc3-4865-b78b-8f8c011886a7',  'test');
+CALL GetAgeGroupCountsByStore( '',  'test');
 fetch all in "test";
 COMMIT;
   
