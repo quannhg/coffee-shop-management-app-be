@@ -1,7 +1,7 @@
 -- run the following command when excute query failed, this will rollback transaction (excute only this command, not the whole file)
-ROLLBACK;
+-- ROLLBACK;
 
-BEGIN;
+-- BEGIN;
 
     -- initial data in here
 
@@ -202,7 +202,7 @@ insert into NHAN_VIEN (Ma_nhan_vien, avatarUrl, Ho_va_ten, Ngay_sinh, Gioi_tinh,
     -- insert NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('3/21/2022', 'MM/DD/YYYY'), TO_DATE('7/29/2023', 'MM/DD/YYYY'), 'phục vụ', 'a39f4ae9-86fc-44f9-afb1-0d1ae7c3a7ce', '307ac585-7af5-4642-80b2-99726495a060');
+VALUES (TO_DATE('3/21/2022', 'MM/DD/YYYY'), TO_DATE('7/29/2023', 'MM/DD/YYYY'), 'bồi bàn', 'a39f4ae9-86fc-44f9-afb1-0d1ae7c3a7ce', '307ac585-7af5-4642-80b2-99726495a060');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
 VALUES (TO_DATE('6/1/2022', 'MM/DD/YYYY'), TO_DATE('12/13/2022', 'MM/DD/YYYY'), 'quản lý', '31ecdf55-d4f5-4bb9-9305-1c240a8cd4da', '79f44967-7044-48f1-8b24-69386cc1b50a');
@@ -214,13 +214,13 @@ INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_t
 VALUES (TO_DATE('4/28/2022', 'MM/DD/YYYY'), TO_DATE('10/23/2022', 'MM/DD/YYYY'), 'pha chế', '240a0fab-6c8e-40ab-8980-e9921f8b0b81', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('4/2/2022', 'MM/DD/YYYY'), TO_DATE('6/11/2022', 'MM/DD/YYYY'), 'bảo vệ', 'fc82e0b2-1947-4a83-9031-746522aad190', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+VALUES (TO_DATE('4/2/2022', 'MM/DD/YYYY'), TO_DATE('6/11/2022', 'MM/DD/YYYY'), 'bồi bàn', 'fc82e0b2-1947-4a83-9031-746522aad190', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
 VALUES (TO_DATE('1/25/2022', 'MM/DD/YYYY'), TO_DATE('12/17/2023', 'MM/DD/YYYY'), 'pha chế', '4cbc79cd-e38e-47d8-9e9f-1fd1cf776923', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('3/26/2022', 'MM/DD/YYYY'), TO_DATE('7/28/2023', 'MM/DD/YYYY'), 'phục vụ', '44181f87-9211-43ad-953d-500d67333707', '79f44967-7044-48f1-8b24-69386cc1b50a');
+VALUES (TO_DATE('3/26/2022', 'MM/DD/YYYY'), TO_DATE('7/28/2023', 'MM/DD/YYYY'), 'bồi bàn', '44181f87-9211-43ad-953d-500d67333707', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
 VALUES (TO_DATE('9/6/2022', 'MM/DD/YYYY'), TO_DATE('6/6/2022', 'MM/DD/YYYY'), 'pha chế', 'b5dafcbc-ab61-4489-8c18-ec9047539c65', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
@@ -232,12 +232,12 @@ INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_t
 VALUES (TO_DATE('10/10/2022', 'MM/DD/YYYY'), TO_DATE('4/3/2023', 'MM/DD/YYYY'), 'quét dọn', '37e46bad-b103-4701-885c-65f677030cff', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('5/3/2022', 'MM/DD/YYYY'), TO_DATE('12/24/2023', 'MM/DD/YYYY'), 'phục vụ', '9c622593-de61-472d-bd4a-f9207634b012', '307ac585-7af5-4642-80b2-99726495a060');
+VALUES (TO_DATE('5/3/2022', 'MM/DD/YYYY'), TO_DATE('12/24/2023', 'MM/DD/YYYY'), 'bồi bàn', '9c622593-de61-472d-bd4a-f9207634b012', '307ac585-7af5-4642-80b2-99726495a060');
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('7/24/2022', 'MM/DD/YYYY'), TO_DATE('11/22/2022', 'MM/DD/YYYY'), 'bảo vệ', 'a374a2a7-d798-4fe6-81eb-dfaabd876879', '307ac585-7af5-4642-80b2-99726495a060');
+VALUES (TO_DATE('7/24/2022', 'MM/DD/YYYY'), TO_DATE('11/22/2022', 'MM/DD/YYYY'), 'bồi bàn', 'a374a2a7-d798-4fe6-81eb-dfaabd876879', '307ac585-7af5-4642-80b2-99726495a060');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('8/18/2022', 'MM/DD/YYYY'), TO_DATE('10/17/2022', 'MM/DD/YYYY'), 'phục vụ', 'edd37519-af0a-489c-922e-c3830322a4b3', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+VALUES (TO_DATE('8/18/2022', 'MM/DD/YYYY'), TO_DATE('10/17/2022', 'MM/DD/YYYY'), 'bồi bàn', 'edd37519-af0a-489c-922e-c3830322a4b3', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
 VALUES (TO_DATE('1/1/2022', 'MM/DD/YYYY'), TO_DATE('9/21/2023', 'MM/DD/YYYY'), 'quét dọn', 'e609bfbb-ea73-47aa-9cc2-764aed0ece2d', '79f44967-7044-48f1-8b24-69386cc1b50a');
@@ -246,13 +246,13 @@ INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_t
 VALUES (TO_DATE('2/8/2022', 'MM/DD/YYYY'), TO_DATE('6/29/2022', 'MM/DD/YYYY'), 'quét dọn', 'e311ff71-c613-4735-9717-3593ef932681', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('3/2/2022', 'MM/DD/YYYY'), TO_DATE('9/1/2022', 'MM/DD/YYYY'), 'bảo vệ', '6a53092b-226d-4d6b-9792-6911b0947ed7', '307ac585-7af5-4642-80b2-99726495a060');
+VALUES (TO_DATE('3/2/2022', 'MM/DD/YYYY'), TO_DATE('9/1/2022', 'MM/DD/YYYY'), 'bồi bàn', '6a53092b-226d-4d6b-9792-6911b0947ed7', '307ac585-7af5-4642-80b2-99726495a060');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('2/14/2022', 'MM/DD/YYYY'), TO_DATE('12/14/2022', 'MM/DD/YYYY'), 'bảo vệ', 'e62309e6-5d39-4fb2-bbf0-e9b4b05bb879', '79f44967-7044-48f1-8b24-69386cc1b50a');
+VALUES (TO_DATE('2/14/2022', 'MM/DD/YYYY'), TO_DATE('12/14/2022', 'MM/DD/YYYY'), 'bồi bàn', 'e62309e6-5d39-4fb2-bbf0-e9b4b05bb879', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('4/13/2022', 'MM/DD/YYYY'), TO_DATE('4/6/2023', 'MM/DD/YYYY'), 'phục vụ', '0cdeaa63-3b34-4a34-bf34-5d9b77b7f9e2', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+VALUES (TO_DATE('4/13/2022', 'MM/DD/YYYY'), TO_DATE('4/6/2023', 'MM/DD/YYYY'), 'bồi bàn', '0cdeaa63-3b34-4a34-bf34-5d9b77b7f9e2', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
 VALUES (TO_DATE('2/27/2022', 'MM/DD/YYYY'), TO_DATE('8/16/2023', 'MM/DD/YYYY'), 'quét dọn', 'a8fe1d21-4609-402a-8197-e59fc7062325', '307ac585-7af5-4642-80b2-99726495a060');
@@ -267,13 +267,13 @@ INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_t
 VALUES (TO_DATE('7/2/2022', 'MM/DD/YYYY'), TO_DATE('5/17/2022', 'MM/DD/YYYY'), 'quét dọn', 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '307ac585-7af5-4642-80b2-99726495a060');
 
 insert into NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang)
-values (TO_DATE('11/22/2022','MM/DD/YYYY'), TO_DATE('11/4/2022','MM/DD/YYYY'), 'bảo vệ', '0ee57da6-c54b-4f05-9379-5baad1ba7faa', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+values (TO_DATE('11/22/2022','MM/DD/YYYY'), TO_DATE('11/4/2022','MM/DD/YYYY'), 'bồi bàn', '0ee57da6-c54b-4f05-9379-5baad1ba7faa', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
 VALUES (TO_DATE('7/24/2022', 'MM/DD/YYYY'), TO_DATE('8/9/2023', 'MM/DD/YYYY'), 'quét dọn', '68120b5e-147b-4d1d-973a-6e3ec55d15fe', '307ac585-7af5-4642-80b2-99726495a060');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('3/12/2022', 'MM/DD/YYYY'), TO_DATE('6/13/2022', 'MM/DD/YYYY'), 'phục vụ', '053381de-24dc-4611-aed1-af75bb2544da', '79f44967-7044-48f1-8b24-69386cc1b50a');
+VALUES (TO_DATE('3/12/2022', 'MM/DD/YYYY'), TO_DATE('6/13/2022', 'MM/DD/YYYY'), 'bồi bàn', '053381de-24dc-4611-aed1-af75bb2544da', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
     -- insert ban
 insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('67296-0619', 1, 'Trong', TO_DATE('8/26/2023', 'MM/DD/YYYY'), '631-827-0689', '307ac585-7af5-4642-80b2-99726495a060');
@@ -369,18 +369,18 @@ insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_
 
 
     -- insert ca_lam_viec
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('54868-4349', 1.4, TO_TIMESTAMP('6:00', 'HH24:MI'), TO_TIMESTAMP('9:00', 'HH24:MI'), 7, '307ac585-7af5-4642-80b2-99726495a060');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('51367-005', 1.8, TO_TIMESTAMP('6:00', 'HH24:MI'), TO_TIMESTAMP('9:00', 'HH24:MI'), 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('42507-337', 1.2, TO_TIMESTAMP('6:00', 'HH24:MI'), TO_TIMESTAMP('9:00', 'HH24:MI'), 8, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('50436-2000', 1.6, TO_TIMESTAMP('9:00', 'HH24:MI'), TO_TIMESTAMP('12:00', 'HH24:MI'), 9, '307ac585-7af5-4642-80b2-99726495a060');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('36987-1043', 1.8, TO_TIMESTAMP('9:00', 'HH24:MI'), TO_TIMESTAMP('12:00', 'HH24:MI'), 5, '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('50387-300', 1.2, TO_TIMESTAMP('9:00', 'HH24:MI'), TO_TIMESTAMP('12:00', 'HH24:MI'), 6, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('15751-2248', 1.8, TO_TIMESTAMP('12:00', 'HH24:MI'), TO_TIMESTAMP('15:00', 'HH24:MI'), 6, '307ac585-7af5-4642-80b2-99726495a060');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('41520-130', 1.7, TO_TIMESTAMP('12:00', 'HH24:MI'), TO_TIMESTAMP('15:00', 'HH24:MI'), 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('17271-501', 1.7, TO_TIMESTAMP('12:00', 'HH24:MI'), TO_TIMESTAMP('15:00', 'HH24:MI'), 10, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('49349-043', 1.8, TO_TIMESTAMP('15:00', 'HH24:MI'), TO_TIMESTAMP('19:00', 'HH24:MI'), 5, '307ac585-7af5-4642-80b2-99726495a060');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('68788-0713', 1.0, TO_TIMESTAMP('15:00', 'HH24:MI'), TO_TIMESTAMP('19:00', 'HH24:MI'), 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('54868-0451', 1.4, TO_TIMESTAMP('15:00', 'HH24:MI'), TO_TIMESTAMP('19:00', 'HH24:MI'), 5, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('54868-4349', 4000, TO_TIMESTAMP('2023/12/1 06:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 9:00','YYYY/MM/DD HH24:MI'), 7, '307ac585-7af5-4642-80b2-99726495a060');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('51367-005', 8000, TO_TIMESTAMP('2023/12/1 6:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 9:00','YYYY/MM/DD HH24:MI'), 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('42507-337', 2000, TO_TIMESTAMP('2023/12/1 6:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 9:00','YYYY/MM/DD HH24:MI'), 8, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('50436-2000', 6000, TO_TIMESTAMP('2023/12/1 9:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 12:00','YYYY/MM/DD HH24:MI'), 9, '307ac585-7af5-4642-80b2-99726495a060');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('36987-1043', 8000, TO_TIMESTAMP('2023/12/1 9:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 12:00','YYYY/MM/DD HH24:MI'), 5, '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('50387-300', 2000, TO_TIMESTAMP('2023/12/1 9:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 12:00','YYYY/MM/DD HH24:MI'), 6, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('15751-2248', 8000, TO_TIMESTAMP('2023/12/1 12:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 15:00','YYYY/MM/DD HH24:MI'), 6, '307ac585-7af5-4642-80b2-99726495a060');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('41520-130', 7000, TO_TIMESTAMP('2023/12/1 12:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 15:00','YYYY/MM/DD HH24:MI'), 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('17271-501', 7000, TO_TIMESTAMP('2023/12/1 12:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 15:00','YYYY/MM/DD HH24:MI'), 10, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('49349-043', 8000, TO_TIMESTAMP('2023/12/1 15:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 19:00','YYYY/MM/DD HH24:MI'), 5, '307ac585-7af5-4642-80b2-99726495a060');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('68788-0713', 1000, TO_TIMESTAMP('2023/12/1 15:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 19:00','YYYY/MM/DD HH24:MI'), 8, '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('54868-0451', 4000, TO_TIMESTAMP('2023/12/1 15:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 19:00','YYYY/MM/DD HH24:MI'), 5, 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
     -- insert BAN_THOI_GIAN
 
@@ -417,6 +417,18 @@ insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3619601, 'edd3751
 insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3074740, 'fb8a71ad-8df7-4158-a8d7-efe5e7a37a7e');
 insert into TOAN_THOI_GIAN (luong_thang, ma_nhan_vien) values (3004371, 'fc82e0b2-1947-4a83-9031-746522aad190');
 
+    -- insert nhan_vien_lam_viec_trong_ca_lam_viec
+insert into nhan_vien_lam_viec_trong_ca_lam_viec (Thoi_gian_den, Thoi_gian_di, Ma_nhan_vien, Ma_ca_lam_viec) values (TO_TIMESTAMP('2023/12/10 6:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2023/12/10 09:00:00','YYYY/MM/DD HH24:MI:SS'), '9c622593-de61-472d-bd4a-f9207634b012', '54868-4349');
+insert into nhan_vien_lam_viec_trong_ca_lam_viec (Thoi_gian_den, Thoi_gian_di, Ma_nhan_vien, Ma_ca_lam_viec) values (TO_TIMESTAMP('2023/12/10 09:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2023/12/10 12:00:00','YYYY/MM/DD HH24:MI:SS'), 'a374a2a7-d798-4fe6-81eb-dfaabd876879', '50436-2000');
+insert into nhan_vien_lam_viec_trong_ca_lam_viec (Thoi_gian_den, Thoi_gian_di, Ma_nhan_vien, Ma_ca_lam_viec) values (TO_TIMESTAMP('2023/12/10 12:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2023/12/10 15:00:00','YYYY/MM/DD HH24:MI:SS'), 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '15751-2248');
+insert into nhan_vien_lam_viec_trong_ca_lam_viec (Thoi_gian_den, Thoi_gian_di, Ma_nhan_vien, Ma_ca_lam_viec) values (TO_TIMESTAMP('2023/12/10 15:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2023/12/10 19:00:00','YYYY/MM/DD HH24:MI:SS'), 'a39f4ae9-86fc-44f9-afb1-0d1ae7c3a7ce', '49349-043');
+insert into nhan_vien_lam_viec_trong_ca_lam_viec (Thoi_gian_den, Thoi_gian_di, Ma_nhan_vien, Ma_ca_lam_viec) values (TO_TIMESTAMP('2023/12/10 06:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2023/12/10 09:00:00','YYYY/MM/DD HH24:MI:SS'), '462f401c-7afe-44bd-a28d-2db5baad569a', '54868-4349');
+insert into nhan_vien_lam_viec_trong_ca_lam_viec (Thoi_gian_den, Thoi_gian_di, Ma_nhan_vien, Ma_ca_lam_viec) values (TO_TIMESTAMP('2023/12/10 09:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2023/12/10 12:00:00','YYYY/MM/DD HH24:MI:SS'), '6a53092b-226d-4d6b-9792-6911b0947ed7', '50436-2000');
+insert into nhan_vien_lam_viec_trong_ca_lam_viec (Thoi_gian_den, Thoi_gian_di, Ma_nhan_vien, Ma_ca_lam_viec) values (TO_TIMESTAMP('2023/12/10 12:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2023/12/10 15:00:00','YYYY/MM/DD HH24:MI:SS'), '68120b5e-147b-4d1d-973a-6e3ec55d15fe', '15751-2248');
+insert into nhan_vien_lam_viec_trong_ca_lam_viec (Thoi_gian_den, Thoi_gian_di, Ma_nhan_vien, Ma_ca_lam_viec) values (TO_TIMESTAMP('2023/12/10 15:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2023/12/10 19:00:00','YYYY/MM/DD HH24:MI:SS'), 'a8fe1d21-4609-402a-8197-e59fc7062325', '49349-043');
+-- insert into nhan_vien_lam_viec_trong_ca_lam_viec (Thoi_gian_den, Thoi_gian_di, Ma_nhan_vien, Ma_ca_lam_viec) values (TO_TIMESTAMP('2023/12/10 06:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2023/12/10 09:00:00','YYYY/MM/DD HH24:MI:SS'), 'fb8a71ad-8df7-4158-a8d7-efe5e7a37a7e', '54868-4349');
+-- insert into nhan_vien_lam_viec_trong_ca_lam_viec (Thoi_gian_den, Thoi_gian_di, Ma_nhan_vien, Ma_ca_lam_viec) values (TO_TIMESTAMP('2023/12/10 09:00:00','YYYY/MM/DD HH24:MI:SS'), TO_TIMESTAMP('2023/12/10 12:00:00','YYYY/MM/DD HH24:MI:SS'), 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', '50436-2000');
+
     -- insert KHUYEN_MAI_TINH_THEO_SO
 
 insert into KHUYEN_MAI_TINH_THEO_SO (gia_giam, ma_khuyen_mai) values (39000, '37808-552');
@@ -437,30 +449,30 @@ insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_
 
     -- insert hoa_don_nhap_kho
 
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('34666-171', TO_DATE('10/11/2023', 'MM/DD/YYYY'), 'Leffler and Sons', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('41250-272', TO_DATE('9/16/2023', 'MM/DD/YYYY'), 'Altenwerth LLC', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55154-0358', TO_DATE('5/30/2023', 'MM/DD/YYYY'), 'Conn-Hand', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('15127-151', TO_DATE('8/17/2023', 'MM/DD/YYYY'), 'Monahan Inc', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('65734-000', TO_DATE('8/12/2023', 'MM/DD/YYYY'), 'Hansen-Schulist', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55513-144', TO_DATE('2/24/2023', 'MM/DD/YYYY'), 'Cummings, Roob and O''Connell', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0597-0075', TO_DATE('10/31/2023', 'MM/DD/YYYY'), 'Kozey, Johns and Gibson', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0025-1891', TO_DATE('1/19/2023', 'MM/DD/YYYY'), 'Runolfsson and Sons', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('52124-0113', TO_DATE('9/4/2023', 'MM/DD/YYYY'), 'Cremin Group', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0615-1571', TO_DATE('10/8/2023', 'MM/DD/YYYY'), 'Sanford and Sons', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('49349-953', TO_DATE('4/2/2023', 'MM/DD/YYYY'), 'Heidenreich-Schultz', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('64175-991', TO_DATE('7/10/2023', 'MM/DD/YYYY'), 'Barton, Reichert and Roob', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55910-371', TO_DATE('12/8/2022', 'MM/DD/YYYY'), 'Dare, Stroman and Fisher', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('52584-047', TO_DATE('5/8/2023', 'MM/DD/YYYY'), 'Cremin-Wyman', '79f44967-7044-48f1-8b24-69386cc1b50a');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0185-4351', TO_DATE('10/26/2023', 'MM/DD/YYYY'), 'Grant, Prosacco and Blanda', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('67544-318', TO_DATE('10/6/2023', 'MM/DD/YYYY'), 'Quigley Inc', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('62011-0065', TO_DATE('12/3/2022', 'MM/DD/YYYY'), 'McGlynn-Hettinger', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('24724-030', TO_DATE('9/18/2023', 'MM/DD/YYYY'), 'Rohan, Stokes and Ondricka', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('64980-158', TO_DATE('4/11/2023', 'MM/DD/YYYY'), 'Bogan, Sporer and Treutel', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('49527-801', TO_DATE('6/30/2023', 'MM/DD/YYYY'), 'Rogahn, Bartoletti and Harvey', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('61924-266', TO_DATE('7/24/2023', 'MM/DD/YYYY'), 'Lebsack Inc', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('36987-3431', TO_DATE('5/25/2023', 'MM/DD/YYYY'), 'Grady-Simonis', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('50436-3101', TO_DATE('4/18/2023', 'MM/DD/YYYY'), 'Sporer-Wuckert', '307ac585-7af5-4642-80b2-99726495a060');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0409-7931', TO_DATE('6/13/2023', 'MM/DD/YYYY'), 'Kuvalis-Schumm', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
-insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('68745-1087', TO_DATE('6/23/2023', 'MM/DD/YYYY'), 'Rutherford, Hintz and Lemke', '79f44967-7044-48f1-8b24-69386cc1b50a');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('34666-171', TO_DATE('10/11/2023', 'MM/DD/YYYY'), 'Leffler and Sons', '79f44967-7044-48f1-8b24-69386cc1b50a');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('41250-272', TO_DATE('9/16/2023', 'MM/DD/YYYY'), 'Altenwerth LLC', '79f44967-7044-48f1-8b24-69386cc1b50a');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55154-0358', TO_DATE('5/30/2023', 'MM/DD/YYYY'), 'Conn-Hand', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('15127-151', TO_DATE('8/17/2023', 'MM/DD/YYYY'), 'Monahan Inc', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('65734-000', TO_DATE('8/12/2023', 'MM/DD/YYYY'), 'Hansen-Schulist', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55513-144', TO_DATE('2/24/2023', 'MM/DD/YYYY'), 'Cummings, Roob and O''Connell', '79f44967-7044-48f1-8b24-69386cc1b50a');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0597-0075', TO_DATE('10/31/2023', 'MM/DD/YYYY'), 'Kozey, Johns and Gibson', '307ac585-7af5-4642-80b2-99726495a060');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0025-1891', TO_DATE('1/19/2023', 'MM/DD/YYYY'), 'Runolfsson and Sons', '79f44967-7044-48f1-8b24-69386cc1b50a');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('52124-0113', TO_DATE('9/4/2023', 'MM/DD/YYYY'), 'Cremin Group', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0615-1571', TO_DATE('10/8/2023', 'MM/DD/YYYY'), 'Sanford and Sons', '307ac585-7af5-4642-80b2-99726495a060');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('49349-953', TO_DATE('4/2/2023', 'MM/DD/YYYY'), 'Heidenreich-Schultz', '79f44967-7044-48f1-8b24-69386cc1b50a');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('64175-991', TO_DATE('7/10/2023', 'MM/DD/YYYY'), 'Barton, Reichert and Roob', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('55910-371', TO_DATE('12/8/2022', 'MM/DD/YYYY'), 'Dare, Stroman and Fisher', '307ac585-7af5-4642-80b2-99726495a060');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('52584-047', TO_DATE('5/8/2023', 'MM/DD/YYYY'), 'Cremin-Wyman', '79f44967-7044-48f1-8b24-69386cc1b50a');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0185-4351', TO_DATE('10/26/2023', 'MM/DD/YYYY'), 'Grant, Prosacco and Blanda', '307ac585-7af5-4642-80b2-99726495a060');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('67544-318', TO_DATE('10/6/2023', 'MM/DD/YYYY'), 'Quigley Inc', '307ac585-7af5-4642-80b2-99726495a060');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('62011-0065', TO_DATE('12/3/2022', 'MM/DD/YYYY'), 'McGlynn-Hettinger', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('24724-030', TO_DATE('9/18/2023', 'MM/DD/YYYY'), 'Rohan, Stokes and Ondricka', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('64980-158', TO_DATE('4/11/2023', 'MM/DD/YYYY'), 'Bogan, Sporer and Treutel', '307ac585-7af5-4642-80b2-99726495a060');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('49527-801', TO_DATE('6/30/2023', 'MM/DD/YYYY'), 'Rogahn, Bartoletti and Harvey', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('61924-266', TO_DATE('7/24/2023', 'MM/DD/YYYY'), 'Lebsack Inc', '307ac585-7af5-4642-80b2-99726495a060');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('36987-3431', TO_DATE('5/25/2023', 'MM/DD/YYYY'), 'Grady-Simonis', '307ac585-7af5-4642-80b2-99726495a060');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('50436-3101', TO_DATE('4/18/2023', 'MM/DD/YYYY'), 'Sporer-Wuckert', '307ac585-7af5-4642-80b2-99726495a060');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0409-7931', TO_DATE('6/13/2023', 'MM/DD/YYYY'), 'Kuvalis-Schumm', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+-- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('68745-1087', TO_DATE('6/23/2023', 'MM/DD/YYYY'), 'Rutherford, Hintz and Lemke', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
-COMMIT;
+-- COMMIT;
