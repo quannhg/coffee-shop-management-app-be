@@ -19,6 +19,7 @@ import {
 // import { employeeQuery } from 'src/queries';
 import { faker } from '@faker-js/faker';
 import { employeeQuery } from '@queries';
+import { logger } from '@utils';
 
 const get: Handler<EmployeeResultDto, { Body: EmployeeInputDto }> = async (req, res) => {
     const employees = await employeeQuery.selectIncludeOrderAndFilter(req.body.payload, req.body.shopId, [
@@ -114,18 +115,27 @@ const search: Handler<EmployeeSearchingResultDto, { Params: EmployeeSearchingPar
 };
 
 const createSingle: Handler<CreateEmployeeResultDto, { Body: CreateEmployeeInputDto }> = async (req, res) => {
-    await employeeQuery.insertSingleEmployee(req.body);
+    try {
+        await employeeQuery.insertSingleEmployee(req.body);
 
-    return res.send({ status: 'success' });
+        return res.send({ status: 'success' });
+    } catch (error) {
+        return res.badRequest(error.message);
+    }
 };
 
 const updateSingle: Handler<UpdateEmployeeResultDto, { Params: UpdateEmployeeParamsDto; Body: UpdateEmployeeBodyDto }> = async (
-    __req,
+    req,
     res
 ) => {
-    // await employeeQuery.updateSingleEmployee(req.params.employeeId, req.body);
+    try {
+        await employeeQuery.updateSingleEmployee(req.params.employeeId, req.body);
 
-    return res.send({ status: 'success' });
+        return res.send({ status: 'success' });
+    } catch (err) {
+        logger.error(err);
+        return res.badRequest(err.message);
+    }
 };
 
 const removeSingle: Handler<DeleteEmployeeResultDto, { Params: DeleteEmployeeParamsDto }> = async (req, res) => {

@@ -158,20 +158,25 @@ const insertSingleEmployee = async (employee: CreateEmployeeInputDto): Promise<v
 const updateSingleEmployee = async (employeeId: string, employee: UpdateEmployeeBodyDto): Promise<void> => {
     try {
         const queryText = `CALL sua_nhan_vien_qua_ma_nhan_vien($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
+        const formattedBirthday = moment(employee.birthday).format('YYYY-MM-DD');
+        const formatGender = capitalizeFirstLetter(employee.gender);
 
+        //TODO: add joinedAT, leaveAt
         await poolQuery({
             text: queryText,
             values: [
                 employeeId,
                 employee.name,
-                employee.birthday,
-                employee.gender,
+                formattedBirthday,
+                formatGender,
                 employee.address,
                 employee.phoneNum,
                 employee.bankNum,
                 employee.academicLevel,
-                employee.joinedAt,
-                employee.leaveAt
+                undefined,
+                undefined
+                // employee.joinedAt,
+                // employee.leaveAt
             ]
         });
     } catch (err) {
