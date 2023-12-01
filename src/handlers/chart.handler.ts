@@ -1,8 +1,8 @@
 import { ChartParams } from '@dtos/in';
-import { AgeDistributeChartResult, GenderDistributeChartResult } from '@dtos/out';
+import { AgeDistributeChartResult, GenderDistributeChartResult, TableStatusDistributeChartResult } from '@dtos/out';
 import { Handler } from '@interfaces';
 import { faker } from '@faker-js/faker';
-import { employeeQuery } from '@queries';
+import { employeeQuery, shopQuery } from '@queries';
 import { logger } from '@utils';
 
 const ageDistribute: Handler<AgeDistributeChartResult, { Params: ChartParams }> = async (__req, res) => {
@@ -33,7 +33,21 @@ const genderDistribute: Handler<GenderDistributeChartResult, { Params: ChartPara
     }
 };
 
+const TableStatusDistribute: Handler<TableStatusDistributeChartResult, { Params: ChartParams }> = async (req, res) => {
+    try {
+        const tableStatusAmounts = await shopQuery.selectTableStatusDistribute(req.params.shopId || '*');
+        return res.send({
+            statuses: ['Trống', 'Đặt trước', 'Đang ngồi'],
+            amount: [tableStatusAmounts[0].so_ban_trong, tableStatusAmounts[0].so_ban_dat_truoc, tableStatusAmounts[0].so_ban_dang_ngoi]
+        });
+    } catch (error) {
+        logger.error(error);
+        return res.badRequest(error.message);
+    }
+};
+
 export const chartHandler = {
     ageDistribute,
-    genderDistribute
+    genderDistribute,
+    TableStatusDistribute
 };

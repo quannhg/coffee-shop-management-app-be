@@ -17,6 +17,21 @@ const selectAllShop = async (fields?: string[]): Promise<Record<string, string>[
     }
 };
 
+const selectTableStatusDistribute = async (shopId: string): Promise<Record<string, string>[]> => {
+    try {
+        const queryText = `SELECT * FROM calculate_table_status($1);`;
+
+        const { rows } = await poolQuery({ text: queryText, values: [shopId] });
+
+        return rows;
+    } catch (err) {
+        logger.error('Error when retrieving user data by Sdt');
+        logger.error(err);
+        throw err;
+    }
+};
+
 export const shopQuery = {
-    selectAllShop
+    selectAllShop,
+    selectTableStatusDistribute
 };
