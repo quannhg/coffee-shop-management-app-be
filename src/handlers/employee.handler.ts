@@ -80,7 +80,7 @@ const search: Handler<EmployeeSearchingResultDto, { Params: EmployeeSearchingPar
     );
 };
 
-const createSingle: Handler<CreateEmployeeResultDto, { Body: CreateEmployeeInputDto }> = async (req, res) => {
+const createSingle: Handler<CreateEmployeeResultDto, { Body: CreateEmployeeInputDto }> = async (__req, res) => {
     // await employeeQuery.insertSingleEmployee(req.body);
 
     return res.send({ status: 'success' });
