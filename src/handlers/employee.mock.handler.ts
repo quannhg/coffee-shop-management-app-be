@@ -148,7 +148,7 @@ const removeSingle: Handler<DeleteEmployeeResultDto, { Params: DeleteEmployeePar
     return res.send({ status: 'success' });
 };
 
-export const employeeHandler = {
+export const employeeMockHandler = {
     get,
     getDetail,
     search,

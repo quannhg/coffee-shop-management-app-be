@@ -15,6 +15,7 @@ export const customerPlugin = createRoutes('Customer', [
                 properties: { phoneNumber: ObjectPhoneNumber },
                 required: ['phoneNumber']
             },
+            deprecated: true,
             response: {
                 200: customerResultDto
             }
@@ -35,6 +36,7 @@ export const customerPlugin = createRoutes('Customer', [
                 },
                 required: ['customerName']
             },
+            deprecated: true,
             response: {
                 200: Type.Array(customerResultDto)
             }

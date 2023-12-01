@@ -39,7 +39,7 @@
             "@routes": ["src/routes"],
             "@interfaces": ["src/interfaces"],
             "#package.json": ["./package.json"],
-            "@queries":[".src/queries"]
+            "@queries":["src/queries"]
         }
     },
     "include": ["src", "**/*.js", "**/*.ts"],

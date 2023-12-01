@@ -226,8 +226,8 @@ CREATE OR REPLACE FUNCTION get_employee_data
     ngay_vao_lam date
 ) AS $$
 DECLARE
-    valid_roles varchar[] := ARRAY['quản lý', 'quét dọn', 'pha chế','bảo vệ','phục vụ'];
-    valid_genders varchar[] := ARRAY['Nam', 'Nữ','Khác'];
+    valid_roles varchar[] := ARRAY['quản lý', 'bồi bàn', 'pha chế'];
+    valid_genders varchar[] := ARRAY['Nam', 'Nữ'];
     valid_order_attributes varchar[] := ARRAY['ho_va_ten', 'vai_tro', 'ngay_vao_lam', 'ngay_sinh', 'gioi_tinh'];
 	valid_order_directions varchar[] :=ARRAY['ASC','DESC','asc','desc'];
 	query_string text;
