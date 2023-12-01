@@ -578,8 +578,9 @@ DECLARE
 BEGIN
     
 	SELECT Luong_thang_toi_thieu INTO luong_thang_toi_thieu_vung
-	FROM CUA_HANG
-	WHERE Ma_cua_hang = NEW.Ma_cua_hang;
+	FROM CUA_HANG ch
+	JOIN NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG nvch ON ch.Ma_cua_hang = nvch.Ma_cua_hang
+	WHERE NEW.Ma_nhan_vien = Ma_nhan_vien
 
     
     IF NEW.Luong_thang < luong_thang_toi_thieu_vung THEN
