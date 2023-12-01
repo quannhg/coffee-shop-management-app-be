@@ -623,7 +623,7 @@ BEGIN
     RETURN NULL;
 END;
 $$ LANGUAGE plpgsql;
---create func to calc number of table status
+-- func to calc number of table status
 CREATE OR REPLACE FUNCTION calculate_table_status(cua_hang_id UUID)
 RETURNS TABLE (
     so_ban_trong INT,
@@ -656,8 +656,33 @@ END;
 $$ LANGUAGE plpgsql;
 -- ultility:  SELECT * FROM calculate_table_status('id CUA_HANG');
 
+-- func check CUA_HANG have enough Nguyen_lieu to cook
+CREATE OR REPLACE FUNCTION check_du_nguyen_lieu(mon_id UUID, cua_hang_id UUID)
+RETURNS BOOLEAN AS $$
+DECLARE
+    mon_nguyen_lieu_count INT;
+    cua_hang_nguyen_lieu_count INT;
+BEGIN
+    -- Đếm số lượng nguyên liệu cần cho món ăn
+    SELECT COUNT(*) INTO mon_nguyen_lieu_count
+    FROM MON_CAN_NGUYEN_LIEU
+    WHERE Ma_mon = mon_id;
 
+    -- Đếm số lượng nguyên liệu có sẵn trong cửa hàng
+    SELECT COUNT(*) INTO cua_hang_nguyen_lieu_count
+    FROM CUA_HANG_CHUA_NGUYEN_LIEU chnl
+    WHERE chnl.Ma_cua_hang = cua_hang_id
+        AND chnl.Ma_nguyen_lieu IN (
+            SELECT Ma_nguyen_lieu
+            FROM MON_CAN_NGUYEN_LIEU
+            WHERE Ma_mon = mon_id
+        );
 
+    -- Kiểm tra xem có đủ nguyên liệu không
+    RETURN cua_hang_nguyen_lieu_count >= mon_nguyen_lieu_count;
+END;
+$$ LANGUAGE plpgsql;
+--ultility: SELECT check_du_nguyen_lieu('id mon','id cua hang') AS result;
 --end
 
 COMMIT;
