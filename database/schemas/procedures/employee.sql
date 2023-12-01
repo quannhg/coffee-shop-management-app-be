@@ -1,22 +1,66 @@
+-- Hàm kiểm tra tuổi nhân viên
+CREATE OR REPLACE FUNCTION kiem_tra_tuoi(_ngay_sinh DATE) RETURNS BOOLEAN AS $$
+BEGIN
+    IF _ngay_sinh > CURRENT_DATE - INTERVAL '16 years' THEN
+        RAISE EXCEPTION 'Tuổi nhân viên phải lớn hơn 16 tuổi';
+    END IF;
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Hàm kiểm tra số điện thoại
+CREATE OR REPLACE FUNCTION kiem_tra_sdt(_sdt VARCHAR(12)) RETURNS BOOLEAN AS $$
+BEGIN
+    IF _sdt !~ '^[0-9]{10,12}$' THEN
+        RAISE EXCEPTION 'Số điện thoại không hợp lệ';
+    END IF;
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Hàm kiểm tra email
+CREATE OR REPLACE FUNCTION kiem_tra_email(_email VARCHAR(30)) RETURNS BOOLEAN AS $$
+BEGIN
+    IF _email !~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' THEN
+        RAISE EXCEPTION 'Email không hợp lệ';
+    END IF;
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Hàm kiểm tra mật khẩu băm mới khác mật khẩu băm cũ
+CREATE OR REPLACE FUNCTION kiem_tra_mat_khau_moi(
+    p_Mat_khau_hien_tai VARCHAR(60),
+    p_Mat_khau_moi VARCHAR(60)
+)
+RETURNS BOOLEAN
+AS $$
+BEGIN
+    -- Kiểm tra mật khẩu mới phải khác mật khẩu cũ
+    RETURN p_Mat_khau_moi <> p_Mat_khau_hien_tai;
+END;
+$$ LANGUAGE plpgsql;
+
+
 -- Thủ tục thêm dữ liệu
 CREATE OR REPLACE PROCEDURE them_nhan_vien(
-    _ho_va_ten VARCHAR(30),
-    _ngay_sinh DATE,
-    _gioi_tinh VARCHAR(30),
-    _dia_chi VARCHAR(30),
-    _sdt VARCHAR(12),
-    _so_tk_ngan_hang VARCHAR(30),
-    _trinh_do_hoc_van VARCHAR(30),
-    _ten_tai_khoan VARCHAR(30),
-    _mat_khau_bam VARCHAR(60)
+    p_ho_va_ten VARCHAR(30),
+    p_ngay_sinh DATE,
+    p_gioi_tinh gioi_tinh,
+    p_dia_chi VARCHAR(30),
+    p_sdt VARCHAR(12),
+    p_so_tk_ngan_hang VARCHAR(30),
+    p_trinh_do_hoc_van VARCHAR(30),
+    p_ten_tai_khoan VARCHAR(30),
+    p_mat_khau_bam VARCHAR(60)
 ) AS $$
 BEGIN
     -- Kiểm tra các ràng buộc dữ liệu
-    IF _ngay_sinh IS NOT NULL AND NOT kiem_tra_tuoi(_ngay_sinh) THEN
+    IF p_ngay_sinh IS NOT NULL AND NOT kiem_tra_tuoi(p_ngay_sinh) THEN
         RAISE EXCEPTION 'Tuổi nhân viên phải lớn hơn 16 tuổi';
     END IF;
 
-    IF _sdt IS NOT NULL AND NOT kiem_tra_sdt(_sdt) THEN
+    IF p_sdt IS NOT NULL AND NOT kiem_tra_sdt(p_sdt) THEN
         RAISE EXCEPTION 'Số điện thoại không hợp lệ!';
     END IF;
     -- Thêm dữ liệu
@@ -31,15 +75,15 @@ BEGIN
         Ten_tai_khoan,
         Mat_khau_bam
     ) VALUES (
-        _ho_va_ten,
-        _ngay_sinh,
-        _gioi_tinh,
-        _dia_chi,
-        _sdt,
-        _so_tk_ngan_hang,
-        _trinh_do_hoc_van,
-        _ten_tai_khoan,
-        _mat_khau_bam
+        p_ho_va_ten,
+        p_ngay_sinh,
+        p_gioi_tinh,
+        p_dia_chi,
+        p_sdt,
+        p_so_tk_ngan_hang,
+        p_trinh_do_hoc_van,
+        p_ten_tai_khoan,
+        p_mat_khau_bam
     );
 END;
 $$ LANGUAGE plpgsql;
@@ -50,7 +94,7 @@ CREATE OR REPLACE PROCEDURE sua_nhan_vien_qua_TK_va_MK(
     p_Mat_khau VARCHAR(60),
     p_Ho_va_ten VARCHAR(30) = NULL,
     p_Ngay_sinh DATE = NULL,
-    p_Gioi_tinh VARCHAR(30) = NULL,
+    p_Gioi_tinh gioi_tinh = NULL,
     p_Dia_chi VARCHAR(30) = NULL,
     p_Sdt VARCHAR(12) = NULL,
     p_So_tk_ngan_hang VARCHAR(30) = NULL,
@@ -78,8 +122,7 @@ BEGIN
         So_tk_ngan_hang = COALESCE(p_So_tk_ngan_hang, So_tk_ngan_hang),
         Trinh_do_hoc_van = COALESCE(p_Trinh_do_hoc_van, Trinh_do_hoc_van)
     WHERE
-        (p_Ma_nhan_vien IS NULL OR Ma_nhan_vien = p_Ma_nhan_vien)
-        AND Ten_tai_khoan = p_Ten_tai_khoan
+        Ten_tai_khoan = p_Ten_tai_khoan
         AND Mat_khau_bam = p_Mat_khau;
 
     IF NOT FOUND THEN
