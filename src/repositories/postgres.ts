@@ -3,10 +3,10 @@ import { logger } from '@utils';
 import { Pool } from 'pg';
 
 export const pool = new Pool({
-    host: 'localhost',
-    port: 5433,
-    user: 'postgres',
-    password: '123456789',
+    host: envs.POSTGRES_HOST,
+    port: envs.POSTGRES_PORT,
+    user: envs.POSTGRES_USER,
+    password: envs.POSTGRES_PASSWORD,
     max: 10,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000
