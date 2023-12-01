@@ -121,12 +121,12 @@ CREATE TABLE CA_LAM_VIEC
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang)
 );
 
-
+CREATE TYPE trang_thai AS ENUM ('Trong', 'Dat Truoc', 'Dang Ngoi');
 CREATE TABLE BAN
 (
 	Ma_ban VARCHAR(30) PRIMARY KEY,
 	So_thu_tu INT NOT NULL,
-	Trang_thai VARCHAR(30) NOT NULL,
+	Trang_thai trang_thai NOT NULL,
 	Thoi_gian_dat_truoc DATE,
 	Sdt_nguoi_dat VARCHAR(12),
 	Ma_cua_hang UUID NOT NULL,
@@ -623,6 +623,41 @@ BEGIN
     RETURN NULL;
 END;
 $$ LANGUAGE plpgsql;
+--create func to calc number of table status
+CREATE OR REPLACE FUNCTION calculate_table_status(cua_hang_id UUID)
+RETURNS TABLE (
+    so_ban_trong INT,
+    so_ban_dat_truoc INT,
+    so_ban_dang_ngoi INT
+) AS $$
+DECLARE
+    ban_record RECORD;
+BEGIN
+    -- Khởi tạo giá trị ban đầu
+    so_ban_trong := 0;
+    so_ban_dat_truoc := 0;
+    so_ban_dang_ngoi := 0;
+
+    
+    FOR ban_record IN (SELECT * FROM BAN WHERE Ma_cua_hang = cua_hang_id) LOOP
+        
+        IF ban_record.Trang_thai = 'Trong' THEN
+            so_ban_trong := so_ban_trong + 1;
+        ELSIF ban_record.Trang_thai = 'Dat Truoc' THEN
+            so_ban_dat_truoc := so_ban_dat_truoc + 1;
+        ELSIF ban_record.Trang_thai = 'Dang Ngoi' THEN
+            so_ban_dang_ngoi := so_ban_dang_ngoi + 1;
+        END IF;
+    END LOOP;
+
+    
+    RETURN NEXT; --result: table of so_ban_trong, so_ban_dat_truoc, so_ban_dang_ngoi 
+END;
+$$ LANGUAGE plpgsql;
+-- ultility:  SELECT * FROM calculate_table_status('id CUA_HANG');
+
+
+
 --end
 
 COMMIT;
