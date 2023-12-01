@@ -684,5 +684,4 @@ END;
 $$ LANGUAGE plpgsql;
 --ultility: SELECT check_du_nguyen_lieu('id mon','id cua hang') AS result;
 --end
-
 COMMIT;
