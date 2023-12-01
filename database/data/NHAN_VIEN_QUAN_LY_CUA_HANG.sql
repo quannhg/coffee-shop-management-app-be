@@ -1,0 +1,2 @@
+insert into NHAN_VIEN_QUAN_LY_CUA_HANG (Ngay_bat_dau, Ngay_ket_thuc, Ma_nhan_vien, Ma_cua_hang) values ('2022-06-01', '2022-12-13', '31ecdf55-d4f5-4bb9-9305-1c240a8cd4da', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into NHAN_VIEN_QUAN_LY_CUA_HANG (Ngay_bat_dau, Ngay_ket_thuc, Ma_nhan_vien, Ma_cua_hang) values ('2022-12-13', '2023-07-27', '0c65484e-adac-4ae5-8b89-ca36c0ea23cb', '307ac585-7af5-4642-80b2-99726495a060');
