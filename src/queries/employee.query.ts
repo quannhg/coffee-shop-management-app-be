@@ -115,7 +115,7 @@ const selectByPartialName = async (partialName: string, fields?: string[]): Prom
     try {
         const selectFields = fields && fields.length > 0 ? fields.join(', ') : '*';
 
-        const queryText = `SELECT ${selectFields} FROM nhan_vien WHERE ten_nhan_vien ILIKE $1`;
+        const queryText = `SELECT ${selectFields} FROM nhan_vien WHERE ho_va_ten ILIKE $1`;
 
         const { rows } = await poolQuery({ text: queryText, values: [`%${partialName}%`] });
 
@@ -186,6 +186,33 @@ const updateSingleEmployee = async (employeeId: string, employee: UpdateEmployee
     }
 };
 
+const selectAmountGender = async (shopId: string): Promise<Record<string, string>[]> => {
+    try {
+        const queryText = `
+            SELECT
+                NV.Gioi_tinh,
+                COUNT(*) AS so_luong_nhan_vien
+            FROM
+                NHAN_VIEN NV
+            JOIN
+                NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG NVLVC ON NV.Ma_nhan_vien = NVLVC.Ma_nhan_vien
+            ${shopId ? 'WHERE NVLVC.Ma_cua_hang = $1' : ''}
+            GROUP BY
+                NV.Gioi_tinh;`;
+
+        const { rows } = await poolQuery({
+            text: queryText,
+            values: shopId ? [shopId] : []
+        });
+
+        return rows;
+    } catch (err) {
+        logger.error('Error when retrieving user data by partial name');
+        logger.error(err);
+        throw err;
+    }
+};
+
 const removeSingleEmployee = async (employeeId: string): Promise<void> => {
     try {
         const queryText = `CALL xoa_nhan_vien($1)`;
@@ -206,6 +233,7 @@ export const employeeQuery = {
     selectById,
     selectIncludeOrderAndFilter,
     selectByPartialName,
+    selectAmountGender,
     insertSingleEmployee,
     updateSingleEmployee,
     removeSingleEmployee

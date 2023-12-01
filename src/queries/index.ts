@@ -4,3 +4,4 @@
 
 export * from './customer.query';
 export * from './employee.query';
+export * from './shop.query';

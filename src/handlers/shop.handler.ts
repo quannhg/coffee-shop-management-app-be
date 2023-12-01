@@ -1,17 +1,18 @@
 import { Handler } from '@interfaces';
-import { faker } from '@faker-js/faker';
 import { ShopResult } from '@dtos/out';
+import { shopQuery } from '@queries';
 
 const shopList: Handler<ShopResult> = async (__req, res) => {
-    const shops = [];
-    for (let i = 0; i < 10; i++) {
-        shops.push({
-            id: faker.string.uuid(),
-            name: faker.company.name()
-        });
-    }
+    const shops = await shopQuery.selectAllShop(['ma_cua_hang', 'ten_cua_hang']);
 
-    return res.send(shops);
+    return res.send(
+        shops.map((shop) => {
+            return {
+                id: shop.ma_cua_hang,
+                name: shop.ten_cua_hang
+            };
+        })
+    );
 };
 
 export const shopHandler = {
