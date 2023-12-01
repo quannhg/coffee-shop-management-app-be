@@ -15,8 +15,11 @@ export const EmployeeFilterObject = Type.Object({
 });
 
 export const EmployeeInputDto = Type.Object({
-    order: EmployeeOrderObject,
-    filter: EmployeeFilterObject
+    payload: Type.Object({
+        order: EmployeeOrderObject,
+        filter: EmployeeFilterObject
+    }),
+    shopId: Type.String()
 });
 
 export const EmployeeSearchingParamsDto = Type.Object({ partialName: Type.String() });
