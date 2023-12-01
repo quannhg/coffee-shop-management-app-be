@@ -5,6 +5,7 @@ import {
     DeleteEmployeeParamsDto,
     EmployeeInputDto,
     EmployeeSearchingParamsDto,
+    GetEmployeeDetailParamsDto,
     UpdateEmployeeBodyDto,
     UpdateEmployeeParamsDto
 } from '@dtos/in';
@@ -13,6 +14,7 @@ import {
     DeleteEmployeeResultDto,
     EmployeeResultDto,
     EmployeeSearchingResultDto,
+    GetEmployeeDetailResultDto,
     UpdateEmployeeResultDto
 } from '@dtos/out';
 
@@ -42,6 +44,19 @@ export const employeePlugin = createRoutes('Employee', [
             }
         },
         handler: employeeHandler.search
+    },
+    {
+        method: 'GET',
+        url: '/:employeeId',
+        schema: {
+            summary: 'get detail specific employee infomation',
+            description: '',
+            params: GetEmployeeDetailParamsDto,
+            response: {
+                200: GetEmployeeDetailResultDto
+            }
+        },
+        handler: employeeHandler.getDetail
     },
     {
         method: 'POST',
