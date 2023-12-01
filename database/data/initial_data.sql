@@ -1,7 +1,7 @@
 -- run the following command when excute query failed, this will rollback transaction (excute only this command, not the whole file)
 -- ROLLBACK;
 
--- BEGIN;
+BEGIN;
 
     -- initial data in here
 
@@ -105,36 +105,26 @@ VALUES ('42388-012', 'Cocoa and Carols Carnival', TO_DATE('2023-11-02', 'YYYY-MM
 
     
     -- insert mon
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('63691-010', 'http://dummyimage.com/109x100.png/cc0000/ffffff', 'Irish Coffee', 56000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('52125-049', 'http://dummyimage.com/114x100.png/ff4444/ffffff', 'Macchiato', 34000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('51991-747', 'http://dummyimage.com/240x100.png/5fa2dd/ffffff', 'Iced Coffee', 51000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('17478-327', 'http://dummyimage.com/170x100.png/cc0000/ffffff', 'Flat White', 45000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('41163-413', 'http://dummyimage.com/102x100.png/cc0000/ffffff', 'Fruit Juices', 33000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('0781-4004', 'http://dummyimage.com/123x100.png/5fa2dd/ffffff', 'Iced Tea', 60000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('42507-328', 'http://dummyimage.com/246x100.png/ff4444/ffffff', 'Irish Coffee', 58000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('54569-2376', 'http://dummyimage.com/141x100.png/dddddd/000000', 'Macchiato', 30304);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('55315-250', 'http://dummyimage.com/109x100.png/cc0000/ffffff', 'Iced Coffee', 29036);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('49349-034', 'http://dummyimage.com/114x100.png/ff4444/ffffff', 'Flat White', 30619);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('24385-550', 'http://dummyimage.com/240x100.png/5fa2dd/ffffff', 'Fruit Juices', 55000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('50458-346', 'http://dummyimage.com/170x100.png/cc0000/ffffff', 'Iced Tea', 28000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('21695-068', 'http://dummyimage.com/102x100.png/cc0000/ffffff', 'Irish Coffee', 32000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('41163-664', 'http://dummyimage.com/123x100.png/5fa2dd/ffffff', 'Macchiato', 57000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('55154-1057', 'http://dummyimage.com/246x100.png/ff4444/ffffff', 'Iced Coffee', 50000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('52125-781', 'http://dummyimage.com/141x100.png/dddddd/000000', 'Flat White', 34000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('10096-0285', 'http://dummyimage.com/109x100.png/cc0000/ffffff', 'Fruit Juices', 53000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('49781-062', 'http://dummyimage.com/114x100.png/ff4444/ffffff', 'Iced Tea', 46000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('49035-667', 'http://dummyimage.com/240x100.png/5fa2dd/ffffff', 'Irish Coffee', 48000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('37205-694', 'http://dummyimage.com/170x100.png/cc0000/ffffff', 'Macchiato', 55000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('47682-231', 'http://dummyimage.com/102x100.png/cc0000/ffffff', 'Iced Coffee', 34000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('68788-9096', 'http://dummyimage.com/123x100.png/5fa2dd/ffffff', 'Flat White', 37000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('51079-896', 'http://dummyimage.com/246x100.png/ff4444/ffffff', 'Fruit Juices', 58000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('52125-415', 'http://dummyimage.com/141x100.png/dddddd/000000', 'Iced Tea', 31000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('52374-101', 'http://dummyimage.com/109x100.png/cc0000/ffffff', 'Irish Coffee', 39000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('43406-0152', 'http://dummyimage.com/114x100.png/ff4444/ffffff', 'Macchiato', 40000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('36987-2315', 'http://dummyimage.com/240x100.png/5fa2dd/ffffff', 'Iced Coffee', 30000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('55154-4055', 'http://dummyimage.com/170x100.png/cc0000/ffffff', 'Flat White', 37000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('42507-166', 'http://dummyimage.com/102x100.png/cc0000/ffffff', 'Fruit Juices', 34000);
-insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('0409-7077', 'http://dummyimage.com/123x100.png/5fa2dd/ffffff', 'Iced Tea', 31000);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('0527-1351', 'https://robohash.org/porrosedperferendis.png?size=50x50&set=set1', 'Midnight Mocha Madness', 95392);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('55319-213', 'https://robohash.org/nesciuntharumlaborum.png?size=50x50&set=set1', 'Caramel Euphoria', 73462);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('63824-861', 'https://robohash.org/laboriosamfugitut.png?size=50x50&set=set1', 'Hazelnut Hug', 64194);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('58118-1392', 'https://robohash.org/sintvoluptateexcepturi.png?size=50x50&set=set1', 'Vanilla Velvet Bliss', 60076);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('68462-296', 'https://robohash.org/delectussequiquia.png?size=50x50&set=set1', 'Espresso Symphony', 84562);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('51346-081', 'https://robohash.org/sedarchitectomagnam.png?size=50x50&set=set1', 'Raspberry Ripple Delight', 82280);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('21695-197', 'https://robohash.org/nullaquamenim.png?size=50x50&set=set1', 'Coconut Cream Dream', 63846);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('49288-0258', 'https://robohash.org/totamculpaet.png?size=50x50&set=set1', 'Almond Joyful Brew', 57199);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('10477-1261', 'https://robohash.org/voluptatemaliquidnon.png?size=50x50&set=set1', 'Irish Cream Cascade', 70333);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('54569-1024', 'https://robohash.org/totampariaturnatus.png?size=50x50&set=set1', 'Chai Latte Serenity', 66314);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('47335-675', 'https://robohash.org/temporaporroquis.png?size=50x50&set=set1', 'Pumpkin Spice Paradise', 71658);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('52686-276', 'https://robohash.org/autconsequunturquos.png?size=50x50&set=set1', 'Tiramisu Temptation', 49368);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('54868-6223', 'https://robohash.org/exaspernaturoptio.png?size=50x50&set=set1', 'Honeyed Macadamia Magic', 69874);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('98132-700', 'https://robohash.org/initaquelaboriosam.png?size=50x50&set=set1', 'White Chocolate Wonderland', 82701);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('21130-044', 'https://robohash.org/etetipsum.png?size=50x50&set=set1', 'Maple Pecan Perfection', 42172);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('49967-790', 'https://robohash.org/rationeoditest.png?size=50x50&set=set1', 'Cinnamon Swirl Sensation', 55127);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('69249-000', 'https://robohash.org/eaqueidvoluptatem.png?size=50x50&set=set1', 'Peppermint Patty Pleasure', 33720);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('37808-773', 'https://robohash.org/consecteturvelitnatus.png?size=50x50&set=set1', 'Salted Caramel Carnival', 57549);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('98132-750', 'https://robohash.org/etutest.png?size=50x50&set=set1', 'Gingerbread Joyride', 47737);
+insert into mon (Ma_mon, avatarUrl, Ten_mon, Gia_tien) values ('10237-820', 'https://robohash.org/ipsumassumendaerror.png?size=50x50&set=set1', 'Lavender Latte Love', 78049);
 
     --insert nguyen_lieu
 insert into nguyen_lieu (Ma_nguyen_lieu, Ten_nguyen_lieu, Don_vi) values ('52125-377', 'Cà phê', 'kg');
@@ -475,4 +465,4 @@ insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_
 -- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0409-7931', TO_DATE('6/13/2023', 'MM/DD/YYYY'), 'Kuvalis-Schumm', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 -- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('68745-1087', TO_DATE('6/23/2023', 'MM/DD/YYYY'), 'Rutherford, Hintz and Lemke', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
--- COMMIT;
+COMMIT;
