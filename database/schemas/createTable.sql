@@ -121,12 +121,12 @@ CREATE TABLE CA_LAM_VIEC
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang)
 );
 
-
+CREATE TYPE trang_thai AS ENUM ('Trong', 'Dat Truoc', 'Dang Ngoi');
 CREATE TABLE BAN
 (
 	Ma_ban VARCHAR(30) PRIMARY KEY,
 	So_thu_tu INT NOT NULL,
-	Trang_thai VARCHAR(30) NOT NULL,
+	Trang_thai trang_thai NOT NULL,
 	Thoi_gian_dat_truoc DATE,
 	Sdt_nguoi_dat VARCHAR(12),
 	Ma_cua_hang UUID NOT NULL,
@@ -549,25 +549,36 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 --check validation luong nhan vien theo cua hang
-CREATE OR REPLACE FUNCTION check_luong_toi_thieu()
+CREATE OR REPLACE FUNCTION check_luong_gio_toi_thieu()
 RETURNS TRIGGER AS $$
 DECLARE
     luong_gio_toi_thieu_vung INT;
-	luong_thang_toi_thieu_vung INT;
+	
 BEGIN
     
     SELECT Luong_gio_toi_thieu INTO luong_gio_toi_thieu_vung
     FROM CUA_HANG
     WHERE Ma_cua_hang = NEW.Ma_cua_hang;
 
-	SELECT Luong_thang_toi_thieu INTO luong_thang_toi_thieu_vung
-	FROM CUA_HANG
-	WHERE Ma_cua_hang = NEW.Ma_cua_hang;
-
     
     IF NEW.He_so_luong_theo_gio < luong_gio_toi_thieu_vung THEN
         NEW.He_so_luong_theo_gio := luong_gio_toi_thieu_vung;
     END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION check_luong_thang_toi_thieu()
+RETURNS TRIGGER AS $$
+DECLARE
+    
+	luong_thang_toi_thieu_vung INT;
+BEGIN
+    
+	SELECT Luong_thang_toi_thieu INTO luong_thang_toi_thieu_vung
+	FROM CUA_HANG
+	WHERE Ma_cua_hang = NEW.Ma_cua_hang;
 
     
     IF NEW.Luong_thang < luong_thang_toi_thieu_vung THEN
@@ -577,6 +588,74 @@ BEGIN
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
+--func update view số lượng nguyên liệu của cửa hàng
+CREATE OR REPLACE FUNCTION update_sl_nguyen_lieu_cua_hang()
+RETURNS TRIGGER AS $$
+BEGIN
+    --Xóa dữ liệu cũ
+    DELETE FROM v_SL_nguyen_lieu_cua_hang WHERE Ma_cua_hang = NEW.Ma_cua_hang;
+
+    -- Thêm dữ liệu mới vào view v_SL_nguyen_lieu_cua_hang
+    INSERT INTO v_SL_nguyen_lieu_cua_hang (Ma_cua_hang, Ten_cua_hang, Ma_nguyen_lieu, Ten_nguyen_lieu, Don_vi, So_luong)
+    SELECT
+        ch.Ma_cua_hang,
+        ch.Ten_cua_hang,
+        nl.Ma_nguyen_lieu,
+        nl.Ten_nguyen_lieu,
+        nl.Don_vi,
+        COUNT(chnl.Ma_nguyen_lieu)
+    FROM
+        CUA_HANG ch
+    JOIN
+        CUA_HANG_CHUA_NGUYEN_LIEU chnl ON ch.Ma_cua_hang = chnl.Ma_cua_hang
+    JOIN
+        NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
+    WHERE
+        ch.Ma_cua_hang = NEW.Ma_cua_hang
+    GROUP BY
+        ch.Ma_cua_hang,
+        ch.Ten_cua_hang,
+        nl.Ma_nguyen_lieu,
+        nl.Ten_nguyen_lieu,
+        nl.Don_vi;
+
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+--create func to calc number of table status
+CREATE OR REPLACE FUNCTION calculate_table_status(cua_hang_id UUID)
+RETURNS TABLE (
+    so_ban_trong INT,
+    so_ban_dat_truoc INT,
+    so_ban_dang_ngoi INT
+) AS $$
+DECLARE
+    ban_record RECORD;
+BEGIN
+    -- Khởi tạo giá trị ban đầu
+    so_ban_trong := 0;
+    so_ban_dat_truoc := 0;
+    so_ban_dang_ngoi := 0;
+
+    
+    FOR ban_record IN (SELECT * FROM BAN WHERE Ma_cua_hang = cua_hang_id) LOOP
+        
+        IF ban_record.Trang_thai = 'Trong' THEN
+            so_ban_trong := so_ban_trong + 1;
+        ELSIF ban_record.Trang_thai = 'Dat Truoc' THEN
+            so_ban_dat_truoc := so_ban_dat_truoc + 1;
+        ELSIF ban_record.Trang_thai = 'Dang Ngoi' THEN
+            so_ban_dang_ngoi := so_ban_dang_ngoi + 1;
+        END IF;
+    END LOOP;
+
+    
+    RETURN NEXT; --result: table of so_ban_trong, so_ban_dat_truoc, so_ban_dang_ngoi 
+END;
+$$ LANGUAGE plpgsql;
+-- ultility:  SELECT * FROM calculate_table_status('id CUA_HANG');
+
 
 
 --end
