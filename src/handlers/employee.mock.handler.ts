@@ -18,35 +18,48 @@ import {
 } from '@dtos/out';
 // import { employeeQuery } from 'src/queries';
 import { faker } from '@faker-js/faker';
-import { employeeQuery } from '@queries';
-import { logger } from '@utils';
 
-const get: Handler<EmployeeResultDto, { Body: EmployeeInputDto }> = async (req, res) => {
-    const employees = await employeeQuery.selectIncludeOrderAndFilter(req.body.payload, req.body.shopId, [
-        'ma_nhan_vien',
-        'ho_va_ten',
-        'avatarUrl',
-        'ngay_sinh',
-        'gioi_tinh',
-        'sdt',
-        'vai_tro',
-        'ngay_vao_lam'
-    ]);
+const get: Handler<EmployeeResultDto, { Body: EmployeeInputDto }> = async (__req, res) => {
+    // const employees = await employeeQuery.selectIncludeOrderAndFilter(req.body, [
+    //     'ma_nhan_vien',
+    //     'ho_va_ten',
+    //     'avatarUrl',
+    //     'ngay_sinh',
+    //     'gioi_tinh',
+    //     'sdt',
+    //     'vai_tro',
+    //     'ngay_vao_lam'
+    // ]);
 
-    return res.send(
-        employees.map((employee) => {
-            return {
-                id: employee.ma_nhan_vien,
-                name: employee.ho_va_ten,
-                avatarUrl: employee.avatarUrl,
-                birthday: Number(employee.ngay_sinh),
-                gender: employee.gioi_tinh,
-                phoneNum: employee.sdt,
-                role: employee.vai_tro,
-                joinedAt: Number(employee.ngay_vao_lam)
-            };
-        })
-    );
+    // return res.send(
+    //     employees.map((employee) => {
+    //         return {
+    //             id: employee.ma_nhan_vien,
+    //             name: employee.ho_va_ten,
+    //             avatarUrl: employee.avatarUrl,
+    //             birthday: Number(employee.ngay_sinh),
+    //             gender: employee.gioi_tinh,
+    //             phoneNum: employee.sdt,
+    //             role: employee.vai_tro,
+    //             joinedAt: Number(employee.ngay_vao_lam)
+    //         };
+    //     })
+    // );
+
+    const generateFakeEmployee = (): Employee => ({
+        id: faker.string.uuid(),
+        name: faker.person.fullName(),
+        avatarUrl: faker.image.avatar(),
+        role: faker.helpers.arrayElement(['bồi bàn', 'pha chế', 'quản lý']),
+        joinedAt: faker.date.recent().getTime(),
+        birthday: faker.date.past().getTime(),
+        gender: faker.helpers.arrayElement(['nam', 'nữ']),
+        phoneNum: faker.phone.number()
+    });
+
+    const data: Employee[] = Array.from({ length: 10 }, () => generateFakeEmployee());
+
+    return res.send(data);
 };
 
 const getDetail: Handler<GetEmployeeDetailResultDto, { Params: GetEmployeeDetailParamsDto }> = async (__req, res) => {
@@ -114,28 +127,19 @@ const search: Handler<EmployeeSearchingResultDto, { Params: EmployeeSearchingPar
     );
 };
 
-const createSingle: Handler<CreateEmployeeResultDto, { Body: CreateEmployeeInputDto }> = async (req, res) => {
-    try {
-        await employeeQuery.insertSingleEmployee(req.body);
+const createSingle: Handler<CreateEmployeeResultDto, { Body: CreateEmployeeInputDto }> = async (__req, res) => {
+    // await employeeQuery.insertSingleEmployee(req.body);
 
-        return res.send({ status: 'success' });
-    } catch (error) {
-        return res.badRequest(error.message);
-    }
+    return res.send({ status: 'success' });
 };
 
 const updateSingle: Handler<UpdateEmployeeResultDto, { Params: UpdateEmployeeParamsDto; Body: UpdateEmployeeBodyDto }> = async (
-    req,
+    __req,
     res
 ) => {
-    try {
-        await employeeQuery.updateSingleEmployee(req.params.employeeId, req.body);
+    // await employeeQuery.updateSingleEmployee(req.params.employeeId, req.body);
 
-        return res.send({ status: 'success' });
-    } catch (err) {
-        logger.error(err);
-        return res.badRequest(err.message);
-    }
+    return res.send({ status: 'success' });
 };
 
 const removeSingle: Handler<DeleteEmployeeResultDto, { Params: DeleteEmployeeParamsDto }> = async (req, res) => {
@@ -144,7 +148,7 @@ const removeSingle: Handler<DeleteEmployeeResultDto, { Params: DeleteEmployeePar
     return res.send({ status: 'success' });
 };
 
-export const employeeHandler = {
+export const employeeMockHandler = {
     get,
     getDetail,
     search,

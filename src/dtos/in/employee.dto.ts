@@ -14,6 +14,11 @@ export const EmployeeFilterObject = Type.Object({
     gender: Type.Array(Gender)
 });
 
+export const EmployeeConditionSelectDto = Type.Object({
+    order: EmployeeOrderObject,
+    filter: EmployeeFilterObject
+});
+
 export const EmployeeInputDto = Type.Object({
     payload: Type.Object({
         order: EmployeeOrderObject,
@@ -50,6 +55,11 @@ export const UpdateEmployeeBodyDto = Type.Object({
     leaveAt: Type.Number(),
     role: EmployeeRole
 });
+
+export const GetEmployeeDetailParamsDto = Type.Object({
+    employeeId: Type.String()
+});
+
 export const UpdateEmployeeParamsDto = Type.Object({
     employeeId: Type.String()
 });
@@ -63,6 +73,8 @@ export type EmployeeFilterObject = Static<typeof EmployeeFilterObject>;
 export type EmployeeInputDto = Static<typeof EmployeeInputDto>;
 export type EmployeeSearchingParamsDto = Static<typeof EmployeeSearchingParamsDto>;
 export type CreateEmployeeInputDto = Static<typeof CreateEmployeeInputDto>;
+export type GetEmployeeDetailParamsDto = Static<typeof GetEmployeeDetailParamsDto>;
 export type UpdateEmployeeBodyDto = Static<typeof UpdateEmployeeBodyDto>;
 export type UpdateEmployeeParamsDto = Static<typeof UpdateEmployeeParamsDto>;
 export type DeleteEmployeeParamsDto = Static<typeof DeleteEmployeeParamsDto>;
+export type EmployeeConditionSelectDto = Static<typeof EmployeeConditionSelectDto>;

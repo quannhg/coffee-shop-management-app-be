@@ -19,7 +19,7 @@
     "lint:fix": "eslint '**/*.{ts,js}' --fix",
     "format": "prettier '**/*.{ts,js,json}' --write",
     "prepare": "is-ci || husky install",
-    "bootstrap": "yarn start:docker && yarn && yarn db:migrate && npx prisma db seed",
+    "bootstrap": "yarn start:docker && yarn",
     "start:docker": "docker-compose -f docker-compose.dev.yml up -d",
     "clean:docker": "docker-compose -f docker-compose.dev.yml down --volumes --remove-orphans",
     "clean:git": "git branch --merged >/tmp/merged-branches && nano /tmp/merged-branches && xargs git branch -D </tmp/merged-branches && git fetch --prune --all"
@@ -38,6 +38,7 @@
     "envalid": "^7.3.1",
     "fastify": "^4.21.0",
     "jsonwebtoken": "^9.0.1",
+    "moment": "^2.29.4",
     "pg": "^8.11.3",
     "prisma": "^5.1.1"
   },

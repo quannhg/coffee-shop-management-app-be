@@ -208,26 +208,31 @@ $$ LANGUAGE plpgsql;
 --Danh sách nhân viên của cửa hàng chỉ định bao gồm chức năng sắp xếp và filter
 CREATE OR REPLACE FUNCTION get_employee_data
 (
-    role_list text[], 
-    gender_list text[],
-    order_attributes text[],
-    order_directions text[],
-    ma_cua_hang UUID
+	ma_cua_hang UUID,
+    role_list varchar[], 
+    gender_list varchar[],
+    order_attributes varchar[],
+    order_directions varchar[]
+    
 ) RETURNS TABLE
 (
     ma_nhan_vien UUID,
-    ho_va_ten varchar(255),
-    avatarUrl varchar(255),
+    ho_va_ten varchar(30),
+    avatarUrl varchar(400),
     ngay_sinh date,
     gioi_tinh varchar(10),
-    sdt varchar(20),
-    vai_tro varchar(50),
+    sdt varchar(12),
+    vai_tro varchar(30),
     ngay_vao_lam date
 ) AS $$
 DECLARE
-    valid_roles text[] := ARRAY['quản lý', 'bồi bàn', 'pha chế'];
-    valid_genders text[] := ARRAY['nam', 'nữ'];
-    valid_order_attributes text[] := ARRAY['ho_va_ten', 'vai_tro', 'ngay_vao_lam', 'ngay_sinh', 'gioi_tinh'];
+    valid_roles varchar[] := ARRAY['quản lý', 'bồi bàn', 'pha chế'];
+    valid_genders varchar[] := ARRAY['Nam', 'Nữ'];
+    valid_order_attributes varchar[] := ARRAY['ho_va_ten', 'vai_tro', 'ngay_vao_lam', 'ngay_sinh', 'gioi_tinh'];
+	valid_order_directions varchar[] :=ARRAY['ASC','DESC','asc','desc'];
+	query_string text;
+	order_clause text;
+    i int;
 BEGIN
     -- Validate role_list
     IF NOT ARRAY(        SELECT unnest(role_list)
@@ -256,13 +261,26 @@ EXCEPT
 END
 IF;
 
-    -- Validate order_directions
-    IF NOT ARRAY['ASC', 'DESC'] @> order_directions THEN
-        RAISE EXCEPTION 'Invalid order_by_direction(s) provided';
+    --Validate order_directions
+    IF NOT ARRAY(        SELECT unnest(order_directions)
+    EXCEPT
+        SELECT unnest(valid_order_directions)
+    ) = '{}' THEN
+        RAISE EXCEPTION 'Invalid order direction(s) provided';
 END
 IF;
 
-    EXECUTE '
+order_clause := '';
+
+    FOR i IN 1..array_length(order_attributes, 1) LOOP
+        IF i > 1 THEN
+            order_clause := order_clause || ', ';
+        END IF;
+
+        order_clause := order_clause || order_attributes[i][1] || ' ' || order_directions[i];
+    END LOOP;
+
+    query_string := '
         SELECT 
             nhan_vien.ma_nhan_vien,
             nhan_vien.ho_va_ten,
@@ -283,16 +301,13 @@ IF;
         ON 
             nhan_vien_lam_viec_tai_cua_hang.ma_cua_hang = cua_hang.ma_cua_hang
         WHERE 
-            nhan_vien_lam_viec_tai_cua_hang.vai_tro = ANY($1)
-            AND nhan_vien.gioi_tinh = ANY($2)
-            AND cua_hang.ma_cua_hang = $5
-        ORDER BY '
-|| array_to_string
-(ARRAY
-(SELECT unnest(order_attributes) || ' ' || unnest(order_directions))
-, ', ')
-    USING role_list, gender_list, ma_cua_hang;
-
+            nhan_vien_lam_viec_tai_cua_hang.vai_tro = ANY($2)
+            AND nhan_vien.gioi_tinh = ANY($3)
+            AND cua_hang.ma_cua_hang = $1
+        ORDER BY ' || order_clause;
+         
+	RETURN QUERY EXECUTE query_string USING 
+        ma_cua_hang, role_list, gender_list ;
 END;
 $$ LANGUAGE plpgsql;
 
