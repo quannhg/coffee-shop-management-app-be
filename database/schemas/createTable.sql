@@ -35,7 +35,7 @@ CREATE TABLE CUA_HANG
 );
 
 
--- CREATE TYPE gioi_tinh AS ENUM ('Nam', 'Nu');
+CREATE TYPE gioi_tinh AS ENUM ('Nam', 'Nu');
 
 CREATE TABLE NHAN_VIEN
 (
