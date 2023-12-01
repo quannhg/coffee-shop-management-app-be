@@ -132,9 +132,14 @@ const updateSingle: Handler<UpdateEmployeeResultDto, { Params: UpdateEmployeePar
 };
 
 const removeSingle: Handler<DeleteEmployeeResultDto, { Params: DeleteEmployeeParamsDto }> = async (req, res) => {
-    // await employeeQuery.removeSingleEmployee(req.params.employeeId);
+    try {
+        await employeeQuery.removeSingleEmployee(req.params.employeeId);
 
-    return res.send({ status: 'success' });
+        return res.send({ status: 'success' });
+    } catch (error) {
+        logger.error(error);
+        return res.badRequest(error.message);
+    }
 };
 
 export const employeeHandler = {
