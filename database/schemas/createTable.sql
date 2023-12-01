@@ -114,8 +114,8 @@ CREATE TABLE CA_LAM_VIEC
 (
 	Ma_ca_lam_viec VARCHAR(30) PRIMARY KEY,
 	He_so_luong_tang_them FLOAT ,
-	Thoi_gian_bat_dau TIME NOT NULL,
-	Thoi_gian_ket_thuc TIME NOT NULL,
+	Thoi_gian_bat_dau TIMESTAMP NOT NULL,
+	Thoi_gian_ket_thuc TIMESTAMP NOT NULL,
 	SL_NV_yeu_cau INT NOT NULL,
 	Ma_cua_hang UUID,
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang)
@@ -207,8 +207,8 @@ CREATE TABLE NHAN_VIEN_QUAN_LY_CUA_HANG
 
 CREATE TABLE NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
 (
-	Thoi_gian_den TIME NOT NULL,
-	Thoi_gian_di TIME NOT NULL,
+	Thoi_gian_den TIMESTAMP NOT NULL,
+	Thoi_gian_di TIMESTAMP NOT NULL,
 	Ma_nhan_vien UUID NOT NULL,
 	Ma_ca_lam_viec VARCHAR(30) NOT NULL,
 	FOREIGN KEY(Ma_nhan_vien) REFERENCES NHAN_VIEN(Ma_nhan_vien),
