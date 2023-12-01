@@ -13,5 +13,11 @@ export const GenderDistributeChartResult = Type.Object({
     amount: Type.Array(Type.Number())
 });
 
+export const TableStatusDistributeChartResult = Type.Object({
+    statuses: Type.Tuple([Type.Literal('Trống'), Type.Literal('Đặt trước'), Type.Literal('Đang ngồi')]),
+    amount: Type.Array(Type.Number())
+});
+
 export type AgeDistributeChartResult = Static<typeof AgeDistributeChartResult>;
 export type GenderDistributeChartResult = Static<typeof GenderDistributeChartResult>;
+export type TableStatusDistributeChartResult = Static<typeof TableStatusDistributeChartResult>;

@@ -94,15 +94,8 @@ const getDetail: Handler<GetEmployeeDetailResultDto, { Params: GetEmployeeDetail
     return res.send(employee());
 };
 
-const search: Handler<EmployeeSearchingResultDto, { Params: EmployeeSearchingParamsDto }> = async (__req, res) => {
-    // const employees = await employeeQuery.selectByPartialName(req.params.partialName, ['ma_nhan_vien', 'ho_va_ten']);
-
-    const generateFakeEmployee = () => ({
-        ma_nhan_vien: faker.string.uuid(),
-        ho_va_ten: faker.person.fullName()
-    });
-
-    const employees = Array.from({ length: 10 }, () => generateFakeEmployee());
+const search: Handler<EmployeeSearchingResultDto, { Params: EmployeeSearchingParamsDto }> = async (req, res) => {
+    const employees = await employeeQuery.selectByPartialName(req.params.partialName, ['ma_nhan_vien', 'ho_va_ten']);
 
     return res.send(
         employees.map((employee) => {
@@ -139,9 +132,14 @@ const updateSingle: Handler<UpdateEmployeeResultDto, { Params: UpdateEmployeePar
 };
 
 const removeSingle: Handler<DeleteEmployeeResultDto, { Params: DeleteEmployeeParamsDto }> = async (req, res) => {
-    // await employeeQuery.removeSingleEmployee(req.params.employeeId);
+    try {
+        await employeeQuery.removeSingleEmployee(req.params.employeeId);
 
-    return res.send({ status: 'success' });
+        return res.send({ status: 'success' });
+    } catch (error) {
+        logger.error(error);
+        return res.badRequest(error.message);
+    }
 };
 
 export const employeeHandler = {

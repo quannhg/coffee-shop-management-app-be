@@ -1,4 +1,4 @@
-import { AgeDistributeChartResult, GenderDistributeChartResult } from '@dtos/out';
+import { AgeDistributeChartResult, GenderDistributeChartResult, TableStatusDistributeChartResult } from '@dtos/out';
 import { chartHandler } from '@handlers';
 import { createRoutes } from '@utils';
 import { ChartParams } from '@dtos/in';
@@ -29,5 +29,18 @@ export const chartPlugin = createRoutes('Chart', [
             }
         },
         handler: chartHandler.genderDistribute
+    },
+    {
+        method: 'GET',
+        url: '/table/:shopId',
+        schema: {
+            summary: 'Get table status distribution of specific shop',
+            description: '',
+            params: ChartParams,
+            response: {
+                200: TableStatusDistributeChartResult
+            }
+        },
+        handler: chartHandler.TableStatusDistribute
     }
 ]);
