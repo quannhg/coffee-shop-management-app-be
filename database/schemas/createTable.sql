@@ -404,12 +404,22 @@ ADD CHECK (Gia_tien >= 0);
 CREATE OR REPLACE FUNCTION check_nv_trong_ca()
 RETURNS BOOLEAN AS $$
 DECLARE
+  ca_lam_viec RECORD;
   sl_nv INTEGER;
+  sl_nv_yeu_cau INTEGER;
 BEGIN
-  SELECT COUNT(Ma_nhan_vien) INTO sl_nv
-  FROM NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC;
+  FOR ca_lam_viec IN SELECT * FROM CA_LAM_VIEC LOOP
+	SELECT COUNT(*) INTO sl_nv
+	FROM NHAN_VIEN_LAM_VIEC_TRONG_CA_LAM_VIEC
+	WHERE Ma_ca_lam_viec = ca_lam_viec.Ma_ca_lam_viec;
 
-  RETURN sl_nv <= (SELECT SL_NV_yeu_cau FROM CA_LAM_VIEC LIMIT 1);
+	sl_nv_yeu_cau := ca_lam_viec.SL_NV_yeu_cau;
+
+	IF sl_nv > sl_nv_yeu_cau THEN 
+		RETURN FALSE;
+	END IF;
+  END LOOP;
+  RETURN TRUE; 
 END;
 $$ LANGUAGE plpgsql;
 
