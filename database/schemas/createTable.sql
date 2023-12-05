@@ -605,18 +605,14 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION update_sl_nguyen_lieu_cua_hang()
 RETURNS TRIGGER AS $$
 BEGIN
-    --Xóa dữ liệu cũ
-    DELETE FROM v_SL_nguyen_lieu_cua_hang WHERE Ma_cua_hang = NEW.Ma_cua_hang;
-
-    -- Thêm dữ liệu mới vào view v_SL_nguyen_lieu_cua_hang
-    INSERT INTO v_SL_nguyen_lieu_cua_hang (Ma_cua_hang, Ten_cua_hang, Ma_nguyen_lieu, Ten_nguyen_lieu, Don_vi, So_luong)
-    SELECT
-        ch.Ma_cua_hang,
-        ch.Ten_cua_hang,
-        nl.Ma_nguyen_lieu,
-        nl.Ten_nguyen_lieu,
-        nl.Don_vi,
-        COUNT(chnl.Ma_nguyen_lieu)
+    --Update dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table
+    UPDATE v_SL_nguyen_lieu_cua_hang
+    SET 
+        Ten_cua_hang = ch.Ten_cua_hang,
+        Ma_nguyen_lieu = nl.Ma_nguyen_lieu,
+        Ten_nguyen_lieu = nl.Ten_nguyen_lieu,
+        Don_vi = nl.Don_vi,
+        So_luong = COUNT(chnl.Ma_nguyen_lieu)
     FROM
         CUA_HANG ch
     JOIN
@@ -624,13 +620,39 @@ BEGIN
     JOIN
         NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
     WHERE
-        ch.Ma_cua_hang = NEW.Ma_cua_hang
+        v_SL_nguyen_lieu_cua_hang_table.Ma_cua_hang = NEW.Ma_cua_hang
     GROUP BY
         ch.Ma_cua_hang,
         ch.Ten_cua_hang,
         nl.Ma_nguyen_lieu,
         nl.Ten_nguyen_lieu,
         nl.Don_vi;
+
+    -- Nếu không có dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table, thực hiện INSERT
+    IF NOT FOUND THEN
+        INSERT INTO v_SL_nguyen_lieu_cua_hang (Ma_cua_hang, Ten_cua_hang, Ma_nguyen_lieu, Ten_nguyen_lieu, Don_vi, So_luong)
+        SELECT
+            ch.Ma_cua_hang,
+            ch.Ten_cua_hang,
+            nl.Ma_nguyen_lieu,
+            nl.Ten_nguyen_lieu,
+            nl.Don_vi,
+            COUNT(chnl.Ma_nguyen_lieu)
+        FROM
+            CUA_HANG ch
+        JOIN
+            CUA_HANG_CHUA_NGUYEN_LIEU chnl ON ch.Ma_cua_hang = chnl.Ma_cua_hang
+        JOIN
+            NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
+        WHERE
+            ch.Ma_cua_hang = NEW.Ma_cua_hang
+        GROUP BY
+            ch.Ma_cua_hang,
+            ch.Ten_cua_hang,
+            nl.Ma_nguyen_lieu,
+            nl.Ten_nguyen_lieu,
+            nl.Don_vi;
+    END IF;
 
     RETURN NULL;
 END;

@@ -310,6 +310,14 @@ order_clause := '';
         ma_cua_hang, role_list, gender_list ;
 END;
 $$ LANGUAGE plpgsql;
+--SELECT * FROM get_employee_data(
+--    'mã_cửa_hàng',
+--    ARRAY['quản lý', 'bồi bàn'],
+--    ARRAY['Nam'],
+--    ARRAY['ho_va_ten', 'ngay_sinh'],
+--    ARRAY['ASC', 'DESC']
+--);
+
 
 --Tìm kiếm nhân viên dựa trên tên
 CREATE OR REPLACE FUNCTION get_partial_name_data
