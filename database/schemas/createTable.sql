@@ -227,6 +227,7 @@ CREATE TABLE CUA_HANG_CO_MON
 
 CREATE TABLE CUA_HANG_CHUA_NGUYEN_LIEU
 (
+	So_luong INT NOT NULL,
 	Ma_nguyen_lieu VARCHAR(30) NOT NULL,
 	Ma_cua_hang UUID NOT NULL,
 	FOREIGN KEY(Ma_nguyen_lieu) REFERENCES NGUYEN_LIEU(Ma_nguyen_lieu),
@@ -315,7 +316,7 @@ CREATE TABLE THUONG
 CREATE TABLE SO_LUONG_HAO_HUT
 (
 	So_luong_hao_hut INT,
-	Ngay_hao_hut INT,
+	Ngay_hao_hut DATE,
 	Ma_cua_hang UUID NOT NULL,
 	Ma_nguyen_lieu VARCHAR(30) NOT NULL,
 	FOREIGN KEY(Ma_cua_hang) REFERENCES CUA_HANG(Ma_cua_hang),
