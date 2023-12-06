@@ -23,7 +23,7 @@ import { logger } from '@utils';
 
 const get: Handler<EmployeeResultDto, { Body: EmployeeInputDto }> = async (req, res) => {
     const employees = await employeeQuery.selectIncludeOrderAndFilter(req.body.payload, req.body.shopId, [
-        'ma_nhan_vien',
+        'Ma_nhan_vien',
         'ho_va_ten',
         'avatarUrl',
         'ngay_sinh',
@@ -32,6 +32,8 @@ const get: Handler<EmployeeResultDto, { Body: EmployeeInputDto }> = async (req, 
         'vai_tro',
         'ngay_vao_lam'
     ]);
+
+    logger.error(employees);
 
     return res.send(
         employees.map((employee) => {
