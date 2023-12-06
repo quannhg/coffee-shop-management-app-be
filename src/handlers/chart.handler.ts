@@ -1,21 +1,34 @@
 import { ChartParams } from '@dtos/in';
 import { AgeDistributeChartResult, GenderDistributeChartResult, TableStatusDistributeChartResult } from '@dtos/out';
 import { Handler } from '@interfaces';
-import { faker } from '@faker-js/faker';
 import { employeeQuery, shopQuery } from '@queries';
 import { logger } from '@utils';
 
 const ageDistribute: Handler<AgeDistributeChartResult, { Params: ChartParams }> = async (__req, res) => {
-    const ageLabels: number[] = [];
-    for (let i = 0; i < 10; i++) {
-        ageLabels.push(faker.number.int({ min: 15, max: 35 }));
-    }
-    const maleDataset = ageLabels.map(() => faker.number.int({ min: 1, max: 15 }));
+    const ageDistribute = await employeeQuery.selectCountByAgeAndGender();
 
-    const femaleDataset = ageLabels.map(() => faker.number.int({ min: 1, max: 15 }));
+    const age = [];
+    const maleDataset = [];
+    const femaleDataset = [];
+
+    for (const item of ageDistribute) {
+        const ageGroup = Number(item['age_group']);
+        const count = Number(item['employee_count']);
+        const gender = item['gioi_tinh'];
+
+        age.push(ageGroup);
+
+        if (gender === 'Nam') {
+            maleDataset.push(count);
+            femaleDataset.push(0); // Assuming female count is zero if not present in the data
+        } else {
+            maleDataset.push(0); // Assuming male count is zero if not present in the data
+            femaleDataset.push(count);
+        }
+    }
 
     return res.send({
-        age: ageLabels,
+        age: age,
         amount: { male: maleDataset, female: femaleDataset }
     });
 };
