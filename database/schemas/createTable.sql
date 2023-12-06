@@ -605,28 +605,22 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION update_sl_nguyen_lieu_cua_hang()
 RETURNS TRIGGER AS $$
 BEGIN
-    --Update dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table
+    -- Thực hiện cập nhật dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table
     UPDATE v_SL_nguyen_lieu_cua_hang
     SET 
         Ten_cua_hang = ch.Ten_cua_hang,
         Ma_nguyen_lieu = nl.Ma_nguyen_lieu,
         Ten_nguyen_lieu = nl.Ten_nguyen_lieu,
         Don_vi = nl.Don_vi,
-        So_luong = COUNT(chnl.Ma_nguyen_lieu)
-    FROM
-        CUA_HANG ch
-    JOIN
-        CUA_HANG_CHUA_NGUYEN_LIEU chnl ON ch.Ma_cua_hang = chnl.Ma_cua_hang
-    JOIN
-        NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
+        So_luong = (
+            SELECT COUNT(chnl.Ma_nguyen_lieu)
+            FROM CUA_HANG_CHUA_NGUYEN_LIEU chnl
+            JOIN NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
+            WHERE chnl.Ma_cua_hang = NEW.Ma_cua_hang
+            GROUP BY nl.Ma_nguyen_lieu
+        )
     WHERE
-        v_SL_nguyen_lieu_cua_hang_table.Ma_cua_hang = NEW.Ma_cua_hang
-    GROUP BY
-        ch.Ma_cua_hang,
-        ch.Ten_cua_hang,
-        nl.Ma_nguyen_lieu,
-        nl.Ten_nguyen_lieu,
-        nl.Don_vi;
+        Ma_cua_hang = NEW.Ma_cua_hang;
 
     -- Nếu không có dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table, thực hiện INSERT
     IF NOT FOUND THEN
@@ -657,6 +651,7 @@ BEGIN
     RETURN NULL;
 END;
 $$ LANGUAGE plpgsql;
+
 -- func to calc number of table status
 CREATE OR REPLACE FUNCTION calculate_table_status(cua_hang_id UUID)
 RETURNS TABLE (
