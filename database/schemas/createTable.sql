@@ -328,22 +328,20 @@ ALTER TABLE DON_HANG_GOM_MON
 ADD CHECK (So_luong > 0);
 
 --cua hang can du so luong nguyen lieu de them mon vao don hang
-CREATE OR REPLACE FUNCTION check_mon_can_nguyen_lieu()
-RETURNS TRIGGER AS $$
+CREATE OR REPLACE FUNCTION check_mon_can_nguyen_lieu() RETURNS TRIGGER AS $$
+DECLARE
+    nguyen_lieu RECORD;
+    so_luong_cua_hang INT;
 BEGIN
-  IF NOT EXISTS (
-    SELECT 1
-    FROM v_SL_nguyen_lieu_cua_hang AS v
-    WHERE NEW.Ma_nguyen_lieu = v.Ma_nguyen_lieu AND NEW.So_luong <= v.So_luong
-  ) OR NEW.So_luong <= 0 THEN
-    RAISE EXCEPTION 'Invalid So_luong for CUA_HANG';
-  END IF;
-
-  RETURN NEW;
+    FOR nguyen_lieu IN SELECT * FROM mon_can_nguyen_lieu WHERE ma_mon = NEW.ma_mon LOOP
+        SELECT so_luong INTO so_luong_cua_hang FROM cua_hang_chua_nguyen_lieu WHERE ma_nguyen_lieu = nguyen_lieu.ma_nguyen_lieu;
+        IF nguyen_lieu.so_luong * NEW.so_luong > so_luong_cua_hang THEN
+            RAISE EXCEPTION 'Not enough % in cua hang', nguyen_lieu.ma_nguyen_lieu;
+        END IF;
+    END LOOP;
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-
-
 
 --check khach hang co the dung tai quan khong
 CREATE OR REPLACE FUNCTION check_dung_tai_quan()
@@ -652,6 +650,19 @@ BEGIN
     RETURN NULL;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION update_nguyen_lieu() RETURNS TRIGGER AS $$
+DECLARE
+    nguyen_lieu RECORD;
+BEGIN
+    FOR nguyen_lieu IN SELECT * FROM mon_can_nguyen_lieu WHERE ma_mon = NEW.ma_mon LOOP
+        UPDATE cua_hang_chua_nguyen_lieu SET so_luong = so_luong - (nguyen_lieu.so_luong * NEW.so_luong)
+        WHERE ma_nguyen_lieu = nguyen_lieu.ma_nguyen_lieu;
+    END LOOP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
 
 -- func to calc number of table status
 CREATE OR REPLACE FUNCTION calculate_table_status(cua_hang_id UUID)

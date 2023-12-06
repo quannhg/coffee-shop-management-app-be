@@ -3,7 +3,7 @@
 --cua hang can du so luong nguyen lieu de them mon vao don hang
 CREATE TRIGGER trigger_check_mon_can_nguyen_lieu
 BEFORE INSERT OR UPDATE
-ON MON_CAN_NGUYEN_LIEU
+ON DON_HANG_GOM_MON
 FOR EACH ROW
 EXECUTE FUNCTION check_mon_can_nguyen_lieu();
 
@@ -86,9 +86,12 @@ ON HOA_DON_NHAP_KHO
 FOR EACH ROW 
 EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();
 
--- trigger update nguyen lieu cua hang sau khi thêm món cần nguyên liệu
-CREATE TRIGGER trigger_update_sl_nguyen_lieu
-AFTER INSERT OR UPDATE OR DELETE
-ON DON_HANG
-FOR EACH ROW
-EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();
+-- trigger update nguyen lieu cua hang sau khi thêm đơn hàng gồm món 
+-- CREATE TRIGGER trigger_update_sl_nguyen_lieu
+-- AFTER INSERT OR UPDATE OR DELETE
+-- ON MON_CAN_NGUYEN_LIEU
+-- FOR EACH ROW
+-- EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();
+CREATE TRIGGER update_so_luong_nguyen_lieu
+AFTER INSERT ON don_hang_gom_mon
+FOR EACH ROW EXECUTE PROCEDURE update_nguyen_lieu();
