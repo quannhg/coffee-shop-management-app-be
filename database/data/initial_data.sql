@@ -80,13 +80,13 @@ INSERT INTO khuyen_mai (Ma_khuyen_mai, Ten_khuyen_mai, Thoi_gian_bat_dau, Thoi_g
 VALUES ('37808-552', 'Merry Mitten Mingle', TO_DATE('2023-11-02', 'YYYY-MM-DD'), TO_DATE('2023-11-29','YYYY-MM-DD'), 86784, TRUE, FALSE, FALSE);
 
 INSERT INTO khuyen_mai (Ma_khuyen_mai, Ten_khuyen_mai, Thoi_gian_bat_dau, Thoi_gian_ket_thuc, Gia_tri_cho_don_hang_toi_thieu, La_KM_cho_DH, La_KM_cho_MON, La_KM_cho_CH) 
-VALUES ('49288-0004', 'Winter Wonderland Day', TO_DATE('2023-11-01', 'YYYY-MM-DD'), TO_DATE('2023-11-27','YYYY-MM-DD'), 62179, FALSE, TRUE, FALSE);
+VALUES ('49288-0004', 'Winter Wonderland Day', TO_DATE('2023-11-01', 'YYYY-MM-DD'), TO_DATE('2023-11-27','YYYY-MM-DD'), null, FALSE, TRUE, FALSE);
 
 INSERT INTO khuyen_mai (Ma_khuyen_mai, Ten_khuyen_mai, Thoi_gian_bat_dau, Thoi_gian_ket_thuc, Gia_tri_cho_don_hang_toi_thieu, La_KM_cho_DH, La_KM_cho_MON, La_KM_cho_CH) 
-VALUES ('63629-3760', 'Joyful Jingle Jam', TO_DATE('2023-11-03', 'YYYY-MM-DD'), TO_DATE('2023-11-26','YYYY-MM-DD'), 61916, FALSE, TRUE, TRUE);
+VALUES ('63629-3760', 'Joyful Jingle Jam', TO_DATE('2023-11-03', 'YYYY-MM-DD'), TO_DATE('2023-11-26','YYYY-MM-DD'), null, FALSE, TRUE, TRUE);
 
 INSERT INTO khuyen_mai (Ma_khuyen_mai, Ten_khuyen_mai, Thoi_gian_bat_dau, Thoi_gian_ket_thuc, Gia_tri_cho_don_hang_toi_thieu, La_KM_cho_DH, La_KM_cho_MON, La_KM_cho_CH) 
-VALUES ('42507-692', 'Cocoa and Carols Carnival', TO_DATE('2023-11-02', 'YYYY-MM-DD'), TO_DATE('2023-11-28','YYYY-MM-DD'), 45444, FALSE, TRUE, FALSE);
+VALUES ('42507-692', 'Cocoa and Carols Carnival', TO_DATE('2023-11-02', 'YYYY-MM-DD'), TO_DATE('2023-11-28','YYYY-MM-DD'), null, FALSE, TRUE, FALSE);
 
 INSERT INTO khuyen_mai (Ma_khuyen_mai, Ten_khuyen_mai, Thoi_gian_bat_dau, Thoi_gian_ket_thuc, Gia_tri_cho_don_hang_toi_thieu, La_KM_cho_DH, La_KM_cho_MON, La_KM_cho_CH) 
 VALUES ('41163-742', 'Sparkling Snowflake Spectacle', TO_DATE('2023-11-01', 'YYYY-MM-DD'), TO_DATE('2023-11-28','YYYY-MM-DD'), 44494, TRUE, FALSE, FALSE);
@@ -98,7 +98,7 @@ INSERT INTO khuyen_mai (Ma_khuyen_mai, Ten_khuyen_mai, Thoi_gian_bat_dau, Thoi_g
 VALUES ('68084-523', 'Festive Feathers Festival', TO_DATE('2023-11-03', 'YYYY-MM-DD'), TO_DATE('2023-11-29','YYYY-MM-DD'), 51690, TRUE, FALSE, FALSE);
 
 INSERT INTO khuyen_mai (Ma_khuyen_mai, Ten_khuyen_mai, Thoi_gian_bat_dau, Thoi_gian_ket_thuc, Gia_tri_cho_don_hang_toi_thieu, La_KM_cho_DH, La_KM_cho_MON, La_KM_cho_CH) 
-VALUES ('68382-228', 'Enchanted Evergreen', TO_DATE('2023-11-03', 'YYYY-MM-DD'), TO_DATE('2023-11-29','YYYY-MM-DD'), 75582, FALSE, TRUE, FALSE);
+VALUES ('68382-228', 'Enchanted Evergreen', TO_DATE('2023-11-03', 'YYYY-MM-DD'), TO_DATE('2023-11-29','YYYY-MM-DD'), null, FALSE, TRUE, FALSE);
 
 INSERT INTO khuyen_mai (Ma_khuyen_mai, Ten_khuyen_mai, Thoi_gian_bat_dau, Thoi_gian_ket_thuc, Gia_tri_cho_don_hang_toi_thieu, La_KM_cho_DH, La_KM_cho_MON, La_KM_cho_CH) 
 VALUES ('42388-012', 'Cocoa and Carols Carnival', TO_DATE('2023-11-02', 'YYYY-MM-DD'), TO_DATE('2023-11-28','YYYY-MM-DD'), 88646, TRUE, FALSE, TRUE);
@@ -265,6 +265,25 @@ VALUES (TO_DATE('7/24/2022', 'MM/DD/YYYY'), TO_DATE('8/9/2023', 'MM/DD/YYYY'), '
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
 VALUES (TO_DATE('3/12/2022', 'MM/DD/YYYY'), TO_DATE('6/13/2022', 'MM/DD/YYYY'), 'bồi bàn', '053381de-24dc-4611-aed1-af75bb2544da', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
+    -- insert nhan_vien_quan_ly_cua_hang
+insert into NHAN_VIEN_QUAN_LY_CUA_HANG (Ngay_bat_dau, Ngay_ket_thuc, Ma_nhan_vien, Ma_cua_hang) values (TO_DATE('2022-06-01','YYYY-MM-DD'), TO_DATE('2022-12-13','YYYY-MM-DD'), '31ecdf55-d4f5-4bb9-9305-1c240a8cd4da', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into NHAN_VIEN_QUAN_LY_CUA_HANG (Ngay_bat_dau, Ngay_ket_thuc, Ma_nhan_vien, Ma_cua_hang) values (TO_DATE('2022-12-13','YYYY-MM-DD'), TO_DATE('2023-07-27','YYYY-MM-DD'), '0c65484e-adac-4ae5-8b89-ca36c0ea23cb', '307ac585-7af5-4642-80b2-99726495a060');
+
+    -- insert phat va thuong
+insert into phat (Ma_nhan_vien, Thoi_gian_phat, Tien_phat, Ly_do_phat) values ('a39f4ae9-86fc-44f9-afb1-0d1ae7c3a7ce', TO_DATE('2022-11-29','YYYY-MM-DD'), 83148, 'abc');
+insert into phat (Ma_nhan_vien, Thoi_gian_phat, Tien_phat, Ly_do_phat) values ('0c65484e-adac-4ae5-8b89-ca36c0ea23cb', TO_DATE('2022-11-26','YYYY-MM-DD'), 69391, 'xyz');
+insert into phat (Ma_nhan_vien, Thoi_gian_phat, Tien_phat, Ly_do_phat) values ('4c8d18e0-267d-43b9-9775-375b5f1d2fe5', TO_DATE('2022-11-14','YYYY-MM-DD'), 54630, 'mnop');
+insert into phat (Ma_nhan_vien, Thoi_gian_phat, Tien_phat, Ly_do_phat) values ('44181f87-9211-43ad-953d-500d67333707', TO_DATE('2022-11-29','YYYY-MM-DD'), 54237, 'qwerty');
+insert into phat (Ma_nhan_vien, Thoi_gian_phat, Tien_phat, Ly_do_phat) values ('37e46bad-b103-4701-885c-65f677030cff', TO_DATE('2022-11-26','YYYY-MM-DD'), 87138, 'ilu');
+insert into phat (Ma_nhan_vien, Thoi_gian_phat, Tien_phat, Ly_do_phat) values ('4cbc79cd-e38e-47d8-9e9f-1fd1cf776923', TO_DATE('2022-11-27','YYYY-MM-DD'), 55653, 'anhyeuem');
+
+insert into thuong (Ma_nhan_vien, Thoi_gian_thuong, Tien_thuong, Ly_do_thuong) values ('4c8d18e0-267d-43b9-9775-375b5f1d2fe5', TO_DATE('2022-11-10','YYYY-MM-DD'), 57905, 'abc');
+insert into thuong (Ma_nhan_vien, Thoi_gian_thuong, Tien_thuong, Ly_do_thuong) values ('4cbc79cd-e38e-47d8-9e9f-1fd1cf776923', TO_DATE('2022-11-09','YYYY-MM-DD'), 91315, 'xyz');
+insert into thuong (Ma_nhan_vien, Thoi_gian_thuong, Tien_thuong, Ly_do_thuong) values ('0cdeaa63-3b34-4a34-bf34-5d9b77b7f9e2', TO_DATE('2022-11-17','YYYY-MM-DD'), 80500, 'mnop');
+insert into thuong (Ma_nhan_vien, Thoi_gian_thuong, Tien_thuong, Ly_do_thuong) values ('0ee57da6-c54b-4f05-9379-5baad1ba7faa', TO_DATE('2022-11-16','YYYY-MM-DD'), 89589, 'qwerty');
+insert into thuong (Ma_nhan_vien, Thoi_gian_thuong, Tien_thuong, Ly_do_thuong) values ('240a0fab-6c8e-40ab-8980-e9921f8b0b81', TO_DATE('2022-11-10','YYYY-MM-DD'), 79733, 'ilu');
+insert into thuong (Ma_nhan_vien, Thoi_gian_thuong, Tien_thuong, Ly_do_thuong) values ('e62309e6-5d39-4fb2-bbf0-e9b4b05bb879', TO_DATE('2022-11-17','YYYY-MM-DD'), 71974, 'anhyeuem');
+
     -- insert ban
 insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('67296-0619', 1, 'Trong', TO_DATE('8/26/2023', 'MM/DD/YYYY'), '631-827-0689', '307ac585-7af5-4642-80b2-99726495a060');
 insert into BAN (ma_ban, so_thu_tu, trang_thai, thoi_gian_dat_truoc, sdt_nguoi_dat, ma_cua_hang) values ('68682-368', 2, 'Dang Ngoi', TO_DATE('9/24/2023', 'MM/DD/YYYY'), '265-423-2506', '79f44967-7044-48f1-8b24-69386cc1b50a');
@@ -357,6 +376,83 @@ insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('50802-001', TO_DATE('2023-05-29', 'YYYY-MM-DD'), 'đang pha chế', true, 'b4efff62-3a23-427d-bbae-6d0818ba5f2d', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '473-412-2309');
 insert into DON_HANG (Ma_don_hang, Thoi_gian_tao_don_hang, Tinh_trang, Dung_tai_quan_khong, Ma_nhan_vien, Ma_cua_hang, Sdt_khach_hang) values ('21695-497', TO_DATE('2023-03-24', 'YYYY-MM-DD'), 'đang pha chế', true, 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '79f44967-7044-48f1-8b24-69386cc1b50a', '213-241-6472');
 
+    -- insert don_hang_gom_mon
+
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '43063-088', '55319-213');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '41163-917', '10477-1261');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '68788-0633', '0527-1351');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '63323-024', '49288-0258');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '35000-879', '10237-820');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '33261-470', '63824-861');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '44567-711', '49288-0258');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '50845-0043', '0527-1351');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0485-0210', '54569-1024');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '65044-9942', '49967-790');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '55312-630', '68462-296');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0591-3592', '10237-820');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0703-3333', '68462-296');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '53964-002', '58118-1392');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '21695-782', '69249-000');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '59779-182', '54569-1024');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '63629-1839', '63824-861');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '55714-4521', '52686-276');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0135-0519', '21695-197');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '49288-0435', '21130-044');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '0187-0500', '21695-197');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '64679-964', '49288-0258');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '0078-0345', '55319-213');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '67234-022', '98132-700');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '50436-6112', '98132-750');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '49349-501', '47335-675');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '13537-004', '98132-700');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '54458-896', '63824-861');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '76420-755', '55319-213');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '62654-230', '98132-750');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '65841-649', '58118-1392');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0378-3023', '10477-1261');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '63148-118', '58118-1392');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '67386-211', '10237-820');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '61589-6505', '54569-1024');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '37000-331', '21130-044');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '37205-781', '52686-276');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '51991-628', '54569-1024');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '42627-211', '69249-000');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '0781-5578', '52686-276');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0187-0792', '51346-081');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '54868-0235', '69249-000');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '0268-1322', '49288-0258');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '51514-0301', '21130-044');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '59779-294', '21130-044');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '64220-425', '21695-197');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '42211-102', '49967-790');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '50802-001', '52686-276');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '21695-497', '54868-6223');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '43063-088', '55319-213');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '41163-917', '10477-1261');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '68788-0633', '98132-700');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '63323-024', '69249-000');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '35000-879', '55319-213');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '33261-470', '10237-820');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '44567-711', '21130-044');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '50845-0043', '58118-1392');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '0485-0210', '54569-1024');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '65044-9942', '55319-213');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '55312-630', '54868-6223');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '0591-3592', '52686-276');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0703-3333', '68462-296');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '53964-002', '49288-0258');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '21695-782', '52686-276');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '59779-182', '49967-790');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '63629-1839', '58118-1392');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '55714-4521', '21130-044');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '0135-0519', '52686-276');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '49288-0435', '98132-700');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0187-0500', '37808-773');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '64679-964', '55319-213');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '0078-0345', '54868-6223');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '67234-022', '49288-0258');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '50436-6112', '47335-675');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '49349-501', '10477-1261');
 
     -- insert ca_lam_viec
 insert into CA_LAM_VIEC (ma_ca_lam_viec, he_so_luong_tang_them, thoi_gian_bat_dau, thoi_gian_ket_thuc, sl_nv_yeu_cau, ma_cua_hang) values ('54868-4349', 4000, TO_TIMESTAMP('2023/12/1 06:00','YYYY/MM/DD HH24:MI'), TO_TIMESTAMP('2023/12/1 9:00','YYYY/MM/DD HH24:MI'), 7, '307ac585-7af5-4642-80b2-99726495a060');
@@ -436,6 +532,27 @@ insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_
 
 insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (20, 100000, '68382-228');
 insert into KHUYEN_MAI_TINH_THEO_PHAN_TRAM (phan_tram_giam, muc_giam_toi_da, ma_khuyen_mai) values (10, 100000, '68786-220');
+
+    -- insert cua_hang_ap_dung_khuyen_mai
+insert into cua_hang_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_cua_hang) values ('63629-3760', '79f44967-7044-48f1-8b24-69386cc1b50a');
+insert into cua_hang_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_cua_hang) values ('64117-178', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+insert into cua_hang_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_cua_hang) values ('42388-012', '79f44967-7044-48f1-8b24-69386cc1b50a');
+
+    -- insert mon_ap_dung_khuyen_mai
+insert into mon_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_mon) values ('42507-692', '52686-276');
+insert into mon_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_mon) values ('49288-0004', '54868-6223');
+insert into mon_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_mon) values ('68382-228', '51346-081');
+insert into mon_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_mon) values ('63629-3760', '37808-773');
+
+    -- insert don_hang_ap_dung_khuyen_mai
+
+insert into don_hang_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_don_hang) values ('68786-220', '41163-917');
+insert into don_hang_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_don_hang) values ('37808-552', '53964-002');
+insert into don_hang_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_don_hang) values ('41163-742', '43063-088');
+insert into don_hang_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_don_hang) values ('68084-523', '68788-0633');
+insert into don_hang_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_don_hang) values ('68786-220', '41163-917');
+insert into don_hang_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_don_hang) values ('37808-552', '53964-002');
+insert into don_hang_ap_dung_khuyen_mai (Ma_khuyen_mai, Ma_don_hang) values ('41163-742', '43063-088'); 
 
     -- insert cua_hang_co_mon
 insert into cua_hang_co_mon (Ma_mon, Ma_cua_hang) values ('0527-1351', '79f44967-7044-48f1-8b24-69386cc1b50a');
@@ -535,6 +652,57 @@ insert into cua_hang_chua_nguyen_lieu (Ma_nguyen_lieu, Ma_cua_hang) values ('526
 insert into cua_hang_chua_nguyen_lieu (Ma_nguyen_lieu, Ma_cua_hang) values ('63402-206', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 insert into cua_hang_chua_nguyen_lieu (Ma_nguyen_lieu, Ma_cua_hang) values ('0135-0140', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
+    -- insert mon_can_nguyen_lieu
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (9, '57297-208', '0527-1351');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (9, '37808-425', '0527-1351');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (9, '33342-088', '55319-213');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (4, '52125-691', '55319-213');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (8, '52125-691', '63824-861');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (6, '0615-7832', '63824-861');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '0135-0140', '63824-861');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (9, '33261-484', '58118-1392');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (1, '54868-4277', '58118-1392');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (5, '0430-0720', '68462-296');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (9, '63402-206', '68462-296');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (3, '37808-425', '68462-296');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '33342-088', '51346-081');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '37808-425', '51346-081');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (5, '59779-084', '51346-081');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (4, '51345-067', '21695-197');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (1, '0430-0720', '21695-197');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '52125-377', '49288-0258');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (8, '60505-3409', '49288-0258');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (8, '51531-6743', '10477-1261');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '0430-0720', '10477-1261');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (10, '33261-484', '54569-1024');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (6, '52125-691', '54569-1024');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (3, '59779-084', '54569-1024');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '51531-6743', '47335-675');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (4, '0904-6324', '47335-675');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (1, '10345-034', '52686-276');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (8, '57297-208', '52686-276');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '63459-512', '54868-6223');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (1, '60429-526', '54868-6223');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (9, '10337-163', '98132-700');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '52125-691', '98132-700');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (10, '0135-0140', '21130-044');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (7, '11523-0435', '21130-044');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (6, '60505-3409', '21130-044');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '57297-208', '49967-790');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (6, '11523-0435', '49967-790');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '63459-512', '49967-790');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '52667-003', '69249-000');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (6, '0904-6324', '69249-000');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (5, '37808-425', '69249-000');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '51345-067', '37808-773');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (4, '33342-088', '37808-773');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '57297-208', '37808-773');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (10, '52125-691', '98132-750');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (4, '60505-3409', '98132-750');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (1, '10337-163', '98132-750');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (1, '52125-215', '10237-820');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (7, '0904-6324', '10237-820');
+INSERT INTO MON_CAN_NGUYEN_LIEU (So_luong, Ma_nguyen_lieu, Ma_mon) VALUES (2, '59779-084', '10237-820');
 
     -- insert hoa_don_nhap_kho
 
@@ -564,4 +732,86 @@ insert into cua_hang_chua_nguyen_lieu (Ma_nguyen_lieu, Ma_cua_hang) values ('013
 -- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('0409-7931', TO_DATE('6/13/2023', 'MM/DD/YYYY'), 'Kuvalis-Schumm', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 -- insert into HOA_DON_NHAP_KHO (Ma_hoa_don, Thoi_gian_nhap_kho, Nha_cung_cap, Ma_cua_hang) values ('68745-1087', TO_DATE('6/23/2023', 'MM/DD/YYYY'), 'Rutherford, Hintz and Lemke', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
+    -- insert into hoa_don_nhap_kho_co_nguyen_lieu
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (11, 320870, '0615-1571', '63459-512');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (16, 446721, '0615-1571', '0904-6324');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (19, 187154, '0615-1571', '0781-3428');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (13, 446849, '61924-266', '0904-6324');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (18, 268472, '61924-266', '59779-084');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (12, 190203, '61924-266', '33342-088');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (13, 101129, '67544-318', '63459-512');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (19, 192781, '67544-318', '0904-6324');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (15, 438255, '67544-318', '60429-526');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (17, 299282, '55910-371', '51531-6743');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (15, 325200, '55910-371', '59779-084');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (14, 243252, '50436-3101', '0430-0720');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (13, 381543, '50436-3101', '63459-512');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (20, 355371, '50436-3101', '0781-3428');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (19, 475535, '0185-4351', '0904-6178');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (13, 258372, '0185-4351', '52125-215');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (15, 382447, '0597-0075', '0904-6178');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (10, 399229, '0597-0075', '37808-425');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (15, 481232, '36987-3431', '0904-6324');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (14, 482047, '36987-3431', '37808-425');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (20, 289508, '64980-158', '63459-512');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (15, 373309, '64980-158', '60429-526');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (11, 392521, '64980-158', '11523-0435');
+
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (13, 111207, '68745-1087', '52343-020');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (10, 170338, '68745-1087', '52125-377');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (19, 272785, '41250-272', '59779-084');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (11, 115784, '41250-272', '10337-163');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (10, 412927, '41250-272', '33261-484');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (12, 383581, '55513-144', '0135-0140');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (17, 435561, '55513-144', '63402-206');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (20, 431006, '55513-144', '0430-0720');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (17, 474205, '0025-1891', '59779-084');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (19, 401644, '0025-1891', '52343-020');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (12, 329355, '49349-953', '51147-5010');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (11, 413576, '49349-953', '60505-3409');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (15, 383706, '52584-047', '0904-6178');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (13, 442208, '52584-047', '63459-512');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (19, 130534, '34666-171', '57297-208');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (11, 168785, '34666-171', '52125-377');
+
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (12, 101121, '62011-0065', '52125-691');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (10, 486529, '62011-0065', '52125-377');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (16, 490900, '24724-030', '60429-526');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (17, 196000, '24724-030', '0135-0140');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (10, 479284, '24724-030', '51345-067');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (14, 335250, '52124-0113', '68258-3014');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (20, 141692, '52124-0113', '52667-003');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (19, 127602, '52124-0113', '52125-691');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (11, 381673, '49527-801', '0904-6324');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (15, 207095, '49527-801', '11523-0435');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (14, 403829, '65734-000', '51147-5010');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (10, 347415, '65734-000', '52125-691');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (19, 428966, '15127-151', '60429-526');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (18, 456322, '15127-151', '52125-691');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (17, 347764, '55154-0358', '11523-0435');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (13, 427642, '55154-0358', '10337-163');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (11, 496587, '55154-0358', '60429-526');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (14, 469901, '0409-7931', '0781-3428');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (20, 299548, '0409-7931', '10337-163');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (11, 425066, '64175-991', '10337-163');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (17, 249000, '64175-991', '51345-067');
+-- INSERT INTO HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU (So_luong, Thanh_tien, Ma_hoa_don, Ma_nguyen_lieu) VALUES (10, 124463, '64175-991', '11523-0435');
+
+    -- insert so_luong_hao_hut
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (7, '11/11/2022', '307ac585-7af5-4642-80b2-99726495a060', '52125-215');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (2, '11/7/2022', '307ac585-7af5-4642-80b2-99726495a060', '0781-3428');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (5, '11/19/2022', '307ac585-7af5-4642-80b2-99726495a060', '10337-163');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (2, '12/4/2022', '307ac585-7af5-4642-80b2-99726495a060', '51531-6743');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (4, '12/4/2022', '307ac585-7af5-4642-80b2-99726495a060', '51531-6743');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (3, '11/15/2022', '307ac585-7af5-4642-80b2-99726495a060', '0135-0140');
+
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (2, '12/4/2022', '79f44967-7044-48f1-8b24-69386cc1b50a', '52125-215');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (5, '12/5/2022', '79f44967-7044-48f1-8b24-69386cc1b50a', '33261-484');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (6, '12/4/2022', '79f44967-7044-48f1-8b24-69386cc1b50a', '52125-215');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (1, '11/25/2022', '79f44967-7044-48f1-8b24-69386cc1b50a', '52125-377');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (3, '11/29/2022', '79f44967-7044-48f1-8b24-69386cc1b50a', '52125-377');
+
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (5, '12/3/2022', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '63402-206');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (9, '11/6/2022', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '54868-4277');
+insert into so_luong_hao_hut (So_luong_hao_hut, Ngay_hao_hut, Ma_cua_hang, Ma_nguyen_lieu) values (6, '12/2/2022', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7', '10337-163');
 COMMIT;
