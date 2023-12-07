@@ -86,82 +86,6 @@ const selectIncludeOrderAndFilter: (
     }
 };
 
-// const selectIncludeOrderAndFilter: (
-//     filterOrder: EmployeeConditionSelectDto,
-//     fields: string[]
-// ) => Promise<Record<string, string>[]> = async ({ filter, order }, fields) => {
-//     try {
-//         const selectFields = fields && fields.length > 0 ? fields.join(', ') : '*';
-//         let queryText = `SELECT ${selectFields} FROM nhan_vien`;
-
-//         queryText += ` JOIN nhan_vien_lam_viec_tai_cua_hang ON nhan_vien.ma_nhan_vien = nhan_vien_lam_viec_tai_cua_hang.ma_nhan_vien`;
-
-//         if (filter) {
-//             const filterConditions = [];
-
-//             if (filter.role && filter.role.length > 0) {
-//                 filterConditions.push(`role IN ('${filter.role.join("','")}')`);
-//             }
-
-//             if (filter.gender && filter.gender.length > 0) {
-//                 filterConditions.push(`gender IN ('${filter.gender.join("','")}')`);
-//             }
-
-//             if (filterConditions.length > 0) {
-//                 queryText += ` WHERE ${filterConditions.join(' AND ')}`;
-//             }
-//         }
-
-//         if (order) {
-//             const orderBy = Object.entries(order)
-//                 .map(([key, value]) => `${key} ${value}`)
-//                 .join(', ');
-
-//             if (orderBy) {
-//                 queryText += ` ORDER BY ${orderBy}`;
-//             }
-//         }
-
-//         const { rows } = await poolQuery({ text: queryText });
-
-//         return rows;
-//     } catch (err) {
-//         logger.error('Error when retrieving user data by Ma_nhan_vien');
-//         logger.error(err);
-//         throw err;
-//     }
-// };
-
-// const selectIncludeOrderAndFilter: (
-//     filterOrder: EmployeeConditionSelectDto,
-//     shopId: string,
-//     fields: string[]
-// ) => Promise<Record<string, string>[]> = async ({ filter, order }, shopId, fields) => {
-//     try {
-//         const selectFields = fields && fields.length > 0 ? fields.join(', ') : '*';
-//         const queryText = `SELECT ${selectFields} FROM get_employee_data($1, $2, $3, $4, $5)`;
-
-//         const { rows } = await poolQuery({
-//             text: queryText,
-//             values: [
-//                 shopId,
-//                 filter.role,
-//                 filter.gender,
-//                 ['ho_va_ten', 'vai_tro', 'ngay_vao_lam', 'ngay_sinh', 'gioi_tinh'],
-//                 Object.values(order)
-//             ]
-//         });
-
-//         logger.error(rows);
-
-//         return rows;
-//     } catch (err) {
-//         logger.error('Error when retrieving user data by Ma_nhan_vien');
-//         logger.error(err);
-//         throw err;
-//     }
-// };
-
 const selectByPartialName = async (partialName: string, fields?: string[]): Promise<Record<string, string>[]> => {
     try {
         const selectFields = fields && fields.length > 0 ? fields.join(', ') : '*';
@@ -266,20 +190,7 @@ const selectAmountGender = async (shopId: string): Promise<Record<string, string
 
 const selectCountByAgeAndGender = async (shopId?: string): Promise<Record<string, string>[]> => {
     try {
-        const queryText = `
-            SELECT
-                FLOOR(DATE_PART('year', AGE(NV.Ngay_sinh)) / 10) * 10 AS age_group,
-                NV.Gioi_tinh,
-                COUNT(NV.Ma_nhan_vien) AS employee_count
-            FROM
-                NHAN_VIEN NV
-            JOIN
-                NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG NVLVC ON NV.Ma_nhan_vien = NVLVC.Ma_nhan_vien
-            ${shopId ? 'WHERE NVLVC.Ma_cua_hang = $1' : ''}
-            GROUP BY
-                age_group, NV.Gioi_tinh
-            ORDER BY
-                age_group ASC, NV.Gioi_tinh ASC;`;
+        const queryText = `SELECT * FROM danh_sach_so_luong_theo_tuoi($1)`;
 
         const { rows } = await poolQuery({
             text: queryText,
