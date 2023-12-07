@@ -330,18 +330,27 @@ ADD CHECK (So_luong > 0);
 --cua hang can du so luong nguyen lieu de them mon vao don hang
 CREATE OR REPLACE FUNCTION check_mon_can_nguyen_lieu() RETURNS TRIGGER AS $$
 DECLARE
-    nguyen_lieu RECORD;
+    nguyen_lieu mon_can_nguyen_lieu%ROWTYPE;
     so_luong_cua_hang INT;
+	cua_hang UUID;
 BEGIN
+    SELECT ma_cua_hang INTO cua_hang FROM don_hang WHERE ma_don_hang = NEW.ma_don_hang;
     FOR nguyen_lieu IN SELECT * FROM mon_can_nguyen_lieu WHERE ma_mon = NEW.ma_mon LOOP
-        SELECT so_luong INTO so_luong_cua_hang FROM cua_hang_chua_nguyen_lieu WHERE ma_nguyen_lieu = nguyen_lieu.ma_nguyen_lieu;
-        IF nguyen_lieu.so_luong * NEW.so_luong > so_luong_cua_hang THEN
+        so_luong_cua_hang := 0;
+        SELECT so_luong INTO so_luong_cua_hang FROM cua_hang_chua_nguyen_lieu ch_nl WHERE ch_nl.ma_nguyen_lieu = nguyen_lieu.ma_nguyen_lieu AND ch_nl.ma_cua_hang = cua_hang;
+        IF so_luong_cua_hang IS NULL THEN
+            RAISE EXCEPTION 'Nguyen lieu % not found in cua hang', nguyen_lieu.ma_nguyen_lieu;
+        ELSIF nguyen_lieu.so_luong * NEW.so_luong > so_luong_cua_hang THEN
             RAISE EXCEPTION 'Not enough % in cua hang', nguyen_lieu.ma_nguyen_lieu;
         END IF;
+        RAISE NOTICE 'Nguyen lieu: %, So luong cua hang: %', nguyen_lieu.ma_nguyen_lieu, so_luong_cua_hang;
     END LOOP;
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
+
+
+
 
 --check khach hang co the dung tai quan khong
 CREATE OR REPLACE FUNCTION check_dung_tai_quan()
@@ -543,21 +552,74 @@ ALTER TABLE NHAN_VIEN_QUAN_LY_CUA_HANG
 ADD CONSTRAINT check_tg_nv_constraint CHECK (Ngay_bat_dau < Ngay_ket_thuc);
 
 -- check validation su thay doi hoa don nhap kho. Neu Cua hang khong co nguyen lieu trong hoa don nhap kho thi khong appdate hay add duoc
-CREATE OR  REPLACE FUNCTION check_nguyenlieu_CH_HDNK()
-RETURNS TRIGGER AS $$
-BEGIN
-	IF NOT EXISTS (
-		SELECT 1
-		FROM CUA_HANG_CHUA_NGUYEN_LIEU AS v
-		WHERE NEW.Ma_nguyen_lieu = v.Ma_nguyen_lieu
-	) THEN
-		RAISE EXCEPTION 'Invalid Nguyen lieu khong co trong Cua hang';
-	END IF;
+-- CREATE OR  REPLACE FUNCTION check_nguyenlieu_CH_HDNK()
+-- RETURNS TRIGGER AS $$
+-- BEGIN
+-- 	IF NOT EXISTS (
+-- 		SELECT 1
+-- 		FROM CUA_HANG_CHUA_NGUYEN_LIEU AS v
+-- 		WHERE NEW.Ma_nguyen_lieu = v.Ma_nguyen_lieu
+-- 	) THEN
+-- 		RAISE EXCEPTION 'Invalid Nguyen lieu khong co trong Cua hang';
+-- 	END IF;
 
-	RETURN NEW;
+-- 	RETURN NEW;
+-- END;
+-- $$ LANGUAGE plpgsql;
+--check validation luong nhan vien theo cua hang
+CREATE OR REPLACE FUNCTION decrease_ingredient_quantity() RETURNS TRIGGER AS $$
+DECLARE
+    r mon_can_nguyen_lieu%ROWTYPE;
+BEGIN
+    FOR r IN SELECT * FROM mon_can_nguyen_lieu WHERE ma_mon = NEW.ma_mon
+    LOOP
+        UPDATE cua_hang_chua_nguyen_lieu
+        SET so_luong = so_luong - r.so_luong
+        WHERE ma_cua_hang = 
+            (SELECT ma_cua_hang 
+             FROM don_hang 
+             WHERE don_hang.ma_don_hang = NEW.ma_don_hang)
+        AND ma_nguyen_lieu = r.ma_nguyen_lieu;
+    END LOOP;
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
---check validation luong nhan vien theo cua hang
+
+CREATE OR REPLACE FUNCTION increase_ingredient_quantity() RETURNS TRIGGER AS $$
+DECLARE
+    existing_record INT;
+BEGIN
+    SELECT COUNT(*) INTO existing_record FROM cua_hang_chua_nguyen_lieu WHERE ma_nguyen_lieu = NEW.ma_nguyen_lieu AND ma_cua_hang = (SELECT ma_cua_hang FROM hoa_don_nhap_kho WHERE ma_hoa_don = NEW.ma_hoa_don);
+    IF existing_record = 0 THEN
+        INSERT INTO cua_hang_chua_nguyen_lieu (so_luong, ma_nguyen_lieu, ma_cua_hang) VALUES (NEW.so_luong, NEW.ma_nguyen_lieu, (SELECT ma_cua_hang FROM hoa_don_nhap_kho WHERE ma_hoa_don = NEW.ma_hoa_don));
+    ELSE
+        UPDATE cua_hang_chua_nguyen_lieu
+        SET so_luong = so_luong + NEW.so_luong
+        WHERE ma_cua_hang = 
+            (SELECT ma_cua_hang 
+             FROM hoa_don_nhap_kho 
+             WHERE hoa_don_nhap_kho.ma_hoa_don = NEW.ma_hoa_don)
+        AND ma_nguyen_lieu = NEW.ma_nguyen_lieu;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION update_ingredient_quantity() RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE cua_hang_chua_nguyen_lieu
+    SET so_luong = so_luong + NEW.so_luong - OLD.so_luong
+    WHERE ma_cua_hang = 
+        (SELECT ma_cua_hang 
+         FROM hoa_don_nhap_kho 
+         WHERE hoa_don_nhap_kho.ma_hoa_don = NEW.ma_hoa_don)
+    AND ma_nguyen_lieu = NEW.ma_nguyen_lieu;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
 CREATE OR REPLACE FUNCTION check_luong_gio_toi_thieu()
 RETURNS TRIGGER AS $$
 DECLARE
@@ -601,67 +663,67 @@ END;
 $$ LANGUAGE plpgsql;
 
 --func update view số lượng nguyên liệu của cửa hàng
-CREATE OR REPLACE FUNCTION update_sl_nguyen_lieu_cua_hang()
-RETURNS TRIGGER AS $$
-BEGIN
-    -- Thực hiện cập nhật dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table
-    UPDATE v_SL_nguyen_lieu_cua_hang
-    SET 
-        Ten_cua_hang = ch.Ten_cua_hang,
-        Ma_nguyen_lieu = nl.Ma_nguyen_lieu,
-        Ten_nguyen_lieu = nl.Ten_nguyen_lieu,
-        Don_vi = nl.Don_vi,
-        So_luong = (
-            SELECT COUNT(chnl.Ma_nguyen_lieu)
-            FROM CUA_HANG_CHUA_NGUYEN_LIEU chnl
-            JOIN NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
-            WHERE chnl.Ma_cua_hang = NEW.Ma_cua_hang
-            GROUP BY nl.Ma_nguyen_lieu
-        )
-    WHERE
-        Ma_cua_hang = NEW.Ma_cua_hang;
+-- CREATE OR REPLACE FUNCTION update_sl_nguyen_lieu_cua_hang()
+-- RETURNS TRIGGER AS $$
+-- BEGIN
+--     -- Thực hiện cập nhật dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table
+--     UPDATE v_SL_nguyen_lieu_cua_hang
+--     SET 
+--         Ten_cua_hang = ch.Ten_cua_hang,
+--         Ma_nguyen_lieu = nl.Ma_nguyen_lieu,
+--         Ten_nguyen_lieu = nl.Ten_nguyen_lieu,
+--         Don_vi = nl.Don_vi,
+--         So_luong = (
+--             SELECT COUNT(chnl.Ma_nguyen_lieu)
+--             FROM CUA_HANG_CHUA_NGUYEN_LIEU chnl
+--             JOIN NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
+--             WHERE chnl.Ma_cua_hang = NEW.Ma_cua_hang
+--             GROUP BY nl.Ma_nguyen_lieu
+--         )
+--     WHERE
+--         Ma_cua_hang = NEW.Ma_cua_hang;
 
-    -- Nếu không có dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table, thực hiện INSERT
-    IF NOT FOUND THEN
-        INSERT INTO v_SL_nguyen_lieu_cua_hang (Ma_cua_hang, Ten_cua_hang, Ma_nguyen_lieu, Ten_nguyen_lieu, Don_vi, So_luong)
-        SELECT
-            ch.Ma_cua_hang,
-            ch.Ten_cua_hang,
-            nl.Ma_nguyen_lieu,
-            nl.Ten_nguyen_lieu,
-            nl.Don_vi,
-            COUNT(chnl.Ma_nguyen_lieu)
-        FROM
-            CUA_HANG ch
-        JOIN
-            CUA_HANG_CHUA_NGUYEN_LIEU chnl ON ch.Ma_cua_hang = chnl.Ma_cua_hang
-        JOIN
-            NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
-        WHERE
-            ch.Ma_cua_hang = NEW.Ma_cua_hang
-        GROUP BY
-            ch.Ma_cua_hang,
-            ch.Ten_cua_hang,
-            nl.Ma_nguyen_lieu,
-            nl.Ten_nguyen_lieu,
-            nl.Don_vi;
-    END IF;
+--     -- Nếu không có dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table, thực hiện INSERT
+--     IF NOT FOUND THEN
+--         INSERT INTO v_SL_nguyen_lieu_cua_hang (Ma_cua_hang, Ten_cua_hang, Ma_nguyen_lieu, Ten_nguyen_lieu, Don_vi, So_luong)
+--         SELECT
+--             ch.Ma_cua_hang,
+--             ch.Ten_cua_hang,
+--             nl.Ma_nguyen_lieu,
+--             nl.Ten_nguyen_lieu,
+--             nl.Don_vi,
+--             COUNT(chnl.Ma_nguyen_lieu)
+--         FROM
+--             CUA_HANG ch
+--         JOIN
+--             CUA_HANG_CHUA_NGUYEN_LIEU chnl ON ch.Ma_cua_hang = chnl.Ma_cua_hang
+--         JOIN
+--             NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
+--         WHERE
+--             ch.Ma_cua_hang = NEW.Ma_cua_hang
+--         GROUP BY
+--             ch.Ma_cua_hang,
+--             ch.Ten_cua_hang,
+--             nl.Ma_nguyen_lieu,
+--             nl.Ten_nguyen_lieu,
+--             nl.Don_vi;
+--     END IF;
 
-    RETURN NULL;
-END;
-$$ LANGUAGE plpgsql;
+--     RETURN NULL;
+-- END;
+-- $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION update_nguyen_lieu() RETURNS TRIGGER AS $$
-DECLARE
-    nguyen_lieu RECORD;
-BEGIN
-    FOR nguyen_lieu IN SELECT * FROM mon_can_nguyen_lieu WHERE ma_mon = NEW.ma_mon LOOP
-        UPDATE cua_hang_chua_nguyen_lieu SET so_luong = so_luong - (nguyen_lieu.so_luong * NEW.so_luong)
-        WHERE ma_nguyen_lieu = nguyen_lieu.ma_nguyen_lieu;
-    END LOOP;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
+-- CREATE OR REPLACE FUNCTION update_nguyen_lieu() RETURNS TRIGGER AS $$
+-- DECLARE
+--     nguyen_lieu RECORD;
+-- BEGIN
+--     FOR nguyen_lieu IN SELECT * FROM mon_can_nguyen_lieu WHERE ma_mon = NEW.ma_mon LOOP
+--         UPDATE cua_hang_chua_nguyen_lieu SET so_luong = so_luong - (nguyen_lieu.so_luong * NEW.so_luong)
+--         WHERE ma_nguyen_lieu = nguyen_lieu.ma_nguyen_lieu;
+--     END LOOP;
+--     RETURN NEW;
+-- END;
+-- $$ LANGUAGE plpgsql;
 
 
 -- func to calc number of table status
@@ -698,31 +760,31 @@ $$ LANGUAGE plpgsql;
 -- ultility:  SELECT * FROM calculate_table_status('id CUA_HANG');
 
 -- func check CUA_HANG have enough Nguyen_lieu to cook
-CREATE OR REPLACE FUNCTION check_du_nguyen_lieu(mon_id VARCHAR(30), cua_hang_id UUID)
-RETURNS BOOLEAN AS $$
-DECLARE
-    mon_nguyen_lieu_count INT;
-    cua_hang_nguyen_lieu_count INT;
-BEGIN
-    -- Đếm số lượng nguyên liệu cần cho món ăn
-    SELECT COUNT(*) INTO mon_nguyen_lieu_count
-    FROM MON_CAN_NGUYEN_LIEU
-    WHERE Ma_mon = mon_id;
+-- CREATE OR REPLACE FUNCTION check_du_nguyen_lieu(mon_id VARCHAR(30), cua_hang_id UUID)
+-- RETURNS BOOLEAN AS $$
+-- DECLARE
+--     mon_nguyen_lieu_count INT;
+--     cua_hang_nguyen_lieu_count INT;
+-- BEGIN
+--     -- Đếm số lượng nguyên liệu cần cho món ăn
+--     SELECT COUNT(*) INTO mon_nguyen_lieu_count
+--     FROM MON_CAN_NGUYEN_LIEU
+--     WHERE Ma_mon = mon_id;
 
-    -- Đếm số lượng nguyên liệu có sẵn trong cửa hàng
-    SELECT COUNT(*) INTO cua_hang_nguyen_lieu_count
-    FROM CUA_HANG_CHUA_NGUYEN_LIEU chnl
-    WHERE chnl.Ma_cua_hang = cua_hang_id
-        AND chnl.Ma_nguyen_lieu IN (
-            SELECT Ma_nguyen_lieu
-            FROM MON_CAN_NGUYEN_LIEU
-            WHERE Ma_mon = mon_id
-        );
+--     -- Đếm số lượng nguyên liệu có sẵn trong cửa hàng
+--     SELECT COUNT(*) INTO cua_hang_nguyen_lieu_count
+--     FROM CUA_HANG_CHUA_NGUYEN_LIEU chnl
+--     WHERE chnl.Ma_cua_hang = cua_hang_id
+--         AND chnl.Ma_nguyen_lieu IN (
+--             SELECT Ma_nguyen_lieu
+--             FROM MON_CAN_NGUYEN_LIEU
+--             WHERE Ma_mon = mon_id
+--         );
 
-    -- Kiểm tra xem có đủ nguyên liệu không
-    RETURN cua_hang_nguyen_lieu_count >= mon_nguyen_lieu_count;
-END;
-$$ LANGUAGE plpgsql;
+--     -- Kiểm tra xem có đủ nguyên liệu không
+--     RETURN cua_hang_nguyen_lieu_count >= mon_nguyen_lieu_count;
+-- END;
+-- $$ LANGUAGE plpgsql;
 --ultility: SELECT check_du_nguyen_lieu('id mon','id cua hang') AS result;
 --end
 COMMIT;
