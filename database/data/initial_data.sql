@@ -219,7 +219,7 @@ INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_t
 VALUES (TO_DATE('3/12/2022', 'MM/DD/YYYY'), TO_DATE('2/20/2023', 'MM/DD/YYYY'), 'pha chế', 'fb8a71ad-8df7-4158-a8d7-efe5e7a37a7e', '307ac585-7af5-4642-80b2-99726495a060');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('10/10/2022', 'MM/DD/YYYY'), TO_DATE('4/3/2023', 'MM/DD/YYYY'), 'quét dọn', '37e46bad-b103-4701-885c-65f677030cff', '79f44967-7044-48f1-8b24-69386cc1b50a');
+VALUES (TO_DATE('10/10/2022', 'MM/DD/YYYY'), TO_DATE('4/3/2023', 'MM/DD/YYYY'), 'pha chế', '37e46bad-b103-4701-885c-65f677030cff', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
 VALUES (TO_DATE('5/3/2022', 'MM/DD/YYYY'), TO_DATE('12/24/2023', 'MM/DD/YYYY'), 'bồi bàn', '9c622593-de61-472d-bd4a-f9207634b012', '307ac585-7af5-4642-80b2-99726495a060');
@@ -230,10 +230,10 @@ INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_t
 VALUES (TO_DATE('8/18/2022', 'MM/DD/YYYY'), TO_DATE('10/17/2022', 'MM/DD/YYYY'), 'bồi bàn', 'edd37519-af0a-489c-922e-c3830322a4b3', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('1/1/2022', 'MM/DD/YYYY'), TO_DATE('9/21/2023', 'MM/DD/YYYY'), 'quét dọn', 'e609bfbb-ea73-47aa-9cc2-764aed0ece2d', '79f44967-7044-48f1-8b24-69386cc1b50a');
+VALUES (TO_DATE('1/1/2022', 'MM/DD/YYYY'), TO_DATE('9/21/2023', 'MM/DD/YYYY'), 'pha chế', 'e609bfbb-ea73-47aa-9cc2-764aed0ece2d', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('2/8/2022', 'MM/DD/YYYY'), TO_DATE('6/29/2022', 'MM/DD/YYYY'), 'quét dọn', 'e311ff71-c613-4735-9717-3593ef932681', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
+VALUES (TO_DATE('2/8/2022', 'MM/DD/YYYY'), TO_DATE('6/29/2022', 'MM/DD/YYYY'), 'pha chế', 'e311ff71-c613-4735-9717-3593ef932681', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
 VALUES (TO_DATE('3/2/2022', 'MM/DD/YYYY'), TO_DATE('9/1/2022', 'MM/DD/YYYY'), 'bồi bàn', '6a53092b-226d-4d6b-9792-6911b0947ed7', '307ac585-7af5-4642-80b2-99726495a060');
@@ -245,22 +245,22 @@ INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_t
 VALUES (TO_DATE('4/13/2022', 'MM/DD/YYYY'), TO_DATE('4/6/2023', 'MM/DD/YYYY'), 'bồi bàn', '0cdeaa63-3b34-4a34-bf34-5d9b77b7f9e2', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('2/27/2022', 'MM/DD/YYYY'), TO_DATE('8/16/2023', 'MM/DD/YYYY'), 'quét dọn', 'a8fe1d21-4609-402a-8197-e59fc7062325', '307ac585-7af5-4642-80b2-99726495a060');
+VALUES (TO_DATE('2/27/2022', 'MM/DD/YYYY'), TO_DATE('8/16/2023', 'MM/DD/YYYY'), 'bồi bàn', 'a8fe1d21-4609-402a-8197-e59fc7062325', '307ac585-7af5-4642-80b2-99726495a060');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('5/4/2022', 'MM/DD/YYYY'), TO_DATE('10/8/2022', 'MM/DD/YYYY'), 'quét dọn', '8583f8fb-4076-4028-81ef-b7b8b85188d0', '79f44967-7044-48f1-8b24-69386cc1b50a');
+VALUES (TO_DATE('5/4/2022', 'MM/DD/YYYY'), TO_DATE('10/8/2022', 'MM/DD/YYYY'), 'bồi bàn', '8583f8fb-4076-4028-81ef-b7b8b85188d0', '79f44967-7044-48f1-8b24-69386cc1b50a');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('1/25/2022', 'MM/DD/YYYY'), TO_DATE('12/2/2023', 'MM/DD/YYYY'), 'quét dọn', '462f401c-7afe-44bd-a28d-2db5baad569a', '307ac585-7af5-4642-80b2-99726495a060');
+VALUES (TO_DATE('1/25/2022', 'MM/DD/YYYY'), TO_DATE('12/2/2023', 'MM/DD/YYYY'), 'bồi bàn', '462f401c-7afe-44bd-a28d-2db5baad569a', '307ac585-7af5-4642-80b2-99726495a060');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('7/2/2022', 'MM/DD/YYYY'), TO_DATE('5/17/2022', 'MM/DD/YYYY'), 'quét dọn', 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '307ac585-7af5-4642-80b2-99726495a060');
+VALUES (TO_DATE('7/2/2022', 'MM/DD/YYYY'), TO_DATE('5/17/2022', 'MM/DD/YYYY'), 'bồi bàn', 'c700ff6e-a58e-48c1-a530-b3b4b3385688', '307ac585-7af5-4642-80b2-99726495a060');
 
 insert into NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang)
 values (TO_DATE('11/22/2022','MM/DD/YYYY'), TO_DATE('11/4/2022','MM/DD/YYYY'), 'bồi bàn', '0ee57da6-c54b-4f05-9379-5baad1ba7faa', 'd40c35a7-f8fb-4eee-bb00-8f67fc6d4fb7');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
-VALUES (TO_DATE('7/24/2022', 'MM/DD/YYYY'), TO_DATE('8/9/2023', 'MM/DD/YYYY'), 'quét dọn', '68120b5e-147b-4d1d-973a-6e3ec55d15fe', '307ac585-7af5-4642-80b2-99726495a060');
+VALUES (TO_DATE('7/24/2022', 'MM/DD/YYYY'), TO_DATE('8/9/2023', 'MM/DD/YYYY'), 'bồi bàn', '68120b5e-147b-4d1d-973a-6e3ec55d15fe', '307ac585-7af5-4642-80b2-99726495a060');
 
 INSERT INTO NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG (Ngay_vao_lam, Ngay_nghi_viec, Vai_tro, Ma_nhan_vien, Ma_cua_hang) 
 VALUES (TO_DATE('3/12/2022', 'MM/DD/YYYY'), TO_DATE('6/13/2022', 'MM/DD/YYYY'), 'bồi bàn', '053381de-24dc-4611-aed1-af75bb2544da', '79f44967-7044-48f1-8b24-69386cc1b50a');
