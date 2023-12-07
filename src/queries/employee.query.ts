@@ -122,8 +122,10 @@ const insertSingleEmployee = async (employee: CreateEmployeeInputDto): Promise<v
 
 const updateSingleEmployee = async (employeeId: string, employee: UpdateEmployeeBodyDto): Promise<void> => {
     try {
-        const queryText = `CALL sua_nhan_vien_qua_ma_nhan_vien($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`;
-        const formattedBirthday = moment(employee.birthday).format('YYYY-MM-DD');
+        const queryText = `CALL sua_nhan_vien_qua_ma_nhan_vien($1, $2, TO_DATE($3, 'YYYY-MM-DD'), $4, $5, $6, $7, $8, $9, $10)`;
+        logger.error(employee.birthday);
+        const formattedBirthday = moment.unix(employee.birthday).format('YYYY-MM-DD');
+        logger.error(formattedBirthday);
         const formatGender = capitalizeFirstLetter(employee.gender);
 
         //TODO: add joinedAT, leaveAt
@@ -140,8 +142,6 @@ const updateSingleEmployee = async (employeeId: string, employee: UpdateEmployee
                 employee.academicLevel,
                 undefined,
                 undefined
-                // employee.joinedAt,
-                // employee.leaveAt
             ]
         });
     } catch (err) {

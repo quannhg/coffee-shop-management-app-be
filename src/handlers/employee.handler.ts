@@ -41,8 +41,6 @@ const get: Handler<EmployeeResultDto, { Body: EmployeeInputDto }> = async (req, 
 const getDetail: Handler<GetEmployeeDetailResultDto, { Params: GetEmployeeDetailParamsDto }> = async (req, res) => {
     const employee = await employeeQuery.selectById(req.params.employeeId);
 
-    logger.error(employee);
-
     const formatEmployee = {
         id: employee.ma_nhan_vien,
         name: employee.ho_va_ten,

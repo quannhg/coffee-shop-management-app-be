@@ -51,10 +51,7 @@ export const UpdateEmployeeBodyDto = Type.Object({
     birthday: Type.Number(),
     phoneNum: Type.String(),
     bankNum: Type.String(),
-    academicLevel: AcademicStandard,
-    joinedAt: Type.Number(),
-    leaveAt: Type.Number(),
-    role: EmployeeRole
+    academicLevel: AcademicStandard
 });
 
 export const GetEmployeeDetailParamsDto = Type.Object({
