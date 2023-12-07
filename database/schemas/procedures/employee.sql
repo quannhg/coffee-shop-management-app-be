@@ -1,3 +1,7 @@
+-- run the following command when excute query failed, this will rollback transaction (excute only this command, not the whole file)
+-- ROLLBACK;
+
+BEGIN;
 -- Hàm kiểm tra tuổi nhân viên
 CREATE OR REPLACE FUNCTION kiem_tra_tuoi(_ngay_sinh DATE) RETURNS BOOLEAN AS $$
 BEGIN
@@ -11,7 +15,7 @@ $$ LANGUAGE plpgsql;
 -- Hàm kiểm tra số điện thoại
 CREATE OR REPLACE FUNCTION kiem_tra_sdt(_sdt VARCHAR(12)) RETURNS BOOLEAN AS $$
 BEGIN
-    IF _sdt !~ '^[0-9]{3}-[0-9]{3}-[0-9]{4}$' THEN
+    IF _sdt !~ '^[0-9]{3,4}-?[0-9]{3}-?[0-9]{3,4}$' THEN
         RAISE EXCEPTION 'Số điện thoại không hợp lệ';
     END IF;
     RETURN TRUE;
@@ -336,3 +340,4 @@ BEGIN
 
 END;
 $$ LANGUAGE plpgsql;
+COMMIT;
