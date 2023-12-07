@@ -11,7 +11,7 @@ $$ LANGUAGE plpgsql;
 -- Hàm kiểm tra số điện thoại
 CREATE OR REPLACE FUNCTION kiem_tra_sdt(_sdt VARCHAR(12)) RETURNS BOOLEAN AS $$
 BEGIN
-    IF _sdt !~ '^[0-9]{10,12}$' THEN
+    IF _sdt !~ '^[0-9]{3}-[0-9]{3}-[0-9]{4}$' THEN
         RAISE EXCEPTION 'Số điện thoại không hợp lệ';
     END IF;
     RETURN TRUE;
@@ -227,7 +227,7 @@ CREATE OR REPLACE FUNCTION get_employee_data
 ) AS $$
 DECLARE
     valid_roles varchar[] := ARRAY['quản lý', 'bồi bàn', 'pha chế'];
-    valid_genders varchar[] := ARRAY['Nam', 'Nữ'];
+    valid_genders varchar[] := ARRAY['Nam', 'Nu'];
     valid_order_attributes varchar[] := ARRAY['ho_va_ten', 'vai_tro', 'ngay_vao_lam', 'ngay_sinh', 'gioi_tinh'];
 	valid_order_directions varchar[] :=ARRAY['ASC','DESC','asc','desc'];
 	query_string text;
