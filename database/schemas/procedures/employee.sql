@@ -208,13 +208,13 @@ $$ LANGUAGE plpgsql;
 --Danh sách nhân viên của cửa hàng chỉ định bao gồm chức năng sắp xếp và filter
 CREATE OR REPLACE FUNCTION get_employee_data
 (
-	ma_cua_hang UUID,
+    ma_cua_hang UUID,
     role_list varchar[], 
     gender_list varchar[],
     order_attributes varchar[],
     order_directions varchar[]
-    
-) RETURNS TABLE
+) 
+RETURNS TABLE
 (
     ma_nhan_vien UUID,
     ho_va_ten varchar(30),
@@ -226,93 +226,87 @@ CREATE OR REPLACE FUNCTION get_employee_data
     ngay_vao_lam date
 ) AS $$
 DECLARE
-    valid_roles varchar[] := ARRAY['quản lý', 'bồi bàn', 'pha chế'];
+    valid_roles varchar[] := ARRAY['quản lý', 'phục vụ', 'pha chế', 'bảo vệ' , 'quét dọn'];
     valid_genders varchar[] := ARRAY['Nam', 'Nu'];
     valid_order_attributes varchar[] := ARRAY['ho_va_ten', 'vai_tro', 'ngay_vao_lam', 'ngay_sinh', 'gioi_tinh'];
-	valid_order_directions varchar[] :=ARRAY['ASC','DESC','asc','desc'];
-	query_string text;
-	order_clause text;
+    valid_order_directions varchar[] := ARRAY['ASC', 'DESC', 'asc', 'desc'];
+    query_string text;
+    order_clause text := '';
     i int;
 BEGIN
     -- Validate role_list
-    IF NOT ARRAY(        SELECT unnest(role_list)
-    EXCEPT
+    IF NOT ARRAY(
+        SELECT unnest(role_list)
+        EXCEPT
         SELECT unnest(valid_roles)
     ) = '{}' THEN
         RAISE EXCEPTION 'Invalid role(s) provided';
-END
-IF;
+    END IF;
 
     -- Validate gender_list
-    IF NOT ARRAY(    SELECT unnest(gender_list)
-EXCEPT
-    SELECT unnest(valid_genders)
-) = '{}' THEN
+    IF NOT ARRAY(
+        SELECT unnest(gender_list)
+        EXCEPT
+        SELECT unnest(valid_genders)
+    ) = '{}' THEN
         RAISE EXCEPTION 'Invalid gender(s) provided';
-END
-IF;
+    END IF;
 
     -- Validate order_attributes
-    IF NOT ARRAY(    SELECT unnest(order_attributes)
-EXCEPT
-    SELECT unnest(valid_order_attributes)
-) = '{}' THEN
+    IF NOT ARRAY(
+        SELECT unnest(order_attributes)
+        EXCEPT
+        SELECT unnest(valid_order_attributes)
+    ) = '{}' THEN
         RAISE EXCEPTION 'Invalid order_by_attribute(s) provided';
-END
-IF;
+    END IF;
 
-    --Validate order_directions
-    IF NOT ARRAY(        SELECT unnest(order_directions)
-    EXCEPT
+    -- Validate order_directions
+    IF NOT ARRAY(
+        SELECT unnest(order_directions)
+        EXCEPT
         SELECT unnest(valid_order_directions)
     ) = '{}' THEN
         RAISE EXCEPTION 'Invalid order direction(s) provided';
-END
-IF;
+    END IF;
 
-order_clause := '';
-
+    
     FOR i IN 1..array_length(order_attributes, 1) LOOP
         IF i > 1 THEN
             order_clause := order_clause || ', ';
         END IF;
-
-        order_clause := order_clause || order_attributes[i][1] || ' ' || order_directions[i];
+        order_clause := order_clause || quote_ident(order_attributes[i]) || ' ' || order_directions[i];
     END LOOP;
 
+    
     query_string := '
         SELECT 
-            nhan_vien.ma_nhan_vien,
-            nhan_vien.ho_va_ten,
-            nhan_vien.avatarUrl,
-            nhan_vien.ngay_sinh,
-            nhan_vien.gioi_tinh,
-            nhan_vien.sdt,
-            nhan_vien_lam_viec_tai_cua_hang.vai_tro,
-            nhan_vien_lam_viec_tai_cua_hang.ngay_vao_lam
+            NHAN_VIEN.Ma_nhan_vien,
+            NHAN_VIEN.Ho_va_ten,
+            NHAN_VIEN.avatarUrl,
+            NHAN_VIEN.Ngay_sinh,
+            NHAN_VIEN.Gioi_tinh::varchar,
+            NHAN_VIEN.Sdt,
+            NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Vai_tro,
+            NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Ngay_vao_lam
         FROM 
-            nhan_vien 
+            NHAN_VIEN
         JOIN 
-            nhan_vien_lam_viec_tai_cua_hang 
-        ON 
-            nhan_vien.ma_nhan_vien = nhan_vien_lam_viec_tai_cua_hang.ma_nhan_vien
-        JOIN 
-            cua_hang 
-        ON 
-            nhan_vien_lam_viec_tai_cua_hang.ma_cua_hang = cua_hang.ma_cua_hang
+            NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG
+            ON NHAN_VIEN.Ma_nhan_vien = NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Ma_nhan_vien
         WHERE 
-            nhan_vien_lam_viec_tai_cua_hang.vai_tro = ANY($2)
-            AND nhan_vien.gioi_tinh = ANY($3)
-            AND cua_hang.ma_cua_hang = $1
-        ORDER BY ' || order_clause;
-         
-	RETURN QUERY EXECUTE query_string USING 
-        ma_cua_hang, role_list, gender_list ;
+            (array_length($2, 1) IS NULL OR NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Vai_tro = ANY($2))
+            AND (array_length($3, 1) IS NULL OR NHAN_VIEN.Gioi_tinh::text = ANY($3))
+            AND NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Ma_cua_hang = $1' 
+        || (CASE WHEN order_clause <> '' THEN ' ORDER BY ' || order_clause ELSE '' END);
+
+    
+    RETURN QUERY EXECUTE query_string USING ma_cua_hang, role_list, gender_list;
 END;
 $$ LANGUAGE plpgsql;
 --SELECT * FROM get_employee_data(
 --    'mã_cửa_hàng',
---    ARRAY['quản lý', 'bồi bàn'],
+--    ARRAY['quản lý', 'phục vụ'],
 --    ARRAY['Nam'],
 --    ARRAY['ho_va_ten', 'ngay_sinh'],
 --    ARRAY['ASC', 'DESC']
