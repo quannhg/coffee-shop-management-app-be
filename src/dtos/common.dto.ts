@@ -12,7 +12,7 @@ export const ObjectPhoneNumber = Type.String({
     maxLength: PHONE_NUMBER_LENGTH
 });
 
-export const Gender = Type.String({ enum: ['nam', 'nữ'] });
+export const Gender = Type.String({ enum: ['Nam', 'Nu'] });
 
 export const OrderType = Type.String({ enum: ['ASC', 'DESC'] });
 

@@ -38,8 +38,9 @@ export const CreateEmployeeInputDto = Type.Object({
     phoneNum: Type.String(),
     bankNum: Type.String(),
     academicLevel: AcademicStandard,
-    joinedAt: Type.Number(),
-    role: EmployeeRole
+    role: EmployeeRole,
+    username: Type.String(),
+    password: Type.String()
 });
 
 export const UpdateEmployeeBodyDto = Type.Object({

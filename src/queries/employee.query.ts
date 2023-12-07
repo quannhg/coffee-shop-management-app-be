@@ -35,52 +35,39 @@ const selectById = async (id: string, fields?: string[]): Promise<Record<string,
     }
 };
 
-const selectIncludeOrderAndFilter: (
-    filterOrder: EmployeeConditionSelectDto,
-    shopId: string,
-    fields: string[]
-) => Promise<Record<string, string>[]> = async ({ filter, order }, shopId, fields) => {
+const selectIncludeOrderAndFilter: (filterOrder: EmployeeConditionSelectDto, shopId: string) => Promise<Record<string, string>[]> = async (
+    { filter, order },
+    shopId
+) => {
     try {
-        const selectFields = fields && fields.length > 0 ? fields.join(', ') : '*';
-        let queryText = `SELECT ${selectFields} FROM nhan_vien`;
+        let queryText = `SELECT * FROM get_employee_data(
+                            role_list => $1,
+                            gender_list => $2,
+                            order_directions => $3,
+                            isSelectAll => $4`;
 
-        queryText += ` JOIN nhan_vien_lam_viec_tai_cua_hang ON nhan_vien.ma_nhan_vien = nhan_vien_lam_viec_tai_cua_hang.ma_nhan_vien`;
-        queryText += ` JOIN CUA_HANG ON nhan_vien_lam_viec_tai_cua_hang.ma_cua_hang = CUA_HANG.ma_cua_hang`;
+        const values: (boolean | string | string[])[] = [
+            filter.role,
+            filter.gender.map((gender) => capitalizeFirstLetter(gender)),
+            [order.gender.toUpperCase(), order.name, order.role, order.joinedAt, order.birthday],
+            !shopId
+        ];
 
-        if (filter) {
-            const filterConditions = [];
-
-            if (filter.role && filter.role.length > 0) {
-                filterConditions.push(`role IN ('${filter.role.join("','")}')`);
-            }
-
-            if (filter.gender && filter.gender.length > 0) {
-                filterConditions.push(`gender IN ('${filter.gender.join("','")}')`);
-            }
-
-            if (filterConditions.length > 0) {
-                queryText += ` WHERE ${filterConditions.join(' AND ')}`;
-            }
+        if (shopId) {
+            values.push(shopId);
+            queryText += ' ,ma_cua_hang => $5)';
+        } else {
+            queryText += ' )';
         }
 
-        // Add condition to filter by shopId
-        queryText += ` AND CUA_HANG.ma_cua_hang = '${shopId}'`;
-
-        if (order) {
-            const orderBy = Object.entries(order)
-                .map(([key, value]) => `${key} ${value}`)
-                .join(', ');
-
-            if (orderBy) {
-                queryText += ` ORDER BY ${orderBy}`;
-            }
-        }
-
-        const { rows } = await poolQuery({ text: queryText });
+        const { rows } = await poolQuery({
+            text: queryText,
+            values: values
+        });
 
         return rows;
     } catch (err) {
-        logger.error('Error when retrieving user data by Ma_nhan_vien');
+        logger.error('Error when retrieving all employee of shop');
         logger.error(err);
         throw err;
     }
@@ -119,8 +106,8 @@ const insertSingleEmployee = async (employee: CreateEmployeeInputDto): Promise<v
                 employee.phoneNum,
                 employee.bankNum,
                 employee.academicLevel,
-                '',
-                ''
+                employee.username,
+                employee.password
             ]
         });
     } catch (err) {
