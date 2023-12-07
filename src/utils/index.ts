@@ -3,6 +3,7 @@
  */
 
 export * from './capitalizeFirstLetter';
+export * from './convertTimeStampToDate';
 export * from './createRoutes';
 export * from './logger';
 export * from './query';

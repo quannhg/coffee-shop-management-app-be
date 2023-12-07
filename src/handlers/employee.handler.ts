@@ -16,7 +16,6 @@ import {
     DeleteEmployeeResultDto,
     GetEmployeeDetailResultDto
 } from '@dtos/out';
-import { faker } from '@faker-js/faker';
 import { employeeQuery } from '@queries';
 import { logger } from '@utils';
 
@@ -39,23 +38,27 @@ const get: Handler<EmployeeResultDto, { Body: EmployeeInputDto }> = async (req, 
     );
 };
 
-const getDetail: Handler<GetEmployeeDetailResultDto, { Params: GetEmployeeDetailParamsDto }> = async (__req, res) => {
-    const employee = () => ({
-        id: faker.string.uuid(),
-        name: faker.person.fullName(),
-        avatarUrl: faker.image.avatar(),
-        address: faker.location.streetAddress(),
-        gender: faker.helpers.arrayElement(['nam', 'nữ']),
-        birthday: faker.date.past().getTime(),
-        phoneNum: faker.phone.number(),
-        bankNum: faker.number.int({ min: 1000970162509863 }),
-        academicLevel: faker.helpers.arrayElement(['High School Diploma', 'College Degree', 'Undergraduate Degree']),
-        joinedAt: faker.date.recent().getTime(),
-        leaveAt: faker.date.recent().getTime(),
-        role: faker.helpers.arrayElement(['bồi bàn', 'pha chế', 'quản lý'])
-    });
+const getDetail: Handler<GetEmployeeDetailResultDto, { Params: GetEmployeeDetailParamsDto }> = async (req, res) => {
+    const employee = await employeeQuery.selectById(req.params.employeeId);
 
-    return res.send(employee());
+    logger.error(employee);
+
+    const formatEmployee = {
+        id: employee.ma_nhan_vien,
+        name: employee.ho_va_ten,
+        avatarUrl: employee.avatarurl,
+        address: employee.dia_chi,
+        gender: employee.gioi_tinh,
+        birthday: employee.ngay_sinh,
+        phoneNum: employee.sdt,
+        bankNum: employee.so_tk_ngan_hang,
+        academicLevel: employee.trinh_do_hoc_van,
+        joinedAt: employee.ngay_vao_lam,
+        leaveAt: employee.ngay_nghi_viec,
+        role: employee.vai_tro
+    };
+
+    return res.send(formatEmployee);
 };
 
 const search: Handler<EmployeeSearchingResultDto, { Params: EmployeeSearchingParamsDto }> = async (req, res) => {
