@@ -253,7 +253,7 @@ BEGIN
             NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Ngay_vao_lam
         FROM 
             NHAN_VIEN
-        JOIN 
+        LEFT JOIN 
             NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG
             ON NHAN_VIEN.Ma_nhan_vien = NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Ma_nhan_vien
         WHERE 
