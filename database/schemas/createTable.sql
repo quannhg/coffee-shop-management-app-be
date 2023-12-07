@@ -698,7 +698,7 @@ $$ LANGUAGE plpgsql;
 -- ultility:  SELECT * FROM calculate_table_status('id CUA_HANG');
 
 -- func check CUA_HANG have enough Nguyen_lieu to cook
-CREATE OR REPLACE FUNCTION check_du_nguyen_lieu(mon_id UUID, cua_hang_id UUID)
+CREATE OR REPLACE FUNCTION check_du_nguyen_lieu(mon_id VARCHAR(30), cua_hang_id UUID)
 RETURNS BOOLEAN AS $$
 DECLARE
     mon_nguyen_lieu_count INT;

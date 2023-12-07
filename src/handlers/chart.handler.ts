@@ -4,33 +4,42 @@ import { Handler } from '@interfaces';
 import { employeeQuery, shopQuery } from '@queries';
 import { logger } from '@utils';
 
-const ageDistribute: Handler<AgeDistributeChartResult, { Params: ChartParams }> = async (__req, res) => {
-    const ageDistribute = await employeeQuery.selectCountByAgeAndGender();
+const ageDistribute: Handler<AgeDistributeChartResult, { Params: ChartParams }> = async (req, res) => {
+    const ageDistribute = await employeeQuery.selectCountByAgeAndGender(req.params.shopId);
 
-    const age = [];
-    const maleDataset = [];
-    const femaleDataset = [];
+    function convertArrayToObject(input: Record<string, string>[]) {
+        const result: AgeDistributeChartResult = {
+            age: [],
+            amount: {
+                male: [],
+                female: []
+            }
+        };
 
-    for (const item of ageDistribute) {
-        const ageGroup = Number(item['age_group']);
-        const count = Number(item['employee_count']);
-        const gender = item['gioi_tinh'];
+        const uniqueAges = Array.from(new Set(input.map((item) => item.do_tuoi)));
 
-        age.push(ageGroup);
+        const maleAmounts: number[] = Array(uniqueAges.length).fill(0);
+        const femaleAmounts: number[] = Array(uniqueAges.length).fill(0);
 
-        if (gender === 'Nam') {
-            maleDataset.push(count);
-            femaleDataset.push(0); // Assuming female count is zero if not present in the data
-        } else {
-            maleDataset.push(0); // Assuming male count is zero if not present in the data
-            femaleDataset.push(count);
-        }
+        input.forEach((item) => {
+            const ageIndex = uniqueAges.indexOf(item.do_tuoi);
+            const employeeCount = Number(item.so_luong);
+
+            if (item.gioi_tinh === 'Nam') {
+                maleAmounts[ageIndex] += employeeCount;
+            } else if (item.gioi_tinh === 'Nu') {
+                femaleAmounts[ageIndex] += employeeCount;
+            }
+        });
+
+        result.age = uniqueAges.map((age) => Number(age));
+        result.amount.male = maleAmounts;
+        result.amount.female = femaleAmounts;
+
+        return result;
     }
 
-    return res.send({
-        age: age,
-        amount: { male: maleDataset, female: femaleDataset }
-    });
+    return res.send(convertArrayToObject(ageDistribute));
 };
 
 const genderDistribute: Handler<GenderDistributeChartResult, { Params: ChartParams }> = async (req, res) => {
