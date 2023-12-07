@@ -1,13 +1,14 @@
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '43063-088', '55319-213');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '41163-917', '10477-1261');
-insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '68788-0633', '0527-1351');
+select * from cua_hang_chua_nguyen_lieu where ma_nguyen_lieu = '57297-208' or ma_nguyen_lieu = '37808-425'
+-- insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '68788-0633', '0527-1351');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '63323-024', '49288-0258');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '35000-879', '10237-820');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '33261-470', '63824-861');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '44567-711', '49288-0258');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '50845-0043', '0527-1351');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0485-0210', '54569-1024');
-insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '65044-9942', '49967-790');
+-- insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '65044-9942', '49967-790');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '55312-630', '68462-296');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0591-3592', '10237-820');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0703-3333', '68462-296');
@@ -49,10 +50,10 @@ insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '50802-0
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '21695-497', '54868-6223');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '43063-088', '55319-213');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '41163-917', '10477-1261');
-insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '68788-0633', '98132-700');
-insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '63323-024', '69249-000');
+-- insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '68788-0633', '98132-700');
+-- insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '63323-024', '69249-000');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '35000-879', '55319-213');
-insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '33261-470', '10237-820');
+-- insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '33261-470', '10237-820');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '44567-711', '21130-044');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '50845-0043', '58118-1392');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '0485-0210', '54569-1024');
@@ -60,7 +61,7 @@ insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '65044-9
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '55312-630', '54868-6223');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '0591-3592', '52686-276');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0703-3333', '68462-296');
-insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '53964-002', '49288-0258');
+-- insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '53964-002', '49288-0258');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '21695-782', '52686-276');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '59779-182', '49967-790');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '63629-1839', '58118-1392');
@@ -70,6 +71,6 @@ insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (2, '49288-0
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '0187-0500', '37808-773');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '64679-964', '55319-213');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '0078-0345', '54868-6223');
-insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '67234-022', '49288-0258');
-insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '50436-6112', '47335-675');
+-- insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (1, '67234-022', '49288-0258');
+insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (100, '50436-6112', '47335-675');
 insert into don_hang_gom_mon (So_luong, Ma_don_hang, Ma_mon) values (3, '49349-501', '10477-1261');
