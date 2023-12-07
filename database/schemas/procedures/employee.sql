@@ -212,11 +212,12 @@ $$ LANGUAGE plpgsql;
 --Danh sách nhân viên của cửa hàng chỉ định bao gồm chức năng sắp xếp và filter
 CREATE OR REPLACE FUNCTION get_employee_data
 (
-    ma_cua_hang UUID,
     role_list varchar[], 
     gender_list varchar[],
     order_attributes varchar[],
-    order_directions varchar[]
+    order_directions varchar[],
+    isSelectAll BOOLEAN = FALSE,
+    ma_cua_hang UUID = '12345678-1234-1234-1234-123456789012'
 ) 
 RETURNS TABLE
 (
@@ -230,7 +231,7 @@ RETURNS TABLE
     ngay_vao_lam date
 ) AS $$
 DECLARE
-    valid_roles varchar[] := ARRAY['quản lý', 'phục vụ', 'pha chế', 'bảo vệ' , 'quét dọn'];
+    valid_roles varchar[] := ARRAY['quản lý', 'bồi bàn', 'pha chế'];
     valid_genders varchar[] := ARRAY['Nam', 'Nu'];
     valid_order_attributes varchar[] := ARRAY['ho_va_ten', 'vai_tro', 'ngay_vao_lam', 'ngay_sinh', 'gioi_tinh'];
     valid_order_directions varchar[] := ARRAY['ASC', 'DESC', 'asc', 'desc'];
@@ -300,21 +301,21 @@ BEGIN
             ON NHAN_VIEN.Ma_nhan_vien = NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Ma_nhan_vien
         WHERE 
             (array_length($2, 1) IS NULL OR NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Vai_tro = ANY($2))
-            AND (array_length($3, 1) IS NULL OR NHAN_VIEN.Gioi_tinh::text = ANY($3))
-            AND NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Ma_cua_hang = $1' 
+            AND (array_length($3, 1) IS NULL OR NHAN_VIEN.Gioi_tinh::text = ANY($3))'
+        || CASE WHEN NOT isSelectAll THEN ' AND NHAN_VIEN_LAM_VIEC_TAI_CUA_HANG.Ma_cua_hang = $1' ELSE '' END
         || (CASE WHEN order_clause <> '' THEN ' ORDER BY ' || order_clause ELSE '' END);
 
     
     RETURN QUERY EXECUTE query_string USING ma_cua_hang, role_list, gender_list;
 END;
 $$ LANGUAGE plpgsql;
---SELECT * FROM get_employee_data(
+-- SELECT * FROM get_employee_data(
 --    'mã_cửa_hàng',
 --    ARRAY['quản lý', 'phục vụ'],
 --    ARRAY['Nam'],
 --    ARRAY['ho_va_ten', 'ngay_sinh'],
 --    ARRAY['ASC', 'DESC']
---);
+-- );
 
 
 --Tìm kiếm nhân viên dựa trên tên
