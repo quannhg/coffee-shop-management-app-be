@@ -1,6 +1,6 @@
 -- run the following command when excute query failed, this will rollback transaction (excute only this command, not the whole file)
 -- ROLLBACK;
- BEGIN;
+BEGIN;
 
 -- Hàm kiểm tra tuổi nhân viên
 
@@ -151,7 +151,7 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE PROCEDURE thay_doi_mat_khau_nhan_vien(p_Ten_tai_khoan VARCHAR(30), p_Mat_khau_hien_tai VARCHAR(60), p_Mat_khau_moi VARCHAR(60)) AS $$
 BEGIN
     -- Kiểm tra mật khẩu mới phải khác mật khẩu cũ
-    IF NOT KiemTraMatKhauMoi(p_Mat_khau_hien_tai, p_Mat_khau_moi) THEN
+    IF NOT kiem_tra_mat_khau_moi(p_Mat_khau_hien_tai, p_Mat_khau_moi) THEN
         RAISE EXCEPTION 'Mật khẩu mới phải khác mật khẩu cũ!';
     END IF;
 
