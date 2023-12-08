@@ -58,15 +58,8 @@ BEFORE INSERT OR UPDATE
 ON NHAN_VIEN_QUAN_LY_CUA_HANG
 FOR EACH ROW
 EXECUTE FUNCTION check_tg_nv();
--- check hoa don nhap kho co nguyen lieu
--- CREATE TRIGGER trigger_check_nguyen_lieu_hoa_don
--- BEFORE INSERT OR UPDATE
--- ON HOA_DON_NHAP_KHO_CO_NGUYEN_LIEU
--- FOR EACH ROW
--- EXECUTE FUNCTION check_nguyenlieu_CH_HDNK();
 
 --check luong toi thieu nhan vien toan thoi gian va ban thoi gian
-
 CREATE TRIGGER trigger_check_luong_toi_thieu_ban_thoi_gian
 BEFORE INSERT OR UPDATE
 ON BAN_THOI_GIAN
@@ -78,23 +71,6 @@ BEFORE INSERT OR UPDATE
 ON TOAN_THOI_GIAN
 FOR EACH ROW
 EXECUTE FUNCTION check_luong_thang_toi_thieu();
-
--- trigger update nguyen lieu cua hang sau khi thêm hóa đơn nhập kho
--- CREATE TRIGGER trigger_update_sl_nguyen_lieu
--- AFTER INSERT OR UPDATE OR DELETE
--- ON HOA_DON_NHAP_KHO
--- FOR EACH ROW 
--- EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();
-
--- trigger update nguyen lieu cua hang sau khi thêm đơn hàng gồm món 
--- CREATE TRIGGER trigger_update_sl_nguyen_lieu
--- AFTER INSERT OR UPDATE OR DELETE
--- ON MON_CAN_NGUYEN_LIEU
--- FOR EACH ROW
--- EXECUTE FUNCTION update_sl_nguyen_lieu_cua_hang();
--- CREATE TRIGGER update_so_luong_nguyen_lieu
--- AFTER INSERT ON don_hang_gom_mon
--- FOR EACH ROW EXECUTE PROCEDURE update_nguyen_lieu();
 
 CREATE TRIGGER decrease_ingredient_quantity_trigger
 AFTER INSERT ON don_hang_gom_mon
