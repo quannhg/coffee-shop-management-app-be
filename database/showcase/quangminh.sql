@@ -2,12 +2,16 @@ SHOW demo
 1.1 Procedure them_nhan_vien
 
 Kiem tra sdt
-call them_nhan_vien('Minh Dep Trai',TO_DATE('26/11/2003','DD/MM/YYYY'),'Nam','2342 MSASD,QQW','1234-567-890','12312312312','High School Diploma','test2.1.1_1','1231asddae123') --loi
+call them_nhan_vien('Minh Dep Trai',TO_DATE('26/11/2003','DD/MM/YYYY'),'Nam','2342 MSASD,QQW','1234-aba-120','12312312312','High School Diploma','test2.1.1_1','1231asddae123') --loi
 call them_nhan_vien('Minh Dep Trai',TO_DATE('26/11/2003','DD/MM/YYYY'),'Nam','2342 MSASD,QQW','123-567-8904','12312312312','High School Diploma','test2.1.1_1','1231asddae123')
+select * from nhan_vien where Ho_va_ten = 'Minh Dep Trai'
 
 Kiem tra gioi tinh va do tuoi
 call them_nhan_vien('Minh Dep Gai',TO_DATE('26/11/2010','DD/MM/YYYY'),'Meow','2342 MSASD,QQW','123-567-8905','123123123112','High School Diploma','test2.1.1_2','1231asddae123') --loi
 call them_nhan_vien('Minh Dep Gai',TO_DATE('26/11/2015','DD/MM/YYYY'),'Nu','2342 MSASD,QQW','123-567-8905','123123123112','High School Diploma','test2.1.1_2','1231asddae123')
+
+select * from nhan_vien where Ho_va_ten = 'Minh Dep Gai'
+
 1.2 Procedure sua_nhan_vien
 
 select * from nhan_vien
