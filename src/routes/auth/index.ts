@@ -1,6 +1,7 @@
 import { AuthInputDto } from '@dtos/in';
 import { AuthResultDto } from '@dtos/out';
 import { authHandler } from '@handlers';
+import { Type } from '@sinclair/typebox';
 import { createRoutes } from '@utils';
 
 export const authPlugin = createRoutes('Auth', [
@@ -26,5 +27,15 @@ export const authPlugin = createRoutes('Auth', [
             deprecated: true
         },
         handler: authHandler.login
+    },
+    {
+        method: 'DELETE',
+        url: '/logout',
+        schema: {
+            response: {
+                200: Type.Null()
+            }
+        },
+        handler: authHandler.logout
     }
 ]);
