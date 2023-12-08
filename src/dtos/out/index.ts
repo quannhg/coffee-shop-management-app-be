@@ -6,6 +6,7 @@ export * from './auth.dto';
 export * from './chart.dto';
 export * from './customer.dto';
 export * from './employee.dto';
+export * from './item.dto';
 export * from './shop.dto';
 export * from './test';
 export * from './user.dto';

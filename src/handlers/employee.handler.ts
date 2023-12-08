@@ -43,6 +43,8 @@ const getDetail: Handler<GetEmployeeDetailResultDto, { Params: GetEmployeeDetail
 
     const employee = employeeArray[0];
 
+    logger.error(employee);
+
     const formatEmployee = {
         id: employee.ma_nhan_vien,
         name: employee.ho_va_ten,
