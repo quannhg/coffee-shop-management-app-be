@@ -349,9 +349,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-
 --check khach hang co the dung tai quan khong
 CREATE OR REPLACE FUNCTION check_dung_tai_quan()
 RETURNS TRIGGER AS $$
@@ -370,8 +367,6 @@ BEGIN
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-
-
 
 --check khuyen mai cho don hang	
 CREATE OR REPLACE FUNCTION check_km_dh()
@@ -460,7 +455,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
 CREATE OR REPLACE FUNCTION check_tg_CLV_CH()
 RETURNS TRIGGER AS $$
 DECLARE 
@@ -484,9 +478,6 @@ BEGIN
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
-
-
-
 
 ALTER TABLE CUA_HANG
 ADD CONSTRAINT check_tg CHECK (Gio_mo_cua < Gio_dong_cua);
@@ -551,21 +542,6 @@ $$ LANGUAGE plpgsql;
 ALTER TABLE NHAN_VIEN_QUAN_LY_CUA_HANG
 ADD CONSTRAINT check_tg_nv_constraint CHECK (Ngay_bat_dau < Ngay_ket_thuc);
 
--- check validation su thay doi hoa don nhap kho. Neu Cua hang khong co nguyen lieu trong hoa don nhap kho thi khong appdate hay add duoc
--- CREATE OR  REPLACE FUNCTION check_nguyenlieu_CH_HDNK()
--- RETURNS TRIGGER AS $$
--- BEGIN
--- 	IF NOT EXISTS (
--- 		SELECT 1
--- 		FROM CUA_HANG_CHUA_NGUYEN_LIEU AS v
--- 		WHERE NEW.Ma_nguyen_lieu = v.Ma_nguyen_lieu
--- 	) THEN
--- 		RAISE EXCEPTION 'Invalid Nguyen lieu khong co trong Cua hang';
--- 	END IF;
-
--- 	RETURN NEW;
--- END;
--- $$ LANGUAGE plpgsql;
 --check validation luong nhan vien theo cua hang
 CREATE OR REPLACE FUNCTION decrease_ingredient_quantity() RETURNS TRIGGER AS $$
 DECLARE
@@ -662,70 +638,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
---func update view số lượng nguyên liệu của cửa hàng
--- CREATE OR REPLACE FUNCTION update_sl_nguyen_lieu_cua_hang()
--- RETURNS TRIGGER AS $$
--- BEGIN
---     -- Thực hiện cập nhật dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table
---     UPDATE v_SL_nguyen_lieu_cua_hang
---     SET 
---         Ten_cua_hang = ch.Ten_cua_hang,
---         Ma_nguyen_lieu = nl.Ma_nguyen_lieu,
---         Ten_nguyen_lieu = nl.Ten_nguyen_lieu,
---         Don_vi = nl.Don_vi,
---         So_luong = (
---             SELECT COUNT(chnl.Ma_nguyen_lieu)
---             FROM CUA_HANG_CHUA_NGUYEN_LIEU chnl
---             JOIN NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
---             WHERE chnl.Ma_cua_hang = NEW.Ma_cua_hang
---             GROUP BY nl.Ma_nguyen_lieu
---         )
---     WHERE
---         Ma_cua_hang = NEW.Ma_cua_hang;
-
---     -- Nếu không có dữ liệu trong bảng v_SL_nguyen_lieu_cua_hang_table, thực hiện INSERT
---     IF NOT FOUND THEN
---         INSERT INTO v_SL_nguyen_lieu_cua_hang (Ma_cua_hang, Ten_cua_hang, Ma_nguyen_lieu, Ten_nguyen_lieu, Don_vi, So_luong)
---         SELECT
---             ch.Ma_cua_hang,
---             ch.Ten_cua_hang,
---             nl.Ma_nguyen_lieu,
---             nl.Ten_nguyen_lieu,
---             nl.Don_vi,
---             COUNT(chnl.Ma_nguyen_lieu)
---         FROM
---             CUA_HANG ch
---         JOIN
---             CUA_HANG_CHUA_NGUYEN_LIEU chnl ON ch.Ma_cua_hang = chnl.Ma_cua_hang
---         JOIN
---             NGUYEN_LIEU nl ON chnl.Ma_nguyen_lieu = nl.Ma_nguyen_lieu
---         WHERE
---             ch.Ma_cua_hang = NEW.Ma_cua_hang
---         GROUP BY
---             ch.Ma_cua_hang,
---             ch.Ten_cua_hang,
---             nl.Ma_nguyen_lieu,
---             nl.Ten_nguyen_lieu,
---             nl.Don_vi;
---     END IF;
-
---     RETURN NULL;
--- END;
--- $$ LANGUAGE plpgsql;
-
--- CREATE OR REPLACE FUNCTION update_nguyen_lieu() RETURNS TRIGGER AS $$
--- DECLARE
---     nguyen_lieu RECORD;
--- BEGIN
---     FOR nguyen_lieu IN SELECT * FROM mon_can_nguyen_lieu WHERE ma_mon = NEW.ma_mon LOOP
---         UPDATE cua_hang_chua_nguyen_lieu SET so_luong = so_luong - (nguyen_lieu.so_luong * NEW.so_luong)
---         WHERE ma_nguyen_lieu = nguyen_lieu.ma_nguyen_lieu;
---     END LOOP;
---     RETURN NEW;
--- END;
--- $$ LANGUAGE plpgsql;
-
-
 -- func to calc number of table status
 CREATE OR REPLACE FUNCTION calculate_table_status(cua_hang_id UUID)
 RETURNS TABLE (
@@ -785,6 +697,7 @@ $$ LANGUAGE plpgsql;
 --     RETURN cua_hang_nguyen_lieu_count >= mon_nguyen_lieu_count;
 -- END;
 -- $$ LANGUAGE plpgsql;
+
 --ultility: SELECT check_du_nguyen_lieu('id mon','id cua hang') AS result;
 --end
 COMMIT;
