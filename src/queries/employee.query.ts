@@ -1,6 +1,8 @@
+import { SALT_ROUNDS } from '@constants';
 import { CreateEmployeeInputDto, EmployeeConditionSelectDto, UpdateEmployeeBodyDto } from '@dtos/in';
 import { capitalizeFirstLetter, poolQuery } from '@utils';
 import { logger } from '@utils';
+import { hash } from 'bcrypt';
 import moment from 'moment';
 
 const selectByUsername = async (username: string, fields?: string[]): Promise<Record<string, string>[]> => {
@@ -95,6 +97,7 @@ const insertSingleEmployee = async (employee: CreateEmployeeInputDto): Promise<v
         const queryText = 'CALL them_nhan_vien($1, $2, $3, $4, $5, $6, $7, $8, $9)';
         const formattedBirthday = moment(employee.birthday).format('YYYY-MM-DD');
         const formatGender = capitalizeFirstLetter(employee.gender);
+        const hashPassword = await hash(employee.password, SALT_ROUNDS);
 
         //TODO: ADD JOIN AT
         await poolQuery({
@@ -108,7 +111,7 @@ const insertSingleEmployee = async (employee: CreateEmployeeInputDto): Promise<v
                 employee.bankNum,
                 employee.academicLevel,
                 employee.username,
-                employee.password
+                hashPassword
             ]
         });
     } catch (err) {
