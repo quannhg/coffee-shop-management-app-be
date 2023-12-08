@@ -672,31 +672,25 @@ $$ LANGUAGE plpgsql;
 -- ultility:  SELECT * FROM calculate_table_status('id CUA_HANG');
 
 -- func check CUA_HANG have enough Nguyen_lieu to cook
--- CREATE OR REPLACE FUNCTION check_du_nguyen_lieu(mon_id VARCHAR(30), cua_hang_id UUID)
--- RETURNS BOOLEAN AS $$
--- DECLARE
---     mon_nguyen_lieu_count INT;
---     cua_hang_nguyen_lieu_count INT;
--- BEGIN
---     -- Đếm số lượng nguyên liệu cần cho món ăn
---     SELECT COUNT(*) INTO mon_nguyen_lieu_count
---     FROM MON_CAN_NGUYEN_LIEU
---     WHERE Ma_mon = mon_id;
-
---     -- Đếm số lượng nguyên liệu có sẵn trong cửa hàng
---     SELECT COUNT(*) INTO cua_hang_nguyen_lieu_count
---     FROM CUA_HANG_CHUA_NGUYEN_LIEU chnl
---     WHERE chnl.Ma_cua_hang = cua_hang_id
---         AND chnl.Ma_nguyen_lieu IN (
---             SELECT Ma_nguyen_lieu
---             FROM MON_CAN_NGUYEN_LIEU
---             WHERE Ma_mon = mon_id
---         );
-
---     -- Kiểm tra xem có đủ nguyên liệu không
---     RETURN cua_hang_nguyen_lieu_count >= mon_nguyen_lieu_count;
--- END;
--- $$ LANGUAGE plpgsql;
+CREATE OR REPLACE FUNCTION check_du_nguyen_lieu(cua_hang_param UUID, ma_mon_param VARCHAR(30), so_luong_param INT = 1) RETURNS BOOLEAN AS $$
+DECLARE
+    nguyen_lieu mon_can_nguyen_lieu%ROWTYPE;
+    so_luong_cua_hang INT;
+BEGIN
+	IF so_luong_param < 1 THEN
+		RAISE EXCEPTION "so_luong_param must be >= 1 "
+    FOR nguyen_lieu IN SELECT * FROM mon_can_nguyen_lieu WHERE ma_mon = ma_mon_param LOOP
+        so_luong_cua_hang := 0;
+        SELECT so_luong INTO so_luong_cua_hang FROM cua_hang_chua_nguyen_lieu ch_nl WHERE ch_nl.ma_nguyen_lieu = nguyen_lieu.ma_nguyen_lieu AND ch_nl.ma_cua_hang = cua_hang_param;
+        IF so_luong_cua_hang IS NULL THEN
+            RETURN FALSE;
+        ELSIF nguyen_lieu.so_luong * so_luong_param > so_luong_cua_hang THEN
+            RETURN FALSE;
+        END IF;
+    END LOOP;
+    RETURN TRUE;
+END;
+$$ LANGUAGE plpgsql;
 
 --ultility: SELECT check_du_nguyen_lieu('id mon','id cua hang') AS result;
 --end
