@@ -693,6 +693,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
---ultility: SELECT check_du_nguyen_lieu('id mon','id cua hang') AS result;
+--ultility: SELECT check_du_nguyen_lieu('id cua hang','id mon') AS result;
 --end
 COMMIT;
