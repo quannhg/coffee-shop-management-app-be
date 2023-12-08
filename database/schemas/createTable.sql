@@ -678,7 +678,8 @@ DECLARE
     so_luong_cua_hang INT;
 BEGIN
 	IF so_luong_param < 1 THEN
-		RAISE EXCEPTION "so_luong_param must be >= 1 "
+		RAISE EXCEPTION 'so_luong_param must be >= 1';
+	END IF;
     FOR nguyen_lieu IN SELECT * FROM mon_can_nguyen_lieu WHERE ma_mon = ma_mon_param LOOP
         so_luong_cua_hang := 0;
         SELECT so_luong INTO so_luong_cua_hang FROM cua_hang_chua_nguyen_lieu ch_nl WHERE ch_nl.ma_nguyen_lieu = nguyen_lieu.ma_nguyen_lieu AND ch_nl.ma_cua_hang = cua_hang_param;
