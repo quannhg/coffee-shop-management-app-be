@@ -50,7 +50,7 @@ const selectIncludeOrderAndFilter: (filterOrder: EmployeeConditionSelectDto, sho
         const values: (boolean | string | string[])[] = [
             filter.role,
             filter.gender.map((gender) => capitalizeFirstLetter(gender)),
-            [order.gender.toUpperCase(), order.name, order.role, order.joinedAt, order.birthday],
+            [order.name, order.role, order.joinedAt, order.birthday, order.gender.toUpperCase()],
             !shopId
         ];
 
