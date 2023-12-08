@@ -19,18 +19,16 @@ const selectByUsername = async (username: string, fields?: string[]): Promise<Re
     }
 };
 
-const selectById = async (id: string, fields?: string[]): Promise<Record<string, string>> => {
+const selectById = async (id: string, fields?: string[]): Promise<Record<string, string>[]> => {
     try {
-        // Generate the SELECT query dynamically based on the provided fields or default to '*'
         const selectFields = fields && fields.length > 0 ? fields.join(', ') : '*';
         const queryText = `SELECT ${selectFields} 
-                        FROM nhan_vien JOIN nhan_vien_lam_viec_tai_cua_hang 
-                        ON nhan_vien.ma_nhan_vien = nhan_vien_lam_viec_tai_cua_hang.ma_nhan_vien
+                        FROM nhan_vien NATURAL JOIN nhan_vien_lam_viec_tai_cua_hang 
                         WHERE nhan_vien.ma_nhan_vien = $1`;
 
         const { rows } = await poolQuery({ text: queryText, values: [id] });
 
-        return rows[0];
+        return rows;
     } catch (err) {
         logger.error('Error when retrieving user data by Ma_nhan_vien');
         logger.error(err);
@@ -52,7 +50,7 @@ const selectIncludeOrderAndFilter: (filterOrder: EmployeeConditionSelectDto, sho
         const values: (boolean | string | string[])[] = [
             filter.role,
             filter.gender.map((gender) => capitalizeFirstLetter(gender)),
-            [order.gender.toUpperCase(), order.name, order.role, order.joinedAt, order.birthday],
+            [order.name, order.role, order.joinedAt, order.birthday, order.gender.toUpperCase()],
             !shopId
         ];
 

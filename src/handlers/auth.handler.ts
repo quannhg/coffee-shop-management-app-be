@@ -23,6 +23,11 @@ const login: Handler<AuthResultDto, { Body: AuthInputDto }> = async (req, res) =
     });
 };
 
+const logout: Handler<null> = async (__req, res) => {
+    res.clearCookie('token');
+    return null;
+};
+
 // const signup: Handler<AuthResultDto, { Body: AuthInputDto }> = async (req, res) => {
 //     const hashPassword = await hash(req.body.password, SALT_ROUNDS);
 //     let user: User;
@@ -48,5 +53,6 @@ const login: Handler<AuthResultDto, { Body: AuthInputDto }> = async (req, res) =
 // };
 
 export const authHandler = {
-    login
+    login,
+    logout
 };
