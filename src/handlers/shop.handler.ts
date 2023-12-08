@@ -2,6 +2,7 @@ import { Handler } from '@interfaces';
 import { ItemResult, ShopResult } from '@dtos/out';
 import { itemQuery, shopQuery } from '@queries';
 import { ItemParams } from '@dtos/in';
+import { logger } from '@utils';
 
 const shopList: Handler<ShopResult> = async (__req, res) => {
     const shops = await shopQuery.selectAllShop(['ma_cua_hang', 'ten_cua_hang']);
@@ -18,10 +19,17 @@ const shopList: Handler<ShopResult> = async (__req, res) => {
 
 const itemList: Handler<ItemResult, { Params: ItemParams }> = async (req, res) => {
     const items = await itemQuery.selectAll(req.params.shopId);
+    logger.error(items);
 
     return res.send(
         items.map((item) => {
-            return { id: item.ma_mon, name: item.ten_mon, avatarUrl: item.avatarurl, price: item.gia_tien, status: 'ready' };
+            return {
+                id: item.ma_mon,
+                name: item.ten_mon,
+                avatarUrl: item.avatarurl,
+                price: item.gia_tien,
+                status: item.status ? 'ready' : 'not ready'
+            };
         })
     );
 };
