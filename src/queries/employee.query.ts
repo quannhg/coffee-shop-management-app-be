@@ -19,12 +19,12 @@ const selectByUsername = async (username: string, fields?: string[]): Promise<Re
     }
 };
 
-const selectById = async (id: string, fields?: string[]): Promise<Record<string, string>[]> => {
+const selectById = async (id: string): Promise<Record<string, string>[]> => {
     try {
-        const selectFields = fields && fields.length > 0 ? fields.join(', ') : '*';
-        const queryText = `SELECT ${selectFields} 
-                        FROM nhan_vien NATURAL JOIN nhan_vien_lam_viec_tai_cua_hang 
-                        WHERE nhan_vien.ma_nhan_vien = $1`;
+        const queryText = `SELECT *
+                    FROM nhan_vien 
+                    LEFT JOIN nhan_vien_lam_viec_tai_cua_hang ON nhan_vien.ma_nhan_vien = nhan_vien_lam_viec_tai_cua_hang.ma_nhan_vien 
+                    WHERE nhan_vien.ma_nhan_vien = $1`;
 
         const { rows } = await poolQuery({ text: queryText, values: [id] });
 

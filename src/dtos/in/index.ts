@@ -5,3 +5,4 @@
 export * from './auth.dto';
 export * from './chart.dto';
 export * from './employee.dto';
+export * from './item.dtos';

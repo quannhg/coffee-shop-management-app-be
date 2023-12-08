@@ -550,7 +550,7 @@ BEGIN
     FOR r IN SELECT * FROM mon_can_nguyen_lieu WHERE ma_mon = NEW.ma_mon
     LOOP
         UPDATE cua_hang_chua_nguyen_lieu
-        SET so_luong = so_luong - r.so_luong
+        SET so_luong = so_luong - r.so_luong * NEW.so_luong
         WHERE ma_cua_hang = 
             (SELECT ma_cua_hang 
              FROM don_hang 
