@@ -4,7 +4,7 @@ import { Handler } from '@interfaces';
 import { employeeQuery } from 'src/queries';
 
 const getUserById: Handler<UserDto> = async (req, res) => {
-    const user = await employeeQuery.selectById(req.userId, ['ma_nhan_vien', 'ten_tai_khoan']);
+    const user = await employeeQuery.selectById(req.userId);
 
     if (user.length === 0) return res.badRequest(USER_NOT_FOUND);
 
